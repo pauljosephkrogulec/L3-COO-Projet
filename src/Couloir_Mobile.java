@@ -1,3 +1,3 @@
-public class Couloir_Mobile {
+public class Couloir_Mobile extends CouloirImpl {
     
 }
