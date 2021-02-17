@@ -28,7 +28,7 @@ public enum Objectif {
     DELIMNATEUR("Deluminateur"),
     VOITURE("Voiture volante"),
     RAPELTOUT("Le rapeltout"),
-    LETTRE("Lettre de poudlard")
+    LETTRE("Lettre de poudlard");
 
     private String description;
     private Objectif(String description) { this.description = description;}
