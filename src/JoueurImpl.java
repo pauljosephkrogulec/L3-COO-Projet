@@ -7,11 +7,11 @@ public class JoueurImpl implements Joueur {
     private Jeu jeu;
     private Pion pion;
 
-    public JoueurImpl(int age, Stack<Objectif> objectifs, Jeu jeu, Pion pion) {
+    public JoueurImpl(int age, Jeu jeu) {
         this.age = age;
-        this.objectifs = objectifs;
+        this.objectifs = null;
         this.jeu = jeu;
-        this.pion = pion;
+        this.pion = null;
     }
 
     @Override
@@ -21,20 +21,25 @@ public class JoueurImpl implements Joueur {
 
     @Override
     public void joue() {
+        this.jeu.modifierCouloir(choisirPositionInsertionCouloir(), choisirOrientationCouloir());
+        Objectif objectif = pion.deplacer(choisirPositionPion());
+        if(objectif == this.objectifs.peek()) {
+            objectifs.pop();
+        }
     }
 
     @Override
     public void fixerObjectifs(Stack<Objectif> objectifs) {
-
+        this.objectifs = objectifs;
     }
 
     @Override
     public void recevoirPion(Pion p) {
+        this.pion = p;
     }
     
-    private PositionInsertion choisirPositionIntesertionCouloir() {
+    private PositionInsertion choisirPositionInsertionCouloir() {
         return null;
-
     }
 
     private Position choisirPositionPion() {
