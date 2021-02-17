@@ -1,3 +1,3 @@
-public class Forme {
-    
+public enum Forme {
+    DROIT,COUDE,TE
 }
