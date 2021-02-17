@@ -15,9 +15,7 @@ public class PionImpl implements Pion {
         return null;
     }
 
-    @Override
     public void poserA(Position pos) {
-        // TODO Auto-generated method stub
     }
     
 }
