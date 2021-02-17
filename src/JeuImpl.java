@@ -13,19 +13,27 @@ public class JeuImpl implements Jeu {
 
     @Override
     public void modifierCouloir(PositionInsertion pos, Orientation orientation) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void enregistrer(Joueur joueur, Couleur couleur) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public List<Couloir> couloirs() {
         // TODO Auto-generated method stub
+        return null;
+    }
+
+    private void preparer() {
+
+    }
+
+    private void jouer() {
+
+    }
+
+    private Joueur prochainJoueur() {
         return null;
     }
 }
