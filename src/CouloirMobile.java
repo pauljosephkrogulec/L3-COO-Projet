@@ -1,7 +1,17 @@
-public class Couloir_Mobile extends CouloirImpl {
+public class CouloirMobile extends CouloirImpl {
 
-    public Couloir_Mobile(Orientation orientation, Forme forme, Objectif objectif) {
+    private boolean posee;
+
+    public CouloirMobile(Orientation orientation, Forme forme, Objectif objectif, boolean posee) {
         super(orientation, forme, objectif);
-        // TODO Auto-generated constructor stub
+        this.posee = posee;
+    }
+
+    public boolean changeOrientation(Orientation orientation) {
+        if(!this.posee) {
+            this.orientation = orientation;
+            return true;
+        }
+        return false;
     }
 }

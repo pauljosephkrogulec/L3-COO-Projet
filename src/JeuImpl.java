@@ -3,12 +3,12 @@ import java.util.Map;
 
 public class JeuImpl implements Jeu {
 
-    private Couloir_Mobile supplementaire;
+    private CouloirMobile supplementaire;
     private PositionInsertion positionOrigine;
     private List<Joueur> joueurs;
     private Map<Couleur, Pion> pions;
     private Objectif[] objectifs;
-    private Couloir_Mobile[] couloirsMobiles;
+    private CouloirMobile[] couloirsMobiles;
     private Plateau plateau;
 
     @Override

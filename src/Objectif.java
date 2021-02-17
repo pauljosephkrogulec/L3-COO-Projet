@@ -31,7 +31,10 @@ public enum Objectif {
     LETTRE("Lettre de poudlard");
 
     private String description;
-    private Objectif(String description) { this.description = description;}
+    
+    private Objectif(String description) {
+        this.description = description;
+    }
     public String toString(){
         return this.description;
     }

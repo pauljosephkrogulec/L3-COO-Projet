@@ -11,7 +11,6 @@ public class PionImpl implements Pion {
 
     @Override
     public Objectif deplacer(Position pos) {
-        // TODO Auto-generated method stub
         return null;
     }
 

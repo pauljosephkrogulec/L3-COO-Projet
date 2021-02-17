@@ -1,3 +1,3 @@
 public enum Forme {
-    DROIT,COUDE,TE
+    DROIT, COUDE, TE
 }
