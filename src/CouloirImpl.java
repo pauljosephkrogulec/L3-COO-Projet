@@ -2,28 +2,36 @@ import java.util.List;
 
 public class CouloirImpl implements Couloir {
 
+    protected Orientation orientation;
+    protected Forme forme;
+    protected Objectif objectif;
+    protected List<Pion> pions;
+
+    public CouloirImpl(Orientation orientation, Forme forme, Objectif objectif) {
+        this.orientation = orientation;
+        this.forme = forme;
+        this.objectif = objectif;
+        this.pions = null;
+    }
+
     @Override
     public Orientation getOrientation() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.orientation;
     }
 
     @Override
     public Forme getForme() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.forme;
     }
 
     @Override
     public Objectif getObjectif() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.objectif;
     }
 
     @Override
     public List<Pion> getPions() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.pions;
     }
     
 }
