@@ -20,6 +20,7 @@ public class JeuImpl implements Jeu {
 
     @Override
     public void enregistrer(Joueur joueur, Couleur couleur) {
+        joueur.recevoirPion(pions.get(couleur));
     }
 
     @Override

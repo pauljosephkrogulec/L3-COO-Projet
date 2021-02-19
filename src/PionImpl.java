@@ -20,7 +20,10 @@ public class PionImpl implements Pion {
     }
 
     public void poserA(Position pos) {
-        // ok
+        if(this.plateau.estAtteignable(this.positionCourante, pos)) {
+            this.plateau.deplacer(pos, this);
+            this.positionCourante = pos;
+        }        
     }
     
 }
