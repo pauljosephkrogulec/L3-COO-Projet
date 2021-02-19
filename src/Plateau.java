@@ -1,5 +1,4 @@
 public class Plateau {
-
     public CouloirMobile modifierCouloirs(PositionInsertion pos, CouloirMobile c) {
         return null;
     }

@@ -13,6 +13,9 @@ public class JeuImpl implements Jeu {
 
     @Override
     public void modifierCouloir(PositionInsertion pos, Orientation orientation) {
+        assert pos != positionOrigine;
+        supplementaire = plateau.modifierCouloirs(pos, supplementaire);
+        positionOrigine = pos.oppose();
     }
 
     @Override
@@ -21,7 +24,6 @@ public class JeuImpl implements Jeu {
 
     @Override
     public List<Couloir> couloirs() {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -30,10 +32,17 @@ public class JeuImpl implements Jeu {
     }
 
     private void jouer() {
-
+        Joueur joueur;
+        do{
+            joueur = prochainJoueur();
+            joueur.joue();
+        } while (!aGagne(joueur));
     }
 
     private Joueur prochainJoueur() {
         return null;
+    }
+    private boolean aGagne(Joueur joueur){
+        return true;
     }
 }
