@@ -20,6 +20,7 @@ public class PionImpl implements Pion {
     }
 
     public void poserA(Position pos) {
+        // ok
     }
     
 }
