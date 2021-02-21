@@ -16,7 +16,7 @@ public class JeuImpl implements Jeu {
     private Objectif[] objectifs;
     private CouloirMobile[] couloirsMobiles;
     private Plateau plateau;
-
+    private int i;
     @Override
     public void modifierCouloir(PositionInsertion pos, Orientation orientation) {
         assert pos != positionOrigine;
@@ -35,6 +35,7 @@ public class JeuImpl implements Jeu {
     }
 
     private void preparer() {
+        i = 0;
         this.positionOrigine = null;
         this.supplementaire = new CouloirMobile(null,null,null,false);
         this.joueurs = new ArrayList<>();
@@ -64,7 +65,7 @@ public class JeuImpl implements Jeu {
     }
 
     private Joueur prochainJoueur() {
-        return null;
+        return joueurs.get((this.i)++%joueurs.toArray().length);
     }
     private boolean aGagne(Joueur joueur){
         return true;
