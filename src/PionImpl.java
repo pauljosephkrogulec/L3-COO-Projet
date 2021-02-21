@@ -16,7 +16,6 @@ public class PionImpl implements Pion {
             return plateau.deplacer(pos, this);
         }
         return null;
-        
     }
 
     public void poserA(Position pos) {
