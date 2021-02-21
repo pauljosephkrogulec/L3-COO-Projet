@@ -1,19 +1,14 @@
 public enum Objectif {
 
-    
     JOURNAL("Journal de Tom Jedusor"),
     CROCHET("Crochet du Basillic"),
     MEDAILLON("Le médaillon de Serpentard"),
     DIADEME("Le diadème perdu de Serdaigle"),
     BAGUE("La bague d’Elvis Gaunt"),
     NAGINI("Nagini"),
-
-    
     PIERRE("Pierre de ressurection"),
     CAPE("Cape d'invisibilité"),
     BAGUETE("Baguete de surrot"),
-
-    
     CHOIXPEAU("Choixpeau magique"),
     COUPE("Coupe de feu"),
     EPEE("Epee de Gryffondor"),
@@ -35,6 +30,7 @@ public enum Objectif {
     private Objectif(String description) {
         this.description = description;
     }
+    
     public String toString(){
         return this.description;
     }
