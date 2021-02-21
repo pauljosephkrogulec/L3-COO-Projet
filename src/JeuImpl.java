@@ -1,7 +1,13 @@
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class JeuImpl implements Jeu {
+
+    public JeuImpl() {
+        preparer();
+    }
 
     private CouloirMobile supplementaire;
     private PositionInsertion positionOrigine;
@@ -29,6 +35,23 @@ public class JeuImpl implements Jeu {
     }
 
     private void preparer() {
+        this.positionOrigine = null;
+        this.supplementaire = new CouloirMobile(null,null,null,false);
+        this.joueurs = new ArrayList<>();
+        this.pions = new HashMap<>();
+        this.objectifs = new Objectif[24];
+        this.couloirsMobiles = new CouloirMobile[34];
+        this.plateau = new Plateau();
+        int i;
+        for(i = 0;i< 4;i++){
+            Joueur j = new JoueurImpl(14,this);
+            Pion p = new PionImpl(this.plateau,null,null);
+            this.pions.put(Couleur.values()[i], p);
+            this.joueurs.add(j);
+        }
+            for(i = 0;i<24;i++) this.objectifs[i] = Objectif.values()[i];
+            for(i = 0;i< 34;i++) this.couloirsMobiles[i] = new CouloirMobile(null,null,null,true);
+        
 
     }
 
