@@ -22,6 +22,10 @@ public class JeuImpl implements Jeu {
         assert pos != positionOrigine;
         supplementaire = plateau.modifierCouloirs(pos, supplementaire);
         positionOrigine = pos.oppose();
+        for (Pion p : supplementaire.getPions()) {
+            PionImpl pi = (PionImpl) p;
+            //pi.poserA( (Position) pos);
+        }
     }
 
     @Override
