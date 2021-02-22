@@ -48,16 +48,14 @@ public class JeuImpl implements Jeu {
         this.couloirsMobiles = new CouloirMobile[34];
         this.plateau = new Plateau();
         int i;
-        for(i = 0;i< 4;i++){
+        for(i = 0;i< 4;i++) {
             Joueur j = new JoueurImpl(14,this);
             Pion p = new PionImpl(this.plateau,null,null);
             this.pions.put(Couleur.values()[i], p);
             this.joueurs.add(j);
         }
-            for(i = 0;i<24;i++) this.objectifs[i] = Objectif.values()[i];
-            for(i = 0;i< 34;i++) this.couloirsMobiles[i] = new CouloirMobile(null,null,null,true);
-        
-
+        for(i = 0;i<24;i++) this.objectifs[i] = Objectif.values()[i];
+        for(i = 0;i< 34;i++) this.couloirsMobiles[i] = new CouloirMobile(null,null,null,true);
     }
 
     private void jouer() {
