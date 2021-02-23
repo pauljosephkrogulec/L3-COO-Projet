@@ -70,6 +70,7 @@ public class JeuImpl implements Jeu {
     private Joueur prochainJoueur() {
         return joueurs.get((this.i)++%joueurs.toArray().length);
     }
+    
     private boolean aGagne(Joueur joueur) {
         if(joueur.getPion().getPositionInitiale() == joueur.getPion().getPositionCourante() && joueur.objectifsFinis()) {
             return true;
