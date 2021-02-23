@@ -17,6 +17,7 @@ public class JeuImpl implements Jeu {
     private CouloirMobile[] couloirsMobiles;
     private Plateau plateau;
     private int i;
+    
     @Override
     public void modifierCouloir(PositionInsertion pos, Orientation orientation) {
         assert pos != positionOrigine;
