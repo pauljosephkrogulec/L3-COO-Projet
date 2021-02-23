@@ -7,6 +7,7 @@ public class JeuImpl implements Jeu {
 
     public JeuImpl() {
         preparer();
+        jouer();
     }
 
     private CouloirMobile supplementaire;
@@ -72,9 +73,6 @@ public class JeuImpl implements Jeu {
     }
     
     private boolean aGagne(Joueur joueur) {
-        if(joueur.getPion().getPositionInitiale() == joueur.getPion().getPositionCourante() && joueur.objectifsFinis()) {
-            return true;
-        }
-        return false;
+        return joueur.getPion().getPositionInitiale() == joueur.getPion().getPositionCourante() && joueur.objectifsFinis();
     }
 }
