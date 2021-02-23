@@ -1,13 +1,17 @@
 public enum PositionInsertion {
-    N1(0), N2(1), N3(2), E1(3), E2(4), E3(5), S3(6), S2(7), S1(8), O3(9), O2(10), O1(11);
+    N1(1,0,1), N2(2,0,3), N3(3,0,5), E1(4,1,0), E2(5,3,0), E3(6,5,0), S3(7,6,5), S2(8,6,3), S1(9,6,1), O3(10,5,6), O2(11,3,6), O1(12,1,6);
 
     private int place;
+    private Position p;
 
     public PositionInsertion oppose() {
-        return PositionInsertion.values()[(11 - this.place)]; 
+        return PositionInsertion.values()[(12 - this.place)]; 
     }
-
-    private PositionInsertion(int place) {
+    public Position getPos(){
+        return this.p;
+    }
+    private PositionInsertion(int place,int x,int y) {
         this.place = place;
+        this.p = new Position(x, y);
     }
 }
