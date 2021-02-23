@@ -20,6 +20,11 @@ public class JoueurImpl implements Joueur {
     }
 
     @Override
+    public Pion getPion() {
+        return this.pion;
+    }
+
+    @Override
     public void joue() {
         this.jeu.modifierCouloir(choisirPositionInsertionCouloir(), choisirOrientationCouloir());
         Objectif objectif = pion.deplacer(choisirPositionPion());
@@ -36,6 +41,11 @@ public class JoueurImpl implements Joueur {
     @Override
     public void recevoirPion(Pion p) {
         this.pion = p;
+    }
+
+    @Override
+    public boolean objectifsFinis() {
+        return this.objectifs.empty();
     }
     
     private PositionInsertion choisirPositionInsertionCouloir() {
