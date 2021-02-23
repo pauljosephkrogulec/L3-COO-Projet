@@ -25,7 +25,7 @@ public class JeuImpl implements Jeu {
         positionOrigine = pos.oppose();
         for (Pion p : supplementaire.getPions()) {
             PionImpl pi = (PionImpl) p;
-            //pi.poserA( (Position) pos);
+            pi.poserA(pos.getPos());
         }
     }
 
