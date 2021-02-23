@@ -4,5 +4,6 @@ public interface Couloir {
     public Orientation getOrientation();
     public Forme getForme();
     public Objectif getObjectif();
-    public List<Pion> getPions();    
+    public List<Pion> getPions();  
+    public void setPions(Pion p);  
 }

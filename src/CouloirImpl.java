@@ -34,4 +34,9 @@ public class CouloirImpl implements Couloir {
         return this.pions;
     }
     
+    @Override
+    public void setPions(Pion p){
+        pions.add(p);
+    }
+    
 }

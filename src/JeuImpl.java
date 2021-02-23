@@ -35,7 +35,7 @@ public class JeuImpl implements Jeu {
 
     @Override
     public List<Couloir> couloirs() {
-        return null;
+        return null ;
     }
 
     private void preparer() {
@@ -46,7 +46,6 @@ public class JeuImpl implements Jeu {
         this.pions = new HashMap<>();
         this.objectifs = new Objectif[24];
         this.couloirsMobiles = new CouloirMobile[34];
-        this.plateau = new Plateau();
         int i;
         for(i = 0;i< 4;i++) {
             Joueur j = new JoueurImpl(14,this);
@@ -56,6 +55,7 @@ public class JeuImpl implements Jeu {
         }
         for(i = 0;i<24;i++) this.objectifs[i] = Objectif.values()[i];
         for(i = 0;i< 34;i++) this.couloirsMobiles[i] = new CouloirMobile(null,null,null,true);
+        this.plateau = new Plateau(this.couloirsMobiles);
     }
 
     private void jouer() {
