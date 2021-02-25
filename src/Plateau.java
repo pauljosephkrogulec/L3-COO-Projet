@@ -21,7 +21,12 @@ public class Plateau {
     }
 
     public boolean estAtteignable(Position orig, Position dest) {
-        return true;
+        boolean result =false;
+        Position copy = orig;
+
+        while(!result){
+        }
+        return result;
     }
 
     public Objectif deplacer(Position pos, Pion pion) {
