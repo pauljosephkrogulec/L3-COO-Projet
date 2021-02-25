@@ -1,13 +1,13 @@
 public class Pile {
-    private Couloir[] items;
+    private Position[] items;
     private int top=0;
     private int max=50;
-    public Pile(){items = new Couloir[max];}
-    public Couloir empiler(Couloir item){
+    public Pile(){items = new Position[max];}
+    public Position empiler(Position item){
         items[top++] = item;
         return item;
     }
-    public Couloir dépiler(){
+    public Position dépiler(){
         return items[--top];
     } 
     public boolean estVide(){
