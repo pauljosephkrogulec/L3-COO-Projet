@@ -17,7 +17,16 @@ public class Plateau {
     }
 
     public CouloirMobile modifierCouloirs(PositionInsertion pos, CouloirMobile c) {
-        return null;
+        Position position = pos.getPos();
+        Position oPosition = pos.oppose().getPos();
+        CouloirMobile opo = (CouloirMobile) this.couloirs[oPosition.getX()][oPosition.getY()];
+        int x;
+        if (position.getX() == 0) for(x=0;x<6;x++) this.couloirs[position.getX()+x][position.getY()] =  this.couloirs[position.getX()+x+1][position.getY()];
+        else if (position.getY() == 0) for(x=0;x<6;x++) this.couloirs[position.getX()][position.getY()+x] =  this.couloirs[position.getX()][position.getY()+x+1];
+        else if (position.getX() == 6) for(x=0;x<6;x++) this.couloirs[position.getX()-x][position.getY()] =  this.couloirs[position.getX()-(x+1)][position.getY()];
+        else for(x=0;x<6;x++) this.couloirs[position.getX()][position.getY()-x] =  this.couloirs[position.getX()][position.getY()-(x+1)];
+        this.couloirs[position.getX()][position.getY()] = c;
+        return opo;
     }
 
     public boolean estAtteignable(Position orig, Position dest) {
