@@ -1,3 +1,4 @@
+// On importe les librairies.
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -5,11 +6,7 @@ import java.util.Map;
 
 public class JeuImpl implements Jeu {
 
-    public JeuImpl() {
-        preparer();
-        jouer();
-    }
-
+    // Déclaration des variables...
     private CouloirMobile supplementaire;
     private PositionInsertion positionOrigine;
     private List<Joueur> joueurs;
@@ -18,6 +15,11 @@ public class JeuImpl implements Jeu {
     private CouloirMobile[] couloirsMobiles;
     private Plateau plateau;
     private int i;
+
+    public JeuImpl() {
+        preparer();
+        jouer();
+    }
     
     @Override
     public void modifierCouloir(PositionInsertion pos, Orientation orientation) {

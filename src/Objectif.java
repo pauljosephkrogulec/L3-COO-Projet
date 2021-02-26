@@ -1,5 +1,8 @@
+/** Classe qui énumére les objectifs possibles dans le jeu..
+ */
 public enum Objectif {
 
+    // Enumérations des objectifs (version Harry-Potter)
     JOURNAL("Journal de Tom Jedusor"),
     CROCHET("Crochet du Basillic"),
     MEDAILLON("Le médaillon de Serpentard"),
@@ -25,12 +28,19 @@ public enum Objectif {
     RAPELTOUT("Le rapeltout"),
     LETTRE("Lettre de poudlard");
 
+    // Déclaration des variables...
     private String description;
-    
+
+    /** Constructeur de l'Objectif
+     * @param description > l'objectif.
+     */
     private Objectif(String description) {
         this.description = description;
     }
     
+    /** Méthode qui affiche l'objectif.
+     * @return : l'objectif.
+     */
     public String toString(){
         return this.description;
     }
