@@ -13,7 +13,6 @@ public class Plateau {
                 }
             }
         }
-
     }
 
     public CouloirMobile modifierCouloirs(PositionInsertion pos, CouloirMobile c) {
@@ -38,25 +37,20 @@ public class Plateau {
             if( c.getOrientation()==Orientation.EST){
                 p.empiler(new Position(orig.getX()+1,orig.getY()));
                 p.empiler(new Position(orig.getX(),orig.getY()+1));
-                
             } else if (c.getOrientation()==Orientation.OUEST){
                 p.empiler(new Position(orig.getX()-1,orig.getY()));
                 p.empiler(new Position(orig.getX(),orig.getY()-1));
-                
             } else if (c.getOrientation()==Orientation.SUD){
                 p.empiler(new Position(orig.getX(),orig.getY()+1));
                 p.empiler(new Position(orig.getX()-1,orig.getY()));
-                
             } else {
                 p.empiler(new Position(orig.getX(),orig.getY()-1));
                 p.empiler(new Position(orig.getX()+1,orig.getY()));
-                
             }
         } else if (c.getForme()==Forme.DROIT){
             if (c.getOrientation()==Orientation.EST){
                 p.empiler(new Position(orig.getX()+1,orig.getY()));
                 p.empiler(new Position(orig.getX()-1,orig.getY()));
-                
             } else if (c.getOrientation()==Orientation.OUEST){
                 p.empiler(new Position(orig.getX()+1,orig.getY()));
                 p.empiler(new Position(orig.getX()-1,orig.getY()));
@@ -72,18 +66,14 @@ public class Plateau {
                 p.empiler(new Position(orig.getX(),orig.getY()-1));
                 p.empiler(new Position(orig.getX()+1,orig.getY()));
                 p.empiler(new Position(orig.getX(),orig.getY()+1));
-                
             } else if (c.getOrientation()==Orientation.OUEST){
                 p.empiler(new Position(orig.getX()-1,orig.getY()));
                 p.empiler(new Position(orig.getX(),orig.getY()-1));
                 p.empiler(new Position(orig.getX(),orig.getY()+1));
-            
             } else if (c.getOrientation()==Orientation.SUD){
                 p.empiler(new Position(orig.getX()+1,orig.getY()));
                 p.empiler(new Position(orig.getX(),orig.getY()+1));
                 p.empiler(new Position(orig.getX()-1,orig.getY()));
-                
-
             } else {
                 p.empiler(new Position(orig.getX()-1,orig.getY()));
                 p.empiler(new Position(orig.getX(),orig.getY()-1));
