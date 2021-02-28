@@ -31,7 +31,7 @@ public class Plateau {
     }
 
     public boolean estAtteignable(Position orig, Position dest) {
-        boolean result =false;
+        boolean result = false;
         Couloir c,c1;
         Position p;
         Stack<Position> ps = new Stack<Position>();
