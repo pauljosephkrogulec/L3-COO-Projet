@@ -18,3 +18,6 @@ PionImpl.java [Fini]
 Plateau.java [Fini]
 Position.java [Fini]
 PositionInsertion.java [Fini]
+
+javac -d bin -cp bin:src src/*.java
+java -cp bin DemoFactory
