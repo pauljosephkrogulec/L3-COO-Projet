@@ -30,60 +30,25 @@ public class Plateau {
         return opo;
     }
 
+    public boolean estAdjacent(int a,int b) {
+        if(a > b) return estAdjacent(b, a);
+        Couloir ca,cb;
+        ca = this.couloirs[a/7][a%7];
+        cb = this.couloirs[b/7][b%7];
+        if((b%7) - (a%7) == 1) return (((ca.getForme() == Forme.COUDE && (ca.getOrientation() == Orientation.EST || ca.getOrientation() == Orientation.NORD)) || (ca.getForme() == Forme.DROIT && (ca.getOrientation() == Orientation.EST || ca.getOrientation() == Orientation.OUEST)) || (ca.getForme() == Forme.TE && (ca.getOrientation() == Orientation.EST || ca.getOrientation() == Orientation.NORD || ca.getOrientation() == Orientation.SUD))) && (cb.getForme() == Forme.COUDE && (cb.getOrientation() == Orientation.OUEST && cb.getOrientation() == Orientation.SUD)) || (cb.getForme() == Forme.DROIT && (cb.getOrientation() == Orientation.EST || cb.getOrientation() == Orientation.OUEST)) || (cb.getForme() == Forme.TE && (cb.getOrientation() == Orientation.OUEST || cb.getOrientation() == Orientation.NORD || cb.getOrientation() == Orientation.SUD)));
+        else if(b-7==a) return (((ca.getForme() == Forme.COUDE && (ca.getOrientation() == Orientation.EST && ca.getOrientation() == Orientation.SUD)) || (ca.getForme() == Forme.DROIT && (ca.getOrientation() == Orientation.SUD || ca.getOrientation() == Orientation.NORD)) || (ca.getForme() == Forme.TE && (ca.getOrientation() == Orientation.EST || ca.getOrientation() == Orientation.OUEST || ca.getOrientation() == Orientation.SUD))) && (cb.getForme() == Forme.COUDE && (cb.getOrientation() == Orientation.OUEST || cb.getOrientation() == Orientation.NORD)) || (cb.getForme() == Forme.DROIT && (cb.getOrientation() == Orientation.SUD || cb.getOrientation() == Orientation.NORD)) || (cb.getForme() == Forme.TE && (cb.getOrientation() == Orientation.EST || cb.getOrientation() == Orientation.OUEST || cb.getOrientation() == Orientation.NORD))))
+        return false;
+    }
+    public boolean[][] matriceAdjacence(){
+        boolean[][] m = new boolean[49][49];
+        for(int a = 0;a < 49; a++)
+            for(int b = 0;b < 49; b++)
+                m[a][b] = estAdjacent(a, b);
+        return m;
+    }
     public boolean estAtteignable(Position orig, Position dest) {
         boolean result = false;
-        Couloir c,c1;
-        Position p;
-        Stack<Position> ps = new Stack<Position>();
-        Stack<Couloir> vCouloirs = new Stack<Couloir>();
-        ps.push(orig);
-        while (!ps.empty() && !result) {
-            p = ps.pop();
-            result = p.equals(dest);
-            if (!result){
-                c = this.couloirs[p.getX()][p.getY()];
-                vCouloirs.push(c);
-                // pour le Nord
-                if ((c.getForme() == Forme.COUDE && (c.getOrientation() == Orientation.OUEST || c.getOrientation() == Orientation.NORD)) || (c.getForme() == Forme.DROIT && (c.getOrientation() == Orientation.SUD || c.getOrientation() == Orientation.NORD)) || (c.getForme() == Forme.TE && (c.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.OUEST || c.getOrientation() == Orientation.NORD))){
-                    if (p.getY()-1 >= 0){
-                        c1 = this.couloirs[p.getX()][p.getY()-1];
-                        if (vCouloirs.search(c1) == -1 && (c1.getForme() == Forme.COUDE && (c1.getOrientation() == Orientation.EST && c1.getOrientation() == Orientation.SUD)) || (c1.getForme() == Forme.DROIT && (c1.getOrientation() == Orientation.SUD || c1.getOrientation() == Orientation.NORD)) || (c1.getForme() == Forme.TE && (c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.OUEST || c1.getOrientation() == Orientation.SUD))){
-                            ps.push(new Position(p.getX(), p.getY()-1));
-                        }
-                    }
-                }
- 
-                // pour le sud
-                if ((c.getForme() == Forme.COUDE && (c.getOrientation() == Orientation.EST && c.getOrientation() == Orientation.SUD)) || (c.getForme() == Forme.DROIT && (c.getOrientation() == Orientation.SUD || c.getOrientation() == Orientation.NORD)) || (c.getForme() == Forme.TE && (c.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.OUEST || c.getOrientation() == Orientation.SUD))){
-                    if(p.getY()+1 < 7){
-                        c1 = this.couloirs[p.getX()][p.getY()+1];
-                        if (vCouloirs.search(c1) == -1 && (c1.getForme() == Forme.COUDE && (c1.getOrientation() == Orientation.OUEST || c1.getOrientation() == Orientation.NORD)) || (c1.getForme() == Forme.DROIT && (c1.getOrientation() == Orientation.SUD || c1.getOrientation() == Orientation.NORD)) || (c1.getForme() == Forme.TE && (c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.OUEST || c1.getOrientation() == Orientation.NORD))){
-                            ps.push(new Position(p.getX(), p.getY()+1));
-                        }
-                    }
-                }
-                
-                // pour l'est
-                if ((c.getForme() == Forme.COUDE && (c.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.NORD)) || (c.getForme() == Forme.DROIT && (c.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.OUEST)) || (c.getForme() == Forme.TE && (c.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.NORD || c.getOrientation() == Orientation.SUD))){
-                    if(p.getX()-1 >=0){
-                        c1 = this.couloirs[p.getX()-1][p.getY()];
-                        if (vCouloirs.search(c1) == -1 && (c1.getForme() == Forme.COUDE && (c1.getOrientation() == Orientation.OUEST && c1.getOrientation() == Orientation.SUD)) || (c1.getForme() == Forme.DROIT && (c1.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.OUEST)) || (c1.getForme() == Forme.TE && (c1.getOrientation() == Orientation.OUEST || c1.getOrientation() == Orientation.NORD || c1.getOrientation() == Orientation.SUD))){
-                            ps.push(new Position(p.getX()-1 , p.getY()));
-                        }
-                    }
-                }
 
-                // pour l'ouest
-                if ((c.getForme() == Forme.COUDE && (c.getOrientation() == Orientation.OUEST && c.getOrientation() == Orientation.SUD)) || (c.getForme() == Forme.DROIT && (c.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.OUEST)) || (c.getForme() == Forme.TE && (c.getOrientation() == Orientation.OUEST || c.getOrientation() == Orientation.NORD || c.getOrientation() == Orientation.SUD))){
-                    if(p.getX()+1 < 7){
-                        c1 = this.couloirs[p.getX()+1][p.getY()];
-                        if (vCouloirs.search(c1) == -1 && (c1.getForme() == Forme.COUDE && (c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.NORD)) || (c1.getForme() == Forme.DROIT && (c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.OUEST)) || (c1.getForme() == Forme.TE && (c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.NORD || c1.getOrientation() == Orientation.SUD))){
-                            ps.push(new Position(p.getX()+1 , p.getY()));
-                        }
-                    }
-                }
-            }
-        }
         return result;
     }
 
