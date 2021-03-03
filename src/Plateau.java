@@ -30,7 +30,7 @@ public class Plateau {
         return opo;
     }
 
-    public boolean estAdjacent(int a,int b) {
+    private boolean estAdjacent(int a,int b) {
         if(a > b) return estAdjacent(b, a);
         Couloir ca,cb;
         ca = this.couloirs[a/7][a%7];
@@ -39,17 +39,25 @@ public class Plateau {
         else if(b-7==a) return (((ca.getForme() == Forme.COUDE && (ca.getOrientation() == Orientation.EST && ca.getOrientation() == Orientation.SUD)) || (ca.getForme() == Forme.DROIT && (ca.getOrientation() == Orientation.SUD || ca.getOrientation() == Orientation.NORD)) || (ca.getForme() == Forme.TE && (ca.getOrientation() == Orientation.EST || ca.getOrientation() == Orientation.OUEST || ca.getOrientation() == Orientation.SUD))) && (cb.getForme() == Forme.COUDE && (cb.getOrientation() == Orientation.OUEST || cb.getOrientation() == Orientation.NORD)) || (cb.getForme() == Forme.DROIT && (cb.getOrientation() == Orientation.SUD || cb.getOrientation() == Orientation.NORD)) || (cb.getForme() == Forme.TE && (cb.getOrientation() == Orientation.EST || cb.getOrientation() == Orientation.OUEST || cb.getOrientation() == Orientation.NORD))))
         return false;
     }
-    public boolean[][] matriceAdjacence(){
+    private boolean[][] matriceAdjacence(){
         boolean[][] m = new boolean[49][49];
         for(int a = 0;a < 49; a++)
             for(int b = 0;b < 49; b++)
                 m[a][b] = estAdjacent(a, b);
         return m;
     }
+    private boolean parcoursLargeur(int ox,int dx,int dy){
+        boolean[][] m = this.matriceAdjacence();
+        for(int y=0;y < 49; y++){
+            if(m[ox][y]){
+                if(ox==dx && y==dy) return true;
+                if(parcoursLargeur(y, dx, dy)) return true;
+            }
+        }
+        return false;
+    } 
     public boolean estAtteignable(Position orig, Position dest) {
-        boolean result = false;
-
-        return result;
+        return parcoursLargeur(orig.getX(), dest.getX(), dest.getY());
     }
 
     public Objectif deplacer(Position pos, Pion pion) {
