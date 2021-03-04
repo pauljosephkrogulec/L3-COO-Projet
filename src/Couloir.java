@@ -3,7 +3,7 @@ import java.util.List;
 
 /** Interface modélisant un couloir.
  */
-public interface Couloir {
+public interface Couloir{
 
     // Déclarations des méthodes essentielles...
     public Orientation getOrientation();

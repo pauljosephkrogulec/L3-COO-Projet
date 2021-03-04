@@ -1,6 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
@@ -17,7 +18,8 @@ public class JeuFactory extends JFrame implements ActionListener {
     private static int LONGUEUR = 800;
     private static int HAUTEUR = 500;
     private JPanel menu, labyrinthe;
-    private static JButton[] arrayBtn;
+    private static Couloir[] arrayBtn;
+    private Jeu jeu;
     
     private static final ImageIcon[] imgTab = {
         new ImageIcon(JeuFactory.class.getResource("img/CASE0.gif")), 
@@ -35,6 +37,7 @@ public class JeuFactory extends JFrame implements ActionListener {
     public JeuFactory() {
         // On initialise la fenêtre.
         super("Jeu du Labyrinthe");
+        jeu = new JeuImpl();
         this.setSize(LONGUEUR, HAUTEUR);
 
 
@@ -75,11 +78,11 @@ public class JeuFactory extends JFrame implements ActionListener {
         GridLayout grid = new GridLayout(8, 8);
         l.setLayout(grid);
 
-        arrayBtn = new JButton[49];
+        arrayBtn = (Couloir[]) this.jeu.couloirs().toArray();
+        
         // add JButtons dynamically
         for(int i=0; i < arrayBtn.length; i++) {
-            arrayBtn[i] = new JButton(Integer.toString(i));
-            l.add(arrayBtn[i]);
+            l.add((Component) arrayBtn[i]);
         }
 
         return l;

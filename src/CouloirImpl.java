@@ -1,9 +1,12 @@
+
 // On importe les librairies.
 import java.util.List;
 
+import javax.swing.JButton;
+
 /** Classe qui modélise un couloir en implémentant l'interface Couloir..
  */
-public class CouloirImpl implements Couloir {
+public class CouloirImpl extends JButton implements Couloir{ 
 
     // Déclaration des variables...
     protected Orientation orientation;

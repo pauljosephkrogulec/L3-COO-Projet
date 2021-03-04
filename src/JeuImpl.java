@@ -26,10 +26,6 @@ public class JeuImpl implements Jeu {
         assert pos != positionOrigine;
         supplementaire = plateau.modifierCouloirs(pos, supplementaire);
         positionOrigine = pos.oppose();
-        for (Pion p : supplementaire.getPions()) {
-            PionImpl pi = (PionImpl) p;
-            pi.poserA(pos.getPos());
-        }
     }
 
     @Override
@@ -39,13 +35,19 @@ public class JeuImpl implements Jeu {
 
     @Override
     public List<Couloir> couloirs() {
-        return null ;
+        List<Couloir> cs = new ArrayList<>();
+        for (Couloir[] couloirs : plateau.getCouloirs()) {
+            for (Couloir c : couloirs) {
+                cs.add(c);
+            }
+        }
+        return cs;
     }
 
     private void preparer() {
         i = 0;
         this.positionOrigine = null;
-        this.supplementaire = new CouloirMobile(null,null,null,false);
+        this.supplementaire = new CouloirMobile(Orientation.SUD,Forme.DROIT,null,false);
         this.joueurs = new ArrayList<>();
         this.pions = new HashMap<>();
         this.objectifs = new Objectif[24];
@@ -53,12 +55,13 @@ public class JeuImpl implements Jeu {
         int i;
         for(i = 0;i< 4;i++) {
             Joueur j = new JoueurImpl(14,this);
-            Pion p = new PionImpl(this.plateau,null,null);
+            Pion p = new PionImpl(this.plateau,new Position(0,0),new Position(0,0));
             this.pions.put(Couleur.values()[i], p);
+            j.recevoirPion(p);
             this.joueurs.add(j);
         }
         for(i = 0;i<24;i++) this.objectifs[i] = Objectif.values()[i];
-        for(i = 0;i< 34;i++) this.couloirsMobiles[i] = new CouloirMobile(null,null,null,true);
+        for(i = 0;i< 34;i++) this.couloirsMobiles[i] = new CouloirMobile(Orientation.SUD,Forme.DROIT,null,true);
         this.plateau = new Plateau(this.couloirsMobiles);
     }
 

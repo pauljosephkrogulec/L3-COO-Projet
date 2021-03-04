@@ -1,9 +1,4 @@
-import java.lang.annotation.Retention;
-import java.security.Principal;
 import java.util.ArrayDeque;
-import java.util.LinkedList;
-
-import javax.management.Query;
 
 public class Plateau {
     private Couloir[][] couloirs;
@@ -11,17 +6,22 @@ public class Plateau {
     public Plateau(Couloir[] couloirs) {
         this.couloirs = new Couloir[7][7];
         int objs = 0;
+        int x = 0;
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 7; j++) {
                 if (i % 2 == 0 && j % 2 == 0) {
                     this.couloirs[i][j] = new CouloirFixe(Orientation.EST, Forme.TE, Objectif.values()[objs++]);
                 } else {
-                    this.couloirs[i][j] = new CouloirMobile(Orientation.SUD,Forme.DROIT,null,true);
+                    this.couloirs[i][j] = couloirs[x++];
                 }
             }
         }
     }
 
+    public Couloir[][] getCouloirs(){
+        return this.couloirs;
+    }
+    
     public CouloirMobile modifierCouloirs(PositionInsertion pos, CouloirMobile c) {
         Position position = pos.getPos();
         Position oPosition = pos.oppose().getPos();

@@ -77,20 +77,20 @@ public class JoueurImpl implements Joueur {
      * @return : la position où le couloir est inséré.
      */    
     private PositionInsertion choisirPositionInsertionCouloir() {
-        return null;
+        return PositionInsertion.N1;
     }
 
     /** Méthode qui permet au joueur de choisir une position de son pion.
      * @return : la position choisie du pion.
      */ 
     private Position choisirPositionPion() {
-        return null;
+        return new Position(1,0);
     }
 
     /** Méthode qui permet au joueur de choisir l'orientation de son couloir.
      * @return : l'orientation du couloir.
      */ 
     private Orientation choisirOrientationCouloir() {
-        return null;
+        return Orientation.SUD;
     }
 }
