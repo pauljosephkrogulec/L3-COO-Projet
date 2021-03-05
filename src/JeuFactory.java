@@ -9,7 +9,6 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.ImageIcon;
 
 /**
  * Constructeur de la classe JeuFactory qui paramètre la fenêtre et ses
