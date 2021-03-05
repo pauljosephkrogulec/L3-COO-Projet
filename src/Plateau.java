@@ -1,22 +1,28 @@
-import java.lang.annotation.Retention;
-import java.security.Principal;
 import java.util.ArrayDeque;
-import java.util.LinkedList;
-
-import javax.management.Query;
+import java.util.Random;
 
 public class Plateau {
     private Couloir[][] couloirs;
 
     public Plateau(Couloir[] couloirs) {
         this.couloirs = new Couloir[7][7];
+        int x=0;
+        Random r = new Random();
         int objs = 0;
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 7; j++) {
                 if (i % 2 == 0 && j % 2 == 0) {
-                    this.couloirs[i][j] = new CouloirFixe(Orientation.EST, Forme.TE, Objectif.values()[objs++]);
+                    if(i == 0 && j == 0)  this.couloirs[i][j] = new CouloirFixe(Orientation.EST, Forme.COUDE, Objectif.values()[objs++]);
+                    else if(i == 0 && j == 6) this.couloirs[i][j] = new CouloirFixe(Orientation.SUD, Forme.COUDE, Objectif.values()[objs++]);
+                    else if (i == 6 && j == 0)  this.couloirs[i][j] = new CouloirFixe(Orientation.NORD, Forme.COUDE, Objectif.values()[objs++]);
+                    else if (i == 6 && j == 6)  this.couloirs[i][j] = new CouloirFixe(Orientation.OUEST, Forme.COUDE, Objectif.values()[objs++]);
+                    else if (i == 0)  this.couloirs[i][j] = new CouloirFixe(Orientation.SUD, Forme.TE, Objectif.values()[objs++]);
+                    else if (j == 0)  this.couloirs[i][j] = new CouloirFixe(Orientation.EST, Forme.TE, Objectif.values()[objs++]);
+                    else if (i == 6)  this.couloirs[i][j] = new CouloirFixe(Orientation.NORD, Forme.TE, Objectif.values()[objs++]);
+                    else if (j == 6)  this.couloirs[i][j] = new CouloirFixe(Orientation.OUEST, Forme.TE, Objectif.values()[objs++]);
+                    else this.couloirs[i][j] = new CouloirFixe(Orientation.values()[r.nextInt(4)], Forme.TE, Objectif.values()[objs++]);
                 } else {
-                    this.couloirs[i][j] = new CouloirMobile(Orientation.SUD,Forme.DROIT,null,true);
+                    this.couloirs[i][j] = couloirs[x++];
                 }
             }
         }
@@ -115,6 +121,10 @@ public class Plateau {
         this.couloirs[pos.getX()][pos.getY()].setPions(pion);
         return this.couloirs[pos.getX()][pos.getY()].getObjectif();
     }
+
+	public Couloir[][] getCouloirs() {
+		return couloirs;
+	}
 
 
 }

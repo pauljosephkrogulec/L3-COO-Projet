@@ -1,6 +1,8 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
@@ -9,7 +11,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 
-/** Constructeur de la classe JeuFactory qui paramètre la fenêtre et ses fonctionnalités.
+/**
+ * Constructeur de la classe JeuFactory qui paramètre la fenêtre et ses
+ * fonctionnalités.
  */
 public class JeuFactory extends JFrame implements ActionListener {
 
@@ -17,26 +21,14 @@ public class JeuFactory extends JFrame implements ActionListener {
     private static int LONGUEUR = 800;
     private static int HAUTEUR = 500;
     private JPanel menu, labyrinthe;
-    private static JButton[] arrayBtn;
-    
-    private static final ImageIcon[] imgTab = {
-        new ImageIcon(JeuFactory.class.getResource("img/CASE0.gif")), 
-        new ImageIcon(JeuFactory.class.getResource("img/CASE1.gif")), 
-        new ImageIcon(JeuFactory.class.getResource("img/CASE2.gif")), 
-        new ImageIcon(JeuFactory.class.getResource("img/CASE3.gif")), 
-        new ImageIcon(JeuFactory.class.getResource("img/CASE4.gif")), 
-        new ImageIcon(JeuFactory.class.getResource("img/CASE5.gif")), 
-        new ImageIcon(JeuFactory.class.getResource("img/CASE6.gif")), 
-        new ImageIcon(JeuFactory.class.getResource("img/CASE7.gif")), 
-        new ImageIcon(JeuFactory.class.getResource("img/CASE8.gif")), 
-        new ImageIcon(JeuFactory.class.getResource("img/CASE9.gif"))
-    };
+    private static List<Couloir> listBtn;
+    private Jeu jeu;
 
     public JeuFactory() {
         // On initialise la fenêtre.
         super("Jeu du Labyrinthe");
+        this.jeu = creeJeu();
         this.setSize(LONGUEUR, HAUTEUR);
-
 
         this.menu = creerMenu();
         this.getContentPane().add(this.menu, "East");
@@ -50,7 +42,8 @@ public class JeuFactory extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
-    /** Méthode qui créer le Menu du jeu.
+    /**
+     * Méthode qui créer le Menu du jeu.
      */
     public JPanel creerMenu() {
 
@@ -63,7 +56,8 @@ public class JeuFactory extends JFrame implements ActionListener {
         return m;
     }
 
-    /** Méthode qui créer le Menu du jeu.
+    /**
+     * Méthode qui créer le Menu du jeu.
      */
     public JPanel creerLabyrinthe() {
 
@@ -75,11 +69,10 @@ public class JeuFactory extends JFrame implements ActionListener {
         GridLayout grid = new GridLayout(8, 8);
         l.setLayout(grid);
 
-        arrayBtn = new JButton[49];
+        listBtn = jeu.couloirs();
         // add JButtons dynamically
-        for(int i=0; i < arrayBtn.length; i++) {
-            arrayBtn[i] = new JButton(Integer.toString(i));
-            l.add(arrayBtn[i]);
+        for (int i = 0; i < listBtn.size(); i++) {
+            l.add((JButton) listBtn.get(i));
         }
 
         return l;
