@@ -43,7 +43,7 @@ public class PionImpl implements Pion {
             positionCourante = pos;
             return plateau.deplacer(pos, this);
         }
-        return plateau.deplacer(positionCourante, this);
+        return null;
     }
 
     /** Méthode qui pose le pion à la position donnée.

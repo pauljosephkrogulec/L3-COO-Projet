@@ -21,12 +21,12 @@ public class JeuFactory extends JFrame implements ActionListener {
     private static int HAUTEUR = 500;
     private JPanel menu, labyrinthe;
     private static List<Couloir> listBtn;
-    private Jeu jeu;
+    private JeuImpl jeu;
 
     public JeuFactory() {
         // On initialise la fenêtre.
         super("Jeu du Labyrinthe");
-        this.jeu = creeJeu();
+        this.jeu = (JeuImpl) creeJeu();
         this.setSize(LONGUEUR, HAUTEUR);
 
         this.menu = creerMenu();
@@ -34,7 +34,7 @@ public class JeuFactory extends JFrame implements ActionListener {
 
         this.labyrinthe = creerLabyrinthe();
         this.getContentPane().add(this.labyrinthe, "West");
-
+        this.getContentPane().add(jeu.jouerButton(), "South");
         // On paramètre la fenêtre.
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

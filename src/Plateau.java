@@ -115,8 +115,6 @@ public class Plateau {
                     if (y == (dest.getY() + (dest.getX() * 7))) return true; 
                 }
             }
-            
-            System.out.println();
         }
         return false;
     }

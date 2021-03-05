@@ -1,4 +1,5 @@
 // On importe les librairies.
+import java.util.Scanner;
 import java.util.Stack;
 
 /** Classe qui modélise un joueur en implémentant l'interface Joueur..
@@ -44,7 +45,7 @@ public class JoueurImpl implements Joueur {
     public void joue() {
         this.jeu.modifierCouloir(choisirPositionInsertionCouloir(), choisirOrientationCouloir());
         Objectif objectif = pion.deplacer(choisirPositionPion());
-        if(objectif == this.objectifs.peek()) {
+        if(objectif != null && objectif == this.objectifs.peek()) {
             objectifs.pop();
         }
     }
@@ -84,7 +85,11 @@ public class JoueurImpl implements Joueur {
      * @return : la position choisie du pion.
      */ 
     private Position choisirPositionPion() {
-        return new Position(0,1);
+        int x,y;
+        Scanner sc = new Scanner(System.in);
+        x = sc.nextInt();
+        y = sc.nextInt();
+        return new Position(x, y);
     }
 
     /** Méthode qui permet au joueur de choisir l'orientation de son couloir.
