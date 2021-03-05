@@ -9,7 +9,6 @@ public class Plateau {
         int x=0;
         Random r = new Random();
         int objs = 0;
-        int x = 0;
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 7; j++) {
                 if (i % 2 == 0 && j % 2 == 0) {
@@ -126,10 +125,6 @@ public class Plateau {
         this.couloirs[pos.getX()][pos.getY()].setPions(pion);
         return this.couloirs[pos.getX()][pos.getY()].getObjectif();
     }
-
-	public Couloir[][] getCouloirs() {
-		return couloirs;
-	}
 
 
 }
