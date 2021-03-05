@@ -20,7 +20,7 @@ public class JeuImpl implements Jeu {
 
     public JeuImpl() {
         preparer();
-        //jouer();
+        jouer();
     }
     
     @Override
