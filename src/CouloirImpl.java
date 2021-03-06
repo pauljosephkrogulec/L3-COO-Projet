@@ -1,5 +1,6 @@
 
 // On importe les librairies.
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -55,7 +56,7 @@ public class CouloirImpl extends JButton implements Couloir {
         this.orientation = orientation;
         this.forme = forme;
         this.objectif = objectif;
-        this.pions = null;
+        this.pions = new ArrayList<>();
     }
 
     /** Méthode qui renvoie l'orientation du couloir.

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Stack;
 
 import javax.swing.JButton;
 
@@ -54,27 +55,12 @@ public class JeuImpl implements Jeu, ActionListener {
         Random r = new Random();
         this.joueurs = new ArrayList<>();
         this.pions = new HashMap<>();
-        this.objectifs = Objectif.values();
+        this.objectifs = JeuImpl.randomizeArrayObjectifs(Objectif.values());
         this.supplementaire = new CouloirMobile(Orientation.SUD, Forme.DROIT, null, false);
         this.couloirsMobiles = new CouloirMobile[34];
-        int i, obj = 12;
-        for (i = 0; i < 4; i++) {
-            Joueur j = new JoueurImpl(14, this);
-            int x = 0, y = 0;
-            if (i == 1)
-                y = 6;
-            else if (i == 2)
-                x = 6;
-            else if (i == 3) {
-                x = 6;
-                y = 6;
-            }
-
-            Pion p = new PionImpl(this.plateau, new Position(x, y), new Position(x, y));
-            this.pions.put(Couleur.values()[i], p);
-            j.recevoirPion(p);
-            this.joueurs.add(j);
-        }
+        Stack<Objectif> objs;
+        int i, obj = 12,cpt = 0;
+        
         this.objectifs = Objectif.values();
         for (i = 0; i < 12; i++)
             this.couloirsMobiles[i] = new CouloirMobile(Orientation.values()[r.nextInt(4)], Forme.DROIT, null, false);
@@ -94,6 +80,28 @@ public class JeuImpl implements Jeu, ActionListener {
                         false);
         }
         this.plateau = new Plateau(this.couloirsMobiles);
+        for (i = 0; i < 2; i++) {
+            objs = new Stack<>();
+            Joueur j = new JoueurImpl(14, this);
+            int x = 0, y = 0;
+            if (i == 1)
+                y = 6;
+            else if (i == 2)
+                x = 6;
+            else if (i == 3) {
+                x = 6;
+                y = 6;
+            }
+            for(int c = 0;c<5;c++){
+                objs.add(Objectif.values()[cpt++]);
+            }
+            Pion p = new PionImpl(this.plateau, new Position(x, y), new Position(x, y));
+            this.pions.put(Couleur.values()[i], p);
+            j.fixerObjectifs(objs);
+            j.recevoirPion(p);
+            this.joueurs.add(j);
+            this.plateau.getCouloirs()[x][y].setPions(p);
+        }
     }
 
     public static CouloirMobile[] RandomizeArray(CouloirMobile[] array) {
@@ -102,6 +110,18 @@ public class JeuImpl implements Jeu, ActionListener {
         for (int i = 0; i < array.length; i++) {
             int randomPosition = rgen.nextInt(array.length);
             CouloirMobile temp = array[i];
+            array[i] = array[randomPosition];
+            array[randomPosition] = temp;
+        }
+
+        return array;
+    }
+    public static Objectif[] randomizeArrayObjectifs(Objectif[] array) {
+        Random rgen = new Random(); // Random number generator
+
+        for (int i = 0; i < array.length; i++) {
+            int randomPosition = rgen.nextInt(array.length);
+            Objectif temp = array[i];
             array[i] = array[randomPosition];
             array[randomPosition] = temp;
         }

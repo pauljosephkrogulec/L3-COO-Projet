@@ -110,7 +110,6 @@ public class Plateau {
             vPos.add(x);
             for(int y = 0; y<49;y+=1){
                 if(m[x][y]){
-                    System.out.print(x + "-> " + y + " ");
                     if (!vPos.contains(y)) pos.add(y);
                     if (y == (dest.getY() + (dest.getX() * 7))) return true; 
                 }

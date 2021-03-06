@@ -18,7 +18,7 @@ public class JoueurImpl implements Joueur {
      */
     public JoueurImpl(int age, Jeu jeu) {
         this.age = age;
-        this.objectifs = null;
+        this.objectifs = new Stack<>();
         this.jeu = jeu;
         this.pion = null;
     }
@@ -45,7 +45,7 @@ public class JoueurImpl implements Joueur {
     public void joue() {
         this.jeu.modifierCouloir(choisirPositionInsertionCouloir(), choisirOrientationCouloir());
         Objectif objectif = pion.deplacer(choisirPositionPion());
-        if(objectif != null && objectif == this.objectifs.peek()) {
+        if(objectif == this.objectifs.peek()) {
             objectifs.pop();
         }
     }
@@ -85,11 +85,12 @@ public class JoueurImpl implements Joueur {
      * @return : la position choisie du pion.
      */ 
     private Position choisirPositionPion() {
-        int x,y;
+        String x,y;
         Scanner sc = new Scanner(System.in);
-        x = sc.nextInt();
-        y = sc.nextInt();
-        return new Position(x, y);
+        x = sc.next();
+        y = sc.next();
+        Position p = new Position(Integer.parseInt(x), Integer.parseInt(y));
+        return p;
     }
 
     /** Méthode qui permet au joueur de choisir l'orientation de son couloir.
