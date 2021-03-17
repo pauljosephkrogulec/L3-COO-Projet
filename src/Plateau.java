@@ -12,15 +12,15 @@ public class Plateau {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 7; j++) {
                 if (i % 2 == 0 && j % 2 == 0) {
-                    if(i == 0 && j == 0)  this.couloirs[i][j] = new CouloirFixe(Orientation.EST, Forme.COUDE, Objectif.values()[objs++]);
-                    else if(i == 0 && j == 6) this.couloirs[i][j] = new CouloirFixe(Orientation.SUD, Forme.COUDE, Objectif.values()[objs++]);
-                    else if (i == 6 && j == 0)  this.couloirs[i][j] = new CouloirFixe(Orientation.NORD, Forme.COUDE, Objectif.values()[objs++]);
-                    else if (i == 6 && j == 6)  this.couloirs[i][j] = new CouloirFixe(Orientation.OUEST, Forme.COUDE, Objectif.values()[objs++]);
-                    else if (i == 0)  this.couloirs[i][j] = new CouloirFixe(Orientation.SUD, Forme.TE, Objectif.values()[objs++]);
-                    else if (j == 0)  this.couloirs[i][j] = new CouloirFixe(Orientation.EST, Forme.TE, Objectif.values()[objs++]);
-                    else if (i == 6)  this.couloirs[i][j] = new CouloirFixe(Orientation.NORD, Forme.TE, Objectif.values()[objs++]);
-                    else if (j == 6)  this.couloirs[i][j] = new CouloirFixe(Orientation.OUEST, Forme.TE, Objectif.values()[objs++]);
-                    else this.couloirs[i][j] = new CouloirFixe(Orientation.values()[r.nextInt(4)], Forme.TE, Objectif.values()[objs++]);
+                    if(i == 0 && j == 0)  this.couloirs[i][j] = new CouloirFixe(Orientation.EST, Forme.COUDE, Objectif.values()[objs++],new Position(i,j));
+                    else if(i == 0 && j == 6) this.couloirs[i][j] = new CouloirFixe(Orientation.SUD, Forme.COUDE, Objectif.values()[objs++],new Position(i,j));
+                    else if (i == 6 && j == 0)  this.couloirs[i][j] = new CouloirFixe(Orientation.NORD, Forme.COUDE, Objectif.values()[objs++],new Position(i,j));
+                    else if (i == 6 && j == 6)  this.couloirs[i][j] = new CouloirFixe(Orientation.OUEST, Forme.COUDE, Objectif.values()[objs++],new Position(i,j));
+                    else if (i == 0)  this.couloirs[i][j] = new CouloirFixe(Orientation.SUD, Forme.TE, Objectif.values()[objs++],new Position(i,j));
+                    else if (j == 0)  this.couloirs[i][j] = new CouloirFixe(Orientation.EST, Forme.TE, Objectif.values()[objs++],new Position(i,j));
+                    else if (i == 6)  this.couloirs[i][j] = new CouloirFixe(Orientation.NORD, Forme.TE, Objectif.values()[objs++],new Position(i,j));
+                    else if (j == 6)  this.couloirs[i][j] = new CouloirFixe(Orientation.OUEST, Forme.TE, Objectif.values()[objs++],new Position(i,j));
+                    else this.couloirs[i][j] = new CouloirFixe(Orientation.values()[r.nextInt(4)], Forme.TE, Objectif.values()[objs++],new Position(i,j));
                 } else {
                     this.couloirs[i][j] = couloirs[x++];
                 }
@@ -39,20 +39,16 @@ public class Plateau {
         int x;
         if (position.getX() == 0)
             for (x = 0; x < 6; x++)
-                this.couloirs[position.getX() + x][position.getY()] = this.couloirs[position.getX() + x + 1][position
-                        .getY()];
+                this.couloirs[position.getX() + x][position.getY()] = this.couloirs[position.getX() + x + 1][position.getY()];
         else if (position.getY() == 0)
             for (x = 0; x < 6; x++)
-                this.couloirs[position.getX()][position.getY() + x] = this.couloirs[position.getX()][position.getY() + x
-                        + 1];
+                this.couloirs[position.getX()][position.getY() + x] = this.couloirs[position.getX()][position.getY() + x + 1];
         else if (position.getX() == 6)
             for (x = 0; x < 6; x++)
-                this.couloirs[position.getX() - x][position.getY()] = this.couloirs[position.getX() - (x + 1)][position
-                        .getY()];
+                this.couloirs[position.getX() - x][position.getY()] = this.couloirs[position.getX() - (x + 1)][position.getY()];
         else
             for (x = 0; x < 6; x++)
-                this.couloirs[position.getX()][position.getY() - x] = this.couloirs[position.getX()][position.getY()
-                        - (x + 1)];
+                this.couloirs[position.getX()][position.getY() - x] = this.couloirs[position.getX()][position.getY() - (x + 1)];
         this.couloirs[position.getX()][position.getY()] = c;
         return opo;
     }

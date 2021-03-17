@@ -11,8 +11,8 @@ public class CouloirMobile extends CouloirImpl {
      * @param objectif > l'objectif représenté dans le couloir.
      * @param posee > si le couloir est posé ou non.
      */
-    public CouloirMobile(Orientation orientation, Forme forme, Objectif objectif, boolean posee) {
-        super(orientation, forme, objectif);
+    public CouloirMobile(Orientation orientation, Forme forme, Objectif objectif, boolean posee,Position pos) {
+        super(orientation, forme, objectif,pos);
         this.posee = posee;
     }
 

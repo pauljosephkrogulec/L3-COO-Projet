@@ -7,8 +7,8 @@ public class CouloirFixe extends CouloirImpl {
      * @param forme > sa forme.
      * @param objectif > l'objectif représenté dans le couloir.
      */
-    public CouloirFixe(Orientation orientation, Forme forme, Objectif objectif) {
-        super(orientation, forme, objectif);
+    public CouloirFixe(Orientation orientation, Forme forme, Objectif objectif,Position pos) {
+        super(orientation, forme, objectif,pos);
     }
     
 }

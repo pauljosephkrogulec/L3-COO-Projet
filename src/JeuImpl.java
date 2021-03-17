@@ -7,12 +7,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Stack;
 
-import javax.swing.JButton;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-public class JeuImpl implements Jeu, ActionListener {
+public class JeuImpl implements Jeu {
 
     // Déclaration des variables...
     private CouloirMobile supplementaire;
@@ -56,28 +51,28 @@ public class JeuImpl implements Jeu, ActionListener {
         this.joueurs = new ArrayList<>();
         this.pions = new HashMap<>();
         this.objectifs = JeuImpl.randomizeArrayObjectifs(Objectif.values());
-        this.supplementaire = new CouloirMobile(Orientation.SUD, Forme.DROIT, null, false);
+        this.supplementaire = new CouloirMobile(Orientation.SUD, Forme.DROIT, null, false,null);
         this.couloirsMobiles = new CouloirMobile[34];
         Stack<Objectif> objs;
         int i, obj = 12,cpt = 0;
         
         this.objectifs = Objectif.values();
         for (i = 0; i < 12; i++)
-            this.couloirsMobiles[i] = new CouloirMobile(Orientation.values()[r.nextInt(4)], Forme.DROIT, null, false);
+            this.couloirsMobiles[i] = new CouloirMobile(Orientation.values()[r.nextInt(4)], Forme.DROIT, null, false,new Position(i/7,i%7));
         for (; i < 20; i++) {
             if (i < 19)
                 this.couloirsMobiles[i] = new CouloirMobile(Orientation.values()[r.nextInt(4)], Forme.TE,
-                        objectifs[obj++], false);
+                        objectifs[obj++], false,new Position(i/7,i%7));
             else
-                this.couloirsMobiles[i] = new CouloirMobile(Orientation.values()[r.nextInt(4)], Forme.TE, null, false);
+                this.couloirsMobiles[i] = new CouloirMobile(Orientation.values()[r.nextInt(4)], Forme.TE, null, false,new Position(i/7,i%7));
         }
         for (; i < 34; i++) {
             if (i < 19)
                 this.couloirsMobiles[i] = new CouloirMobile(Orientation.values()[r.nextInt(4)], Forme.COUDE,
-                        objectifs[obj++], false);
+                        objectifs[obj++], false,new Position(i/7,i%7));
             else
                 this.couloirsMobiles[i] = new CouloirMobile(Orientation.values()[r.nextInt(4)], Forme.COUDE, null,
-                        false);
+                        false,new Position(i/7,i%7));
         }
         this.plateau = new Plateau(this.couloirsMobiles);
         for (i = 0; i < 2; i++) {
@@ -130,31 +125,15 @@ public class JeuImpl implements Jeu, ActionListener {
     }
 
     private void jouer() {
-        Joueur joueur;
-        do {
-            joueur = prochainJoueur();
-            joueur.joue();
-        } while (!aGagne(joueur));
     }
 
-    private Joueur prochainJoueur() {
+    public Joueur prochainJoueur() {
         return joueurs.get((this.i)++ % joueurs.toArray().length);
     }
 
-    private boolean aGagne(Joueur joueur) {
+    public boolean aGagne(Joueur joueur) {
         return joueur.getPion().getPositionInitiale() == joueur.getPion().getPositionCourante()
                 && joueur.objectifsFinis();
     }
 
-    public JButton jouerButton() {
-        JButton j = new JButton("Jouer");
-
-        j.addActionListener(this);
-        return j;
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        jouer();
-    }
 }

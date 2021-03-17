@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  * Constructeur de la classe JeuFactory qui paramètre la fenêtre et ses
  * fonctionnalités.
  */
-public class JeuFactory extends JFrame implements ActionListener {
+public class JeuFactory extends JFrame {
 
     // On déclare quelques variables...
     private static int LONGUEUR = 800;
@@ -34,12 +34,32 @@ public class JeuFactory extends JFrame implements ActionListener {
 
         this.labyrinthe = creerLabyrinthe();
         this.getContentPane().add(this.labyrinthe, "West");
-        this.getContentPane().add(jeu.jouerButton(), "South");
         // On paramètre la fenêtre.
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
+        game();
+
     }
+    
+    private void game(){
+        
+        Joueur joueur;
+        do {
+            joueur = jeu.prochainJoueur();
+
+            joueur.joue();
+            this.labyrinthe.removeAll();
+            this.labyrinthe.revalidate();   
+            this.labyrinthe.repaint();
+            
+            this.labyrinthe = creerLabyrinthe();
+            this.getContentPane().add(this.labyrinthe, "West");
+            this.labyrinthe.revalidate();   
+            this.labyrinthe.repaint();
+
+        } while (!jeu.aGagne(joueur));
+    }   
 
     /**
      * Méthode qui créer le Menu du jeu.
@@ -62,7 +82,7 @@ public class JeuFactory extends JFrame implements ActionListener {
 
         JPanel l = new JPanel();
         // On paramètre le Menu.
-        l.setPreferredSize(new Dimension(LONGUEUR - 320, HAUTEUR));
+        l.setPreferredSize(new Dimension(LONGUEUR - 350, HAUTEUR));
         l.setLayout(null);
 
         GridLayout grid = new GridLayout(8, 8);
@@ -81,7 +101,4 @@ public class JeuFactory extends JFrame implements ActionListener {
         return new JeuImpl();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-    }
 }

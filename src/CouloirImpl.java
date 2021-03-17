@@ -26,13 +26,14 @@ public class CouloirImpl extends JButton implements Couloir {
     protected Forme forme;
     protected Objectif objectif;
     protected List<Pion> pions;
+    protected Position pos;
 
     /** Constructeur de la classe CouloirImpl.
      * @param orientation > l'orientation du couloir.
      * @param forme > sa forme.
      * @param objectif > l'objectif représenté dans le couloir.
      */
-    public CouloirImpl(Orientation orientation, Forme forme, Objectif objectif) {
+    public CouloirImpl(Orientation orientation, Forme forme, Objectif objectif, Position pos) {
         super();
         int f,o;
         if(forme == Forme.DROIT){
@@ -57,6 +58,7 @@ public class CouloirImpl extends JButton implements Couloir {
         this.forme = forme;
         this.objectif = objectif;
         this.pions = new ArrayList<>();
+        this.pos = pos;
     }
 
     /** Méthode qui renvoie l'orientation du couloir.
@@ -97,6 +99,9 @@ public class CouloirImpl extends JButton implements Couloir {
     @Override
     public void setPions(Pion p){
         pions.add(p);
+    }
+    public Position getPos(){
+        return this.pos;
     }
     
 }
