@@ -35,6 +35,7 @@ public class CouloirImpl extends JButton implements Couloir {
      */
     public CouloirImpl(Orientation orientation, Forme forme, Objectif objectif, Position pos) {
         super();
+        this.setOpaque(true);
         int f,o;
         if(forme == Forme.DROIT){
             f = 0;
@@ -54,6 +55,7 @@ public class CouloirImpl extends JButton implements Couloir {
             else o = 3;
         }
         this.setIcon(imgTab[f+o]);
+        this.setContentAreaFilled(false);
         this.orientation = orientation;
         this.forme = forme;
         this.objectif = objectif;

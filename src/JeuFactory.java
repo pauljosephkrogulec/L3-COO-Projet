@@ -30,7 +30,6 @@ public class JeuFactory extends JFrame {
         this.setSize(LONGUEUR, HAUTEUR);
 
         this.menu = creerMenu();
-        this.getContentPane().add(this.menu, "East");
 
         this.labyrinthe = creerLabyrinthe();
         this.getContentPane().add(this.labyrinthe, "West");
@@ -50,12 +49,12 @@ public class JeuFactory extends JFrame {
 
             joueur.joue();
             this.labyrinthe.removeAll();
-            this.labyrinthe.revalidate();   
+            this.labyrinthe.revalidate();
             this.labyrinthe.repaint();
             
             this.labyrinthe = creerLabyrinthe();
             this.getContentPane().add(this.labyrinthe, "West");
-            this.labyrinthe.revalidate();   
+            this.labyrinthe.revalidate();
             this.labyrinthe.repaint();
 
         } while (!jeu.aGagne(joueur));
@@ -82,17 +81,15 @@ public class JeuFactory extends JFrame {
 
         JPanel l = new JPanel();
         // On paramètre le Menu.
-        l.setPreferredSize(new Dimension(LONGUEUR - 350, HAUTEUR));
-        l.setLayout(null);
 
         GridLayout grid = new GridLayout(8, 8);
         l.setLayout(grid);
-
         listBtn = jeu.couloirs();
         // add JButtons dynamically
         for (int i = 0; i < listBtn.size(); i++) {
             l.add((JButton) listBtn.get(i));
         }
+        System.out.println(listBtn.size());
 
         return l;
     }
