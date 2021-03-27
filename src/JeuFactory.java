@@ -29,7 +29,6 @@ public class JeuFactory extends JFrame {
         this.setSize(LONGUEUR, HAUTEUR);
 
         this.menu = creerMenu();
-        this.getContentPane().add(this.menu, "East");
 
         this.labyrinthe = creerPanel();
         createJbutton(this.labyrinthe);
@@ -50,7 +49,7 @@ public class JeuFactory extends JFrame {
 
             joueur.joue();
             this.labyrinthe.removeAll();
-            this.labyrinthe.revalidate();   
+            this.labyrinthe.revalidate();
             this.labyrinthe.repaint();
             createJbutton(this.labyrinthe);
             this.labyrinthe.revalidate();   
@@ -80,8 +79,6 @@ public class JeuFactory extends JFrame {
 
         JPanel l = new JPanel();
         // On paramètre le Menu.
-        l.setPreferredSize(new Dimension(LONGUEUR - 350, HAUTEUR));
-        l.setLayout(null);
 
         GridLayout grid = new GridLayout(7,7);
         l.setLayout(grid);
