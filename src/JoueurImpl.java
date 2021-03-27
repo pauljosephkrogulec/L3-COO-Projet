@@ -11,6 +11,7 @@ public class JoueurImpl implements Joueur {
     private Stack<Objectif> objectifs;
     private Jeu jeu;
     private Pion pion;
+    private Scanner sc = new Scanner(System.in);
 
     /** Constructeur de la classe JoueurImpl.
      * @param age > l'âge du joueur.
@@ -78,7 +79,9 @@ public class JoueurImpl implements Joueur {
      * @return : la position où le couloir est inséré.
      */    
     private PositionInsertion choisirPositionInsertionCouloir() {
-        return PositionInsertion.N1;
+        String x;
+        x = sc.next();
+        return PositionInsertion.values()[Integer.parseInt(x)];
     }
 
     /** Méthode qui permet au joueur de choisir une position de son pion.
@@ -86,17 +89,17 @@ public class JoueurImpl implements Joueur {
      */ 
     private Position choisirPositionPion() {
         String x,y;
-        Scanner sc = new Scanner(System.in);
         x = sc.next();
         y = sc.next();
-        Position p = new Position(Integer.parseInt(x), Integer.parseInt(y));
-        return p;
+        return new Position(Integer.parseInt(x), Integer.parseInt(y));
     }
 
     /** Méthode qui permet au joueur de choisir l'orientation de son couloir.
      * @return : l'orientation du couloir.
      */ 
     private Orientation choisirOrientationCouloir() {
-        return Orientation.SUD;
+        String x;
+        x = sc.next();
+        return Orientation.values()[Integer.parseInt(x)];
     }
 }

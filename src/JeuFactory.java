@@ -1,5 +1,4 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.util.List;
 import java.awt.Color;
 import java.awt.Component;
@@ -32,7 +31,8 @@ public class JeuFactory extends JFrame {
         this.menu = creerMenu();
         this.getContentPane().add(this.menu, "East");
 
-        this.labyrinthe = creerLabyrinthe();
+        this.labyrinthe = creerPanel();
+        createJbutton(this.labyrinthe);
         this.getContentPane().add(this.labyrinthe, "West");
         // On paramètre la fenêtre.
         this.setLocationRelativeTo(null);
@@ -52,9 +52,7 @@ public class JeuFactory extends JFrame {
             this.labyrinthe.removeAll();
             this.labyrinthe.revalidate();   
             this.labyrinthe.repaint();
-            
-            this.labyrinthe = creerLabyrinthe();
-            this.getContentPane().add(this.labyrinthe, "West");
+            createJbutton(this.labyrinthe);
             this.labyrinthe.revalidate();   
             this.labyrinthe.repaint();
 
@@ -78,23 +76,26 @@ public class JeuFactory extends JFrame {
     /**
      * Méthode qui créer le Menu du jeu.
      */
-    public JPanel creerLabyrinthe() {
+    public JPanel creerPanel() {
 
         JPanel l = new JPanel();
         // On paramètre le Menu.
         l.setPreferredSize(new Dimension(LONGUEUR - 350, HAUTEUR));
         l.setLayout(null);
 
-        GridLayout grid = new GridLayout(8, 8);
+        GridLayout grid = new GridLayout(7,7);
         l.setLayout(grid);
+
+        return l;
+    }
+    private void createJbutton(JPanel JpBtn){
+        
 
         listBtn = jeu.couloirs();
         // add JButtons dynamically
         for (int i = 0; i < listBtn.size(); i++) {
-            l.add((JButton) listBtn.get(i));
+            JpBtn.add((JButton) listBtn.get(i));
         }
-
-        return l;
     }
 
     private Jeu creeJeu() {
