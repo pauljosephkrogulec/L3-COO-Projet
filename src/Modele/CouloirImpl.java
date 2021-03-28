@@ -1,25 +1,28 @@
 package Modele;
+import java.awt.Color;
 // On importe les librairies.
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import Vue.VueLabyrinthe;
+import Vue.VLabyrinthe;
 
 /** Classe qui modélise un couloir en implémentant l'interface Couloir..
  */
 public class CouloirImpl extends JButton implements Couloir {
     private static final ImageIcon[] imgTab = {
-        new ImageIcon(VueLabyrinthe.class.getResource("../img/CASE0.gif")), 
-        new ImageIcon(VueLabyrinthe.class.getResource("../img/CASE1.gif")), 
-        new ImageIcon(VueLabyrinthe.class.getResource("../img/CASE2.gif")), 
-        new ImageIcon(VueLabyrinthe.class.getResource("../img/CASE3.gif")), 
-        new ImageIcon(VueLabyrinthe.class.getResource("../img/CASE4.gif")), 
-        new ImageIcon(VueLabyrinthe.class.getResource("../img/CASE5.gif")), 
-        new ImageIcon(VueLabyrinthe.class.getResource("../img/CASE6.gif")), 
-        new ImageIcon(VueLabyrinthe.class.getResource("../img/CASE7.gif")), 
-        new ImageIcon(VueLabyrinthe.class.getResource("../img/CASE8.gif")), 
-        new ImageIcon(VueLabyrinthe.class.getResource("../img/CASE9.gif"))
+        new ImageIcon(VLabyrinthe.class.getResource("../img/CASE0.gif")), 
+        new ImageIcon(VLabyrinthe.class.getResource("../img/CASE1.gif")), 
+        new ImageIcon(VLabyrinthe.class.getResource("../img/CASE2.gif")), 
+        new ImageIcon(VLabyrinthe.class.getResource("../img/CASE3.gif")), 
+        new ImageIcon(VLabyrinthe.class.getResource("../img/CASE4.gif")), 
+        new ImageIcon(VLabyrinthe.class.getResource("../img/CASE5.gif")), 
+        new ImageIcon(VLabyrinthe.class.getResource("../img/CASE6.gif")), 
+        new ImageIcon(VLabyrinthe.class.getResource("../img/CASE7.gif")), 
+        new ImageIcon(VLabyrinthe.class.getResource("../img/CASE8.gif")), 
+        new ImageIcon(VLabyrinthe.class.getResource("../img/CASE9.gif"))
     };
     // Déclaration des variables...
     protected Orientation orientation;
@@ -36,6 +39,7 @@ public class CouloirImpl extends JButton implements Couloir {
     public CouloirImpl(Orientation orientation, Forme forme, Objectif objectif, Position pos) {
         super();
         this.setOpaque(true);
+        this.setBorder(BorderFactory.createBevelBorder(1, new Color(147, 81, 18), new Color(201, 127, 27)));
         int f,o;
         if(forme == Forme.DROIT){
             f = 0;
