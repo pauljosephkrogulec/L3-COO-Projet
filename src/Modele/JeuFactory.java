@@ -1,11 +1,11 @@
 package Modele;
 
-import Vue.VLabyrinthe;
+import Vue.VJeu;
 
 /** Constructeur de la classe JeuFactory qui lance le jeu
  */
 public class JeuFactory {
-    public static Jeu creeJeu(VLabyrinthe vLabyrinthe) {
+    public static Jeu creeJeu(VJeu vLabyrinthe) {
         return new JeuImpl(vLabyrinthe);
     }
 }

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Stack;
 
-import Vue.VLabyrinthe;
+import Vue.VJeu;
 
 public class JeuImpl implements Jeu {
 
@@ -20,9 +20,9 @@ public class JeuImpl implements Jeu {
     private CouloirMobile[] couloirsMobiles;
     private Plateau plateau;
     private int i;
-    private VLabyrinthe vLabyrinthe;
+    private VJeu vLabyrinthe;
 
-    public JeuImpl(VLabyrinthe vLabyrinthe) {
+    public JeuImpl(VJeu vLabyrinthe) {
         this.vLabyrinthe = vLabyrinthe;
         preparer();
     }

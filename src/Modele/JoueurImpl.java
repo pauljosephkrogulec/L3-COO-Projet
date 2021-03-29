@@ -3,7 +3,7 @@ package Modele;
 import java.util.Scanner;
 import java.util.Stack;
 
-import Vue.VLabyrinthe;
+import Vue.VJeu;
 
 /** Classe qui modélise un joueur en implémentant l'interface Joueur..
  */
@@ -15,13 +15,13 @@ public class JoueurImpl implements Joueur {
     private Jeu jeu;
     private Pion pion;
     private Scanner sc = new Scanner(System.in);
-    private VLabyrinthe vLabyrinthe;
+    private VJeu vLabyrinthe;
 
     /** Constructeur de la classe JoueurImpl.
      * @param age > l'âge du joueur.
      * @param jeu > le jeu.
      */
-    public JoueurImpl(int age, Jeu jeu,VLabyrinthe vLabyrinthe) {
+    public JoueurImpl(int age, Jeu jeu,VJeu vLabyrinthe) {
         this.age = age;
         this.objectifs = new Stack<>();
         this.jeu = jeu;
