@@ -31,7 +31,7 @@ public class VLabyrinthe extends JFrame {
         this.setUndecorated(true); // On supprime la topbar (que je vais créer moi-même).
         
         this.menu = new JPanel();
-        this.jeu = (JeuImpl) JeuFactory.creeJeu();
+        this.jeu = (JeuImpl) JeuFactory.creeJeu(this);
         
         this.creerMenu();
         this.getContentPane().add(this.menu, "East");
@@ -54,15 +54,7 @@ public class VLabyrinthe extends JFrame {
         Joueur joueur;
         do {
             joueur = jeu.prochainJoueur();
-
             joueur.joue();
-            this.labyrinthe.removeAll();
-            this.labyrinthe.revalidate();
-            this.labyrinthe.repaint();
-            createJbutton(this.labyrinthe);
-            this.labyrinthe.revalidate();   
-            this.labyrinthe.repaint();
-
         } while (!jeu.aGagne(joueur));
     }   
 
@@ -119,5 +111,13 @@ public class VLabyrinthe extends JFrame {
         for (int i = 0; i < listBtn.size(); i++) {
             JpBtn.add((JButton) listBtn.get(i));
         }
+    }
+    public void refresh(){
+        this.labyrinthe.removeAll();
+        this.labyrinthe.revalidate();
+        this.labyrinthe.repaint();
+        createJbutton(this.labyrinthe);
+        this.labyrinthe.revalidate();   
+        this.labyrinthe.repaint();
     }
 }

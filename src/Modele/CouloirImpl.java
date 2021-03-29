@@ -1,5 +1,6 @@
 package Modele;
 import java.awt.Color;
+import java.awt.Dimension;
 // On importe les librairies.
 import java.util.ArrayList;
 import java.util.List;

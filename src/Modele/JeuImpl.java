@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Stack;
 
+import Vue.VLabyrinthe;
+
 public class JeuImpl implements Jeu {
 
     // Déclaration des variables...
@@ -18,8 +20,10 @@ public class JeuImpl implements Jeu {
     private CouloirMobile[] couloirsMobiles;
     private Plateau plateau;
     private int i;
+    private VLabyrinthe vLabyrinthe;
 
-    public JeuImpl() {
+    public JeuImpl(VLabyrinthe vLabyrinthe) {
+        this.vLabyrinthe = vLabyrinthe;
         preparer();
     }
 
@@ -77,7 +81,7 @@ public class JeuImpl implements Jeu {
         this.plateau = new Plateau(this.couloirsMobiles);
         for (i = 0; i < 2; i++) {
             objs = new Stack<>();
-            Joueur j = new JoueurImpl(14, this);
+            Joueur j = new JoueurImpl(14, this,vLabyrinthe);
             int x = 0, y = 0;
             if (i == 1)
                 y = 6;

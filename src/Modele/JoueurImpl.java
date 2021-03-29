@@ -3,6 +3,8 @@ package Modele;
 import java.util.Scanner;
 import java.util.Stack;
 
+import Vue.VLabyrinthe;
+
 /** Classe qui modélise un joueur en implémentant l'interface Joueur..
  */
 public class JoueurImpl implements Joueur {
@@ -13,16 +15,18 @@ public class JoueurImpl implements Joueur {
     private Jeu jeu;
     private Pion pion;
     private Scanner sc = new Scanner(System.in);
+    private VLabyrinthe vLabyrinthe;
 
     /** Constructeur de la classe JoueurImpl.
      * @param age > l'âge du joueur.
      * @param jeu > le jeu.
      */
-    public JoueurImpl(int age, Jeu jeu) {
+    public JoueurImpl(int age, Jeu jeu,VLabyrinthe vLabyrinthe) {
         this.age = age;
         this.objectifs = new Stack<>();
         this.jeu = jeu;
         this.pion = null;
+        this.vLabyrinthe = vLabyrinthe;
     }
 
     /** Méthode qui renvoie l'âge du joueur.
@@ -46,6 +50,7 @@ public class JoueurImpl implements Joueur {
     @Override
     public void joue() {
         this.jeu.modifierCouloir(choisirPositionInsertionCouloir(), choisirOrientationCouloir());
+        this.vLabyrinthe.refresh();
         Objectif objectif = pion.deplacer(choisirPositionPion());
         if(objectif == this.objectifs.peek()) {
             objectifs.pop();
