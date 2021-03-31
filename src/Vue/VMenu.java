@@ -1,6 +1,9 @@
 package Vue;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -11,6 +14,7 @@ public class VMenu extends JPanel {
     private VJeu jeu;
     private JPanel header, accueil;
     private JButton btnJouer, btnQuitter, btnReduire;
+    private ButtonRadio joueurNb2, joueurNb3, joueurNb4;
 
     public VMenu(VJeu jeu, int HAUTEUR) {
         super();
@@ -34,6 +38,30 @@ public class VMenu extends JPanel {
         regles.setIcon(new ImageIcon(VJeu.class.getResource("../img/regles.png")));
         this.accueil.add(regles);
         regles.setBounds(0, 0, 250, 191);
+
+        // Panel qui contiendra les choix du terrain.
+        JPanel choixNbJoueurs = new JPanel(new GridLayout(1, 2));
+        choixNbJoueurs.setPreferredSize(new Dimension(202, 20));
+        choixNbJoueurs.setOpaque(false);
+
+        ButtonGroup btnNbJoueurs = new ButtonGroup();
+        this.joueurNb2 = new ButtonRadio();
+        this.joueurNb3 = new ButtonRadio();
+        this.joueurNb4 = new ButtonRadio();
+
+        this.joueurNb2.setSelected(true);
+
+        // On les RadioButton dans le groupe de boutons et dans le panel.
+        choixNbJoueurs.add(joueurNb2);
+        btnNbJoueurs.add(joueurNb2);
+        choixNbJoueurs.add(joueurNb3);
+        btnNbJoueurs.add(joueurNb3);
+        choixNbJoueurs.add(joueurNb4);
+        btnNbJoueurs.add(joueurNb4);
+
+        // On ajoute dans le panel option, le panel des terrains.
+        this.accueil.add(choixNbJoueurs);
+        choixNbJoueurs.setBounds(0, 170, 202, 20);
 
         // On crée le bouton Jouer qui lance la partie.
         this.btnJouer = new ButtonJouer(this.jeu);
