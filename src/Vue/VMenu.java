@@ -25,14 +25,23 @@ public class VMenu extends JPanel {
         this.accueil = new JPanel();
         this.accueil.setBackground(new Color(52, 61, 88));
         this.accueil.setLayout(null);
+        
+        // On déclare des label.
+        JLabel regles;
+
+        // On crée un label qui affiche les règles.
+        regles = new JLabel();
+        regles.setIcon(new ImageIcon(VJeu.class.getResource("../img/regles.png")));
+        this.accueil.add(regles);
+        regles.setBounds(0, 0, 250, 191);
 
         // On crée le bouton Jouer qui lance la partie.
         this.btnJouer = new ButtonJouer(this.jeu);
         this.accueil.add(this.btnJouer);
-        this.btnJouer.setBounds(0, 235, 202, 42);
-
+        this.btnJouer.setBounds(0, 265, 250, 42);
+        
         this.add(this.accueil);
-        this.accueil.setBounds(50, 175, 202, 300);
+        this.accueil.setBounds(25, 150, 250, 350);
     }
 
     private void creerHeader() {

@@ -34,6 +34,7 @@ public class VJeu extends JFrame {
         this.menu = new VMenu(this, HAUTEUR);
         this.getContentPane().add(this.menu, "East");
 
+        this.jeu = (JeuImpl) JeuFactory.creeJeu(this);
         
         this.labyrinthe = new VLabyrinthe(HAUTEUR);
         this.getContentPane().add(this.labyrinthe, "West");
@@ -42,7 +43,6 @@ public class VJeu extends JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        this.jeu = (JeuImpl) JeuFactory.creeJeu(this);
     }
 
     public void initPartie() {
