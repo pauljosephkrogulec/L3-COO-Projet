@@ -13,11 +13,9 @@ public class VLabyrinthe extends JPanel {
         this.setBackground(new Color(68, 79, 116));
         this.setPreferredSize(new Dimension(500, H));
         this.setLayout(new BorderLayout());
-
-        this.creerLabyrinthe();
     }
 
-    private void creerLabyrinthe() {
+    public void creerLabyrinthe() {
         JPanel top = new JPanel();
         top.setBackground(new Color(68, 79, 116));
         top.setPreferredSize(new Dimension(500, 50));

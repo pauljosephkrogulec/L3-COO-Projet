@@ -31,20 +31,25 @@ public class VJeu extends JFrame {
         this.setResizable(false); // On fixe la taille de la fenêtre.
         this.setUndecorated(true); // On supprime la topbar (que je vais créer moi-même).
         
-        this.menu = new VMenu(HAUTEUR);
+        this.menu = new VMenu(this, HAUTEUR);
         this.getContentPane().add(this.menu, "East");
 
-        this.jeu = (JeuImpl) JeuFactory.creeJeu(this);
         
         this.labyrinthe = new VLabyrinthe(HAUTEUR);
         this.getContentPane().add(this.labyrinthe, "West");
-        this.plateau = creerPlateau();
-
+        
         // On paramètre la fenêtre.
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        this.jouer();
+        this.jeu = (JeuImpl) JeuFactory.creeJeu(this);
+    }
+
+    public void initPartie() {
+        this.plateau = creerPlateau();
+        this.labyrinthe.creerLabyrinthe();
+        refresh();
+        jouer();
     }
     
     private void jouer() {
@@ -53,7 +58,11 @@ public class VJeu extends JFrame {
         do {
             joueur = jeu.prochainJoueur();
             joueur.joue();
-        } while (!jeu.aGagne(joueur));
+        } while (!joueur.getFiniTour());
+    }
+
+    public void PartieFinie() {
+        this.menu.setBtnJouer(true);
     }
 
     /** Méthode qui créer le Menu du jeu.

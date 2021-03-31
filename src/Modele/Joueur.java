@@ -9,6 +9,7 @@ public interface Joueur {
     // Déclarations des méthodes essentielles...
     int getAge();
     Pion getPion();
+    boolean getFiniTour();
     void joue();
     void fixerObjectifs(Stack<Objectif> objectifs);
     void recevoirPion(Pion p);

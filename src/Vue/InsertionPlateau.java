@@ -1,5 +1,4 @@
 package Vue;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import Modele.PositionInsertion;

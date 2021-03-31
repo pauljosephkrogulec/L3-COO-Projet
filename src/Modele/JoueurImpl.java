@@ -15,18 +15,20 @@ public class JoueurImpl implements Joueur {
     private Jeu jeu;
     private Pion pion;
     private Scanner sc = new Scanner(System.in);
-    private VJeu vLabyrinthe;
+    private VJeu vjeu;
+    private boolean finiTour;
 
     /** Constructeur de la classe JoueurImpl.
      * @param age > l'âge du joueur.
      * @param jeu > le jeu.
      */
-    public JoueurImpl(int age, Jeu jeu,VJeu vLabyrinthe) {
+    public JoueurImpl(int age, Jeu jeu, VJeu vjeu) {
         this.age = age;
         this.objectifs = new Stack<>();
         this.jeu = jeu;
         this.pion = null;
-        this.vLabyrinthe = vLabyrinthe;
+        this.vjeu = vjeu;
+        this.finiTour = false;
     }
 
     /** Méthode qui renvoie l'âge du joueur.
@@ -45,16 +47,22 @@ public class JoueurImpl implements Joueur {
         return this.pion;
     }
 
+    @Override
+    public boolean getFiniTour() {
+        return this.finiTour;
+    }
+
     /** Méthode permettant au joueur de jouer un tour.
      */
     @Override
     public void joue() {
         this.jeu.modifierCouloir(choisirPositionInsertionCouloir(), choisirOrientationCouloir());
-        this.vLabyrinthe.refresh();
+        this.vjeu.refresh();
         Objectif objectif = pion.deplacer(choisirPositionPion());
         if(objectif == this.objectifs.peek()) {
             objectifs.pop();
         }
+        this.finiTour = true;
     }
 
     /** Méthode qui affecte des objectifs au joueur.
@@ -85,27 +93,20 @@ public class JoueurImpl implements Joueur {
      * @return : la position où le couloir est inséré.
      */    
     private PositionInsertion choisirPositionInsertionCouloir() {
-        String x;
-        x = sc.next();
-        return PositionInsertion.values()[Integer.parseInt(x)];
+        return PositionInsertion.values()[0];
     }
 
     /** Méthode qui permet au joueur de choisir une position de son pion.
      * @return : la position choisie du pion.
      */ 
     private Position choisirPositionPion() {
-        String x,y;
-        x = sc.next();
-        y = sc.next();
-        return new Position(Integer.parseInt(x), Integer.parseInt(y));
+        return new Position(0, 1);
     }
 
     /** Méthode qui permet au joueur de choisir l'orientation de son couloir.
      * @return : l'orientation du couloir.
      */ 
     private Orientation choisirOrientationCouloir() {
-        String x;
-        x = sc.next();
-        return Orientation.values()[Integer.parseInt(x)];
+        return Orientation.values()[0];
     }
 }
