@@ -77,7 +77,10 @@ public class CouloirImpl extends JPanel implements Couloir, MouseListener {
 
         if(this.objectif != null) {
             JLabel lobjectif = new JLabel();
-            lobjectif.setIcon(new ImageIcon(CouloirImpl.class.getResource("../img/objectifs/chapeau.png")));
+            ImageIcon clef = new ImageIcon(CouloirImpl.class.getResource("../img/objectifs/CLEF2.png"));
+            
+            Image new_clef = clef.getImage().getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH);
+            lobjectif.setIcon(new ImageIcon(new_clef));
             this.add(lobjectif);
             lobjectif.setBounds(19,19,18,18);
         }
