@@ -1,11 +1,12 @@
 package Vue;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseEvent;
+import Modele.*;
 
 public class InsertionBottom extends InsertionPlateau {
     
-    public InsertionBottom(int values) {
-        super(values);
+    public InsertionBottom(VJeu vjeu, Jeu jeu, int values, int orientation) {
+        super(vjeu, jeu, values, orientation);
         this.setIcon(new ImageIcon(InsertionBottom.class.getResource("../img/CURSOR3.gif")));
     }
 

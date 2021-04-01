@@ -49,7 +49,7 @@ public class Plateau {
                 this.couloirs[position.getX() - x][position.getY()] = this.couloirs[position.getX() - (x-1)][position.getY()];
         else
             for (x = 6; x > 0; x--)
-                this.couloirs[position.getX()][position.getY()] = this.couloirs[position.getX()][position.getY() - (x-1)];
+                this.couloirs[position.getX()][position.getY() - x] = this.couloirs[position.getX()][position.getY() - (x-1)];
         this.couloirs[position.getX()][position.getY()] = c;
         return SUP;
     }

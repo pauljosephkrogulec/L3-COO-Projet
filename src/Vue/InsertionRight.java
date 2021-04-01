@@ -2,10 +2,12 @@ package Vue;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseEvent;
 
+import Modele.*;
+
 public class InsertionRight extends InsertionPlateau {
     
-    public InsertionRight(int values) {
-        super(values);
+    public InsertionRight(VJeu vjeu, Jeu jeu, int values, int orientation) {
+        super(vjeu, jeu, values, orientation);
         this.setIcon(new ImageIcon(InsertionRight.class.getResource("../img/CURSOR2.gif")));
     }
 

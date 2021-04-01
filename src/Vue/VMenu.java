@@ -61,12 +61,12 @@ public class VMenu extends JPanel {
 
         // On ajoute dans le panel option, le panel des terrains.
         this.accueil.add(choixNbJoueurs);
-        choixNbJoueurs.setBounds(0, 173, 202, 20);
+        choixNbJoueurs.setBounds(0, 173, 250, 20);
 
         // On crée le bouton Jouer qui lance la partie.
         this.btnJouer = new ButtonJouer(this.jeu);
         this.accueil.add(this.btnJouer);
-        this.btnJouer.setBounds(0, 265, 250, 42);
+        this.btnJouer.setBounds(0, 250, 250, 42);
         
         this.add(this.accueil);
         this.accueil.setBounds(25, 150, 250, 350);

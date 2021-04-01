@@ -36,7 +36,7 @@ public class VJeu extends JFrame {
 
         this.jeu = (JeuImpl) JeuFactory.creeJeu(this);
         
-        this.labyrinthe = new VLabyrinthe(HAUTEUR);
+        this.labyrinthe = new VLabyrinthe(this, HAUTEUR);
         this.getContentPane().add(this.labyrinthe, "West");
         
         // On paramètre la fenêtre.
@@ -44,21 +44,13 @@ public class VJeu extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
-
-    public void initPartie() {
-        this.plateau = creerPlateau();
-        this.labyrinthe.creerLabyrinthe();
-        refresh();
-        jouer();
-    }
     
-    private void jouer() {
+    public void initPartie() {
         
-        Joueur joueur;
-        do {
-            joueur = jeu.prochainJoueur();
-            joueur.joue();
-        } while (!joueur.getFiniTour());
+        Joueur joueur = jeu.prochainJoueur();
+        this.labyrinthe.creerLabyrinthe(this.jeu);
+        this.plateau = creerPlateau();
+        refresh();
     }
 
     public void PartieFinie() {

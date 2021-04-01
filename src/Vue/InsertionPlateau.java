@@ -1,18 +1,23 @@
 package Vue;
 import javax.swing.JButton;
-
-import Modele.PositionInsertion;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import Modele.PositionInsertion;
+import Modele.*;
 
 abstract class InsertionPlateau extends JButton implements ActionListener, MouseListener {
 
-    private int values;
-    public InsertionPlateau(int values){
+    protected VJeu vjeu;
+    protected Jeu jeu;
+    protected int values, orientation;
+
+    public InsertionPlateau(VJeu vjeu, Jeu jeu, int values, int orientation){
         super();
+        this.vjeu = vjeu;
+        this.jeu = jeu;
         this.values = values;
+        this.orientation = orientation;
         this.setFocusable(false);
         this.setOpaque(true);
         this.setContentAreaFilled(false);
@@ -23,10 +28,7 @@ abstract class InsertionPlateau extends JButton implements ActionListener, Mouse
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.gPositionInsertion();
-    }
-
-    public PositionInsertion gPositionInsertion(){
-        return PositionInsertion.values()[this.values];
+        this.jeu.modifierCouloir(PositionInsertion.values()[this.values], Orientation.values()[this.orientation]);
+        this.vjeu.refresh();
     }
 }
