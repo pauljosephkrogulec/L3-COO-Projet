@@ -21,13 +21,13 @@ public class VMenu extends JPanel {
         this.jeu = jeu;
         // On paramètre le Menu.
         this.setPreferredSize(new Dimension(300, HAUTEUR));
-        this.setBackground(new Color(52, 61, 88));
+        this.setBackground(new Color(77, 51, 48));
         this.setLayout(null);
 
         creerHeader();
 
         this.accueil = new JPanel();
-        this.accueil.setBackground(new Color(52, 61, 88));
+        this.accueil.setBackground(new Color(77, 51, 48));
         this.accueil.setLayout(null);
         
         // On déclare des label.
@@ -61,7 +61,7 @@ public class VMenu extends JPanel {
 
         // On ajoute dans le panel option, le panel des terrains.
         this.accueil.add(choixNbJoueurs);
-        choixNbJoueurs.setBounds(0, 170, 202, 20);
+        choixNbJoueurs.setBounds(0, 173, 202, 20);
 
         // On crée le bouton Jouer qui lance la partie.
         this.btnJouer = new ButtonJouer(this.jeu);
@@ -75,7 +75,7 @@ public class VMenu extends JPanel {
     private void creerHeader() {
         // On crée/paramètre le header.
         this.header = new JPanel();
-        this.header.setBackground(new Color(52, 61, 88));
+        this.header.setBackground(new Color(77, 51, 48));
         this.header.setLayout(null);
 
         // On crée le bouton pour quitter la fenêtre

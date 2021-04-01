@@ -1,10 +1,12 @@
 package Modele;
 import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.Image;
 // On importe les librairies.
 import java.util.ArrayList;
 import java.util.List;
 
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,7 +14,7 @@ import Vue.VJeu;
 
 /** Classe qui modélise un couloir en implémentant l'interface Couloir..
  */
-public class CouloirImpl extends JButton implements Couloir {
+public class CouloirImpl extends JButton implements Couloir, MouseListener {
     private static final ImageIcon[] imgTab = {
         new ImageIcon(VJeu.class.getResource("../img/CASE0.gif")), 
         new ImageIcon(VJeu.class.getResource("../img/CASE1.gif")), 
@@ -40,7 +42,7 @@ public class CouloirImpl extends JButton implements Couloir {
     public CouloirImpl(Orientation orientation, Forme forme, Objectif objectif, Position pos) {
         super();
         this.setOpaque(true);
-        this.setBorder(BorderFactory.createBevelBorder(0,new Color(68, 79, 116), new Color(68, 79, 116)));
+        this.setBorder(BorderFactory.createBevelBorder(0,new Color(69, 46, 43), new Color(69, 46, 43)));
         int f,o;
         if(forme == Forme.DROIT){
             f = 0;
@@ -59,13 +61,17 @@ public class CouloirImpl extends JButton implements Couloir {
             else if(orientation == Orientation.NORD) o = 2;
             else o = 3;
         }
-        this.setIcon(imgTab[f+o]);
+
+        Image img = imgTab[f+o].getImage().getScaledInstance(48, 48, java.awt.Image.SCALE_SMOOTH);
+        this.setIcon(new ImageIcon(img));
         this.setContentAreaFilled(false);
+        this.setFocusPainted(false);
         this.orientation = orientation;
         this.forme = forme;
         this.objectif = objectif;
         this.pions = new ArrayList<>();
         this.pos = pos;
+        this.addMouseListener(this);
     }
 
     /** Méthode qui renvoie l'orientation du couloir.
@@ -110,5 +116,24 @@ public class CouloirImpl extends JButton implements Couloir {
     public Position getPos(){
         return this.pos;
     }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        this.setBorder(BorderFactory.createBevelBorder(0,new Color(236, 192, 111), new Color(236, 192, 111)));
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        this.setBorder(BorderFactory.createBevelBorder(0,new Color(69, 46, 43), new Color(69, 46, 43)));
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {}
+
+    @Override
+    public void mousePressed(MouseEvent e) {}
+
+    @Override
+    public void mouseReleased(MouseEvent e) {}
     
 }

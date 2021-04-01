@@ -70,7 +70,7 @@ public class VJeu extends JFrame {
     public JPanel creerPlateau() {
                        
         JPanel p = new JPanel();
-        p.setBackground(new Color(68, 79, 116));
+        p.setBackground(new Color(69, 46, 43));
         p.setLayout(null);
         this.rempliLabyrinthe(p);
         GridLayout grid = new GridLayout(7,7);

@@ -5,8 +5,9 @@ import Modele.PositionInsertion;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 
-abstract class InsertionPlateau extends JButton implements ActionListener {
+abstract class InsertionPlateau extends JButton implements ActionListener, MouseListener {
 
     private int values;
     public InsertionPlateau(int values){
@@ -18,13 +19,12 @@ abstract class InsertionPlateau extends JButton implements ActionListener {
         this.setBorderPainted(false);
         this.setFocusPainted(false);
         this.addActionListener(this);
+        this.addMouseListener(this);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.gPositionInsertion();        
+        this.gPositionInsertion();
     }
-
-    public abstract void setImg();
 
     public PositionInsertion gPositionInsertion(){
         return PositionInsertion.values()[this.values];

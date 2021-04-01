@@ -1,14 +1,30 @@
 package Vue;
 import javax.swing.ImageIcon;
+import java.awt.event.MouseEvent;
 
 public class InsertionBottom extends InsertionPlateau {
     
     public InsertionBottom(int values) {
         super(values);
-        this.setIcon(new ImageIcon(ButtonQuitter.class.getResource("../img/CURSOR3.gif")));
+        this.setIcon(new ImageIcon(InsertionBottom.class.getResource("../img/CURSOR3.gif")));
     }
 
-    public void setImg() {
-        
-    } 
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        this.setIcon(new ImageIcon(InsertionBottom.class.getResource("../img/CURSOR3_hover.gif")));
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        this.setIcon(new ImageIcon(InsertionBottom.class.getResource("../img/CURSOR3.gif")));
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {}
+
+    @Override
+    public void mousePressed(MouseEvent e) {}
+
+    @Override
+    public void mouseReleased(MouseEvent e) {}
 }
