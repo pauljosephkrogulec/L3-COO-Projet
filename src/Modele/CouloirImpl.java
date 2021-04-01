@@ -10,22 +10,26 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+
 import Vue.VJeu;
 
 /** Classe qui modélise un couloir en implémentant l'interface Couloir..
  */
-public class CouloirImpl extends JButton implements Couloir, MouseListener {
+public class CouloirImpl extends JPanel implements Couloir, MouseListener {
     private static final ImageIcon[] imgTab = {
-        new ImageIcon(VJeu.class.getResource("../img/CASE0.gif")), 
-        new ImageIcon(VJeu.class.getResource("../img/CASE1.gif")), 
-        new ImageIcon(VJeu.class.getResource("../img/CASE2.gif")), 
-        new ImageIcon(VJeu.class.getResource("../img/CASE3.gif")), 
-        new ImageIcon(VJeu.class.getResource("../img/CASE4.gif")), 
-        new ImageIcon(VJeu.class.getResource("../img/CASE5.gif")), 
-        new ImageIcon(VJeu.class.getResource("../img/CASE6.gif")), 
-        new ImageIcon(VJeu.class.getResource("../img/CASE7.gif")), 
-        new ImageIcon(VJeu.class.getResource("../img/CASE8.gif")), 
-        new ImageIcon(VJeu.class.getResource("../img/CASE9.gif"))
+        new ImageIcon(CouloirImpl.class.getResource("../img/CASE0.gif")), 
+        new ImageIcon(CouloirImpl.class.getResource("../img/CASE1.gif")), 
+        new ImageIcon(CouloirImpl.class.getResource("../img/CASE2.gif")), 
+        new ImageIcon(CouloirImpl.class.getResource("../img/CASE3.gif")), 
+        new ImageIcon(CouloirImpl.class.getResource("../img/CASE4.gif")), 
+        new ImageIcon(CouloirImpl.class.getResource("../img/CASE5.gif")), 
+        new ImageIcon(CouloirImpl.class.getResource("../img/CASE6.gif")), 
+        new ImageIcon(CouloirImpl.class.getResource("../img/CASE7.gif")), 
+        new ImageIcon(CouloirImpl.class.getResource("../img/CASE8.gif")), 
+        new ImageIcon(CouloirImpl.class.getResource("../img/CASE9.gif"))
     };
     // Déclaration des variables...
     protected Orientation orientation;
@@ -40,9 +44,11 @@ public class CouloirImpl extends JButton implements Couloir, MouseListener {
      * @param objectif > l'objectif représenté dans le couloir.
      */
     public CouloirImpl(Orientation orientation, Forme forme, Objectif objectif, Position pos) {
-        super();
-        this.setOpaque(true);
+        super(new BorderLayout());
+        this.setBackground(new Color(69, 46, 43));        
         this.setBorder(BorderFactory.createBevelBorder(0,new Color(69, 46, 43), new Color(69, 46, 43)));
+        this.setLayout(null);
+
         int f,o;
         if(forme == Forme.DROIT){
             f = 0;
@@ -62,16 +68,26 @@ public class CouloirImpl extends JButton implements Couloir, MouseListener {
             else o = 3;
         }
 
-        Image img = imgTab[f+o].getImage().getScaledInstance(48, 48, java.awt.Image.SCALE_SMOOTH);
-        this.setIcon(new ImageIcon(img));
-        this.setContentAreaFilled(false);
-        this.setFocusPainted(false);
         this.orientation = orientation;
         this.forme = forme;
         this.objectif = objectif;
         this.pions = new ArrayList<>();
         this.pos = pos;
         this.addMouseListener(this);
+
+        if(this.objectif != null) {
+            JLabel lobjectif = new JLabel();
+            lobjectif.setIcon(new ImageIcon(CouloirImpl.class.getResource("../img/objectifs/chapeau.png")));
+            this.add(lobjectif);
+            lobjectif.setBounds(19,19,18,18);
+        }
+        
+        JLabel couloir = new JLabel();
+        Image img = imgTab[f+o].getImage().getScaledInstance(48, 48, java.awt.Image.SCALE_SMOOTH);
+        couloir.setIcon(new ImageIcon(img));
+        this.add(couloir);
+        couloir.setBounds(4,4,48,48);
+        
     }
 
     /** Méthode qui renvoie l'orientation du couloir.

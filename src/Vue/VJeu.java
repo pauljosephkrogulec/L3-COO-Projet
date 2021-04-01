@@ -77,7 +77,7 @@ public class VJeu extends JFrame {
 
         listBtn = jeu.couloirs();
         for (int i = 0; i < listBtn.size(); i++) {
-            p.add((JButton) listBtn.get(i));
+            p.add((JPanel) listBtn.get(i));
         }
     }
 
