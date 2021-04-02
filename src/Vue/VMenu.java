@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 public class VMenu extends JPanel {
 
     private VJeu jeu;
-    private JPanel header, accueil;
+    private JPanel header, accueil, tour;
     private JButton btnJouer, btnQuitter, btnReduire;
     private ButtonRadio joueurNb2, joueurNb3, joueurNb4;
 
@@ -25,7 +25,39 @@ public class VMenu extends JPanel {
         this.setLayout(null);
 
         creerHeader();
+        creerAccueil();
+        creerTour();
+        this.tour.setVisible(false);
+    }
 
+    private void creerHeader() {
+        // On crée/paramètre le header.
+        this.header = new JPanel();
+        this.header.setBackground(new Color(77, 51, 48));
+        this.header.setLayout(null);
+
+        // On crée le bouton pour quitter la fenêtre
+        this.btnQuitter = new ButtonQuitter();
+        this.header.add(this.btnQuitter);
+        this.btnQuitter.setBounds(262, 20, 18, 18);
+
+        // On crée le bouton pour réduire la fenêtre.
+        this.btnReduire = new ButtonReduire(this.jeu);
+        this.header.add(this.btnReduire);
+        this.btnReduire.setBounds(235, 20, 18, 18);
+
+        // On crée le logo.
+        JLabel logo = new JLabel();
+        logo.setIcon(new ImageIcon(VJeu.class.getResource("../img/logo.png")));
+        this.header.add(logo);
+        logo.setBounds(20, 60, 260, 70);
+
+        // On ajoute l'entête au menu et on le positionne.
+        this.header.setBounds(0, 0, 300, 150);
+        this.add(this.header);
+    }
+
+    public void creerAccueil() {
         this.accueil = new JPanel();
         this.accueil.setBackground(new Color(77, 51, 48));
         this.accueil.setLayout(null);
@@ -64,7 +96,7 @@ public class VMenu extends JPanel {
         choixNbJoueurs.setBounds(0, 173, 250, 20);
 
         // On crée le bouton Jouer qui lance la partie.
-        this.btnJouer = new ButtonJouer(this.jeu);
+        this.btnJouer = new ButtonJouer(this.jeu, this);
         this.accueil.add(this.btnJouer);
         this.btnJouer.setBounds(0, 250, 250, 42);
         
@@ -72,31 +104,38 @@ public class VMenu extends JPanel {
         this.accueil.setBounds(25, 150, 250, 350);
     }
 
-    private void creerHeader() {
-        // On crée/paramètre le header.
-        this.header = new JPanel();
-        this.header.setBackground(new Color(77, 51, 48));
-        this.header.setLayout(null);
+    public void creerTour() {
+        
+        this.tour = new JPanel();
+        this.tour.setBackground(new Color(77, 51, 48));
+        this.tour.setLayout(null);
+        
+        // On déclare des label.
+        JLabel img_tour;
 
-        // On crée le bouton pour quitter la fenêtre
-        this.btnQuitter = new ButtonQuitter();
-        this.header.add(this.btnQuitter);
-        this.btnQuitter.setBounds(262, 20, 18, 18);
+        // On crée un label qui affiche les règles.
+        img_tour = new JLabel();
+        img_tour.setIcon(new ImageIcon(VJeu.class.getResource("../img/tour.png")));
+        this.tour.add(img_tour);
+        img_tour.setBounds(0, 0, 250, 191);
 
-        // On crée le bouton pour réduire la fenêtre.
-        this.btnReduire = new ButtonReduire(this.jeu);
-        this.header.add(this.btnReduire);
-        this.btnReduire.setBounds(235, 20, 18, 18);
+        
+        this.add(this.tour);
+        this.tour.setBounds(25, 150, 250, 350);
+    }
 
-        // On crée le logo.
-        JLabel logo = new JLabel();
-        logo.setIcon(new ImageIcon(VJeu.class.getResource("../img/logo.png")));
-        this.header.add(logo);
-        logo.setBounds(20, 60, 260, 70);
+    /** Méthode qui cache le panel des options et affiche celui de l'accueil.
+     */
+    public void afficheAccueil() {
+        this.tour.setVisible(false);
+        this.accueil.setVisible(true);
+    }
 
-        // On ajoute l'entête au menu et on le positionne.
-        this.header.setBounds(0, 0, 300, 150);
-        this.add(this.header);
+    /** Méthode qui cache le panel des options et affiche celui de l'accueil.
+     */
+    public void afficheTour() {
+        this.accueil.setVisible(false);
+        this.tour.setVisible(true);
     }
 
     public void setBtnJouer(boolean b) {
