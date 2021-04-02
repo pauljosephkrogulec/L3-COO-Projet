@@ -58,26 +58,24 @@ public class JeuImpl implements Jeu {
         this.supplementaire = new CouloirMobile(Orientation.SUD, Forme.DROIT, null, false,null);
         this.couloirsMobiles = new CouloirMobile[34];
         Stack<Objectif> objs;
-        int i, obj = 12,cpt = 0;
+        int i, obj = 0,cpt = 0;
         
         this.objectifs = Objectif.values();
         for (i = 0; i < 12; i++)
-            this.couloirsMobiles[i] = new CouloirMobile(Orientation.values()[r.nextInt(4)], Forme.DROIT, null, false,new Position(i/7,i%7));
+            this.couloirsMobiles[i] = new CouloirMobile(Orientation.values()[r.nextInt(4)], Forme.DROIT, objectifs[obj++], false,new Position(i/7,i%7));
         for (; i < 20; i++) {
-            if (i < 19)
-                this.couloirsMobiles[i] = new CouloirMobile(Orientation.values()[r.nextInt(4)], Forme.TE,
-                        objectifs[obj++], false,new Position(i/7,i%7));
-            else
-                this.couloirsMobiles[i] = new CouloirMobile(Orientation.values()[r.nextInt(4)], Forme.TE, null, false,new Position(i/7,i%7));
+            this.couloirsMobiles[i] = new CouloirMobile(Orientation.values()[r.nextInt(4)], Forme.TE,
+                    objectifs[obj++], false,new Position(i/7,i%7));
         }
         for (; i < 34; i++) {
-            if (i < 19)
+            if (i < 24)
                 this.couloirsMobiles[i] = new CouloirMobile(Orientation.values()[r.nextInt(4)], Forme.COUDE,
                         objectifs[obj++], false,new Position(i/7,i%7));
             else
                 this.couloirsMobiles[i] = new CouloirMobile(Orientation.values()[r.nextInt(4)], Forme.COUDE, null,
                         false,new Position(i/7,i%7));
         }
+
         this.plateau = new Plateau(this.couloirsMobiles);
         for (i = 0; i < 2; i++) {
             objs = new Stack<>();

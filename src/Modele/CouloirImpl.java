@@ -9,12 +9,10 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 
-import Vue.VJeu;
 
 /** Classe qui modélise un couloir en implémentant l'interface Couloir..
  */
@@ -55,13 +53,13 @@ public class CouloirImpl extends JPanel implements Couloir, MouseListener {
             if(orientation == Orientation.NORD || orientation == Orientation.SUD) o = 1;
             else o = 0;
         } else if (forme == Forme.COUDE){
-            f = 2;
+            f = 1;
             if(orientation == Orientation.EST) o = 0;
             else if(orientation == Orientation.NORD) o = 1;
             else if(orientation == Orientation.OUEST) o = 2;
             else o = 3;
         } else {
-            f = 6;
+            f = 2;
             if (orientation == Orientation.SUD) o = 0;
             else if(orientation == Orientation.EST) o = 1;
             else if(orientation == Orientation.NORD) o = 2;
