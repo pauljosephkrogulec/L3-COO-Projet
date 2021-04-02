@@ -10,16 +10,14 @@ public class ButtonJouer extends JButton implements ActionListener {
 
     // On déclare la variable du JeuMemory.
     private VJeu jeu;
-    private VMenu menu;
     private boolean active;
 
     /** Constructeur de la class btnQuitter qui prend en paramètre l'interface graphique (JFrame).
      * @param jeu : JeuMemory
     */
-    public ButtonJouer(VJeu jeu, VMenu menu) {
+    public ButtonJouer(VJeu jeu) {
         super();
         this.jeu = jeu;
-        this.menu = menu;
         this.setFocusable(false);
         this.setIcon(new ImageIcon(ButtonJouer.class.getResource("../img/jouer.png")));
         this.setContentAreaFilled(false);
@@ -49,8 +47,8 @@ public class ButtonJouer extends JButton implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(this.active == false) {
             this.setEnabled(false);
-            this.menu.afficheTour();
             this.jeu.initPartie();
+            this.jeu.afficheTour();
         }
     }
 }

@@ -96,7 +96,7 @@ public class VMenu extends JPanel {
         choixNbJoueurs.setBounds(0, 173, 250, 20);
 
         // On crée le bouton Jouer qui lance la partie.
-        this.btnJouer = new ButtonJouer(this.jeu, this);
+        this.btnJouer = new ButtonJouer(this.jeu);
         this.accueil.add(this.btnJouer);
         this.btnJouer.setBounds(0, 250, 250, 42);
         

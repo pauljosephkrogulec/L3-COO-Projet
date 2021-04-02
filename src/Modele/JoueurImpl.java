@@ -51,6 +51,11 @@ public class JoueurImpl implements Joueur {
     public boolean getFiniTour() {
         return this.finiTour;
     }
+    
+    @Override
+    public Stack<Objectif> getObjectifs() {
+        return this.objectifs;
+    }
 
     /** Méthode permettant au joueur de jouer un tour.
      */

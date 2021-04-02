@@ -25,6 +25,7 @@ public class JeuImpl implements Jeu {
     public JeuImpl(VJeu vLabyrinthe) {
         this.vLabyrinthe = vLabyrinthe;
         preparer();
+        this.i = 0;
     }
 
     @Override

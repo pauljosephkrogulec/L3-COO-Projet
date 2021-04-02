@@ -10,6 +10,7 @@ public interface Joueur {
     int getAge();
     Pion getPion();
     boolean getFiniTour();
+    Stack<Objectif> getObjectifs();
     void joue();
     void fixerObjectifs(Stack<Objectif> objectifs);
     void recevoirPion(Pion p);
