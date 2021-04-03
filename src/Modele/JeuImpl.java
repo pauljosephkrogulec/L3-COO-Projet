@@ -24,7 +24,6 @@ public class JeuImpl implements Jeu {
 
     public JeuImpl(VJeu vLabyrinthe) {
         this.vLabyrinthe = vLabyrinthe;
-        preparer();
         this.i = 0;
     }
 
@@ -51,7 +50,7 @@ public class JeuImpl implements Jeu {
         return cs;
     }
 
-    public void preparer() {
+    public void preparer(int nbJoueurs) {
         Random r = new Random();
         this.joueurs = new ArrayList<>();
         this.pions = new HashMap<>();
@@ -78,7 +77,7 @@ public class JeuImpl implements Jeu {
         }
 
         this.plateau = new Plateau(this.couloirsMobiles);
-        for (i = 0; i < 2; i++) {
+        for (i = 0; i < nbJoueurs; i++) {
             objs = new Stack<>();
             Joueur j = new JoueurImpl(14, this,vLabyrinthe);
             int x = 0, y = 0;

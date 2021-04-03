@@ -170,41 +170,41 @@ public class VJeu extends JFrame {
         Image img_pion = pion.getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH);
         label_joueur.setIcon(new ImageIcon(img_pion));
         this.tour.add(label_joueur);
-        label_joueur.setBounds(135, -6, 25, 25);
+        label_joueur.setBounds(120, -6, 25, 25);
 
         // On crée un label qui affiche les règles.
         label_objectif = new JLabel();
         ImageIcon objectif = new ImageIcon(VJeu.class.getResource("../img/objectifs/"+ this.currentJoueur.getObjectifs().peek() + ".png"));
-        Image img_objectif = objectif.getImage().getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
+        Image img_objectif = objectif.getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH);
         label_objectif.setIcon(new ImageIcon(img_objectif));
         this.tour.add(label_objectif);
-        label_objectif.setBounds(80, 25, 30, 30);
+        label_objectif.setBounds(110, 28, 25, 25);
 
         Orientation tabOrientation[] = {Orientation.EST, Orientation.SUD, Orientation.OUEST, Orientation.NORD};
 
         ButtonRotation rotationDroite = new ButtonRotationDroite(this, this.jeu.getSupplementaire());
         this.tour.add(rotationDroite);
-        rotationDroite.setBounds(40, 115, 35, 35);
+        rotationDroite.setBounds(40, 145, 35, 35);
         rotationDroite.addActionListener((ActionEvent evt) -> {
             this.jeu.getSupplementaire().setOrientation(tabOrientation[(Arrays.asList(tabOrientation).indexOf(this.jeu.getSupplementaire().getOrientation()) + 1) % 4]);
-            this.refreshTour();
+            this.refreshTour(false);
         });
 
         VCouloir supp = new VCouloir(this.jeu, this.jeu.getSupplementaire(), -1, -1);
         supp.setEnabled(false);
         this.tour.add(supp);
-        supp.setBounds(95, 105, 57, 57);
+        supp.setBounds(95, 135, 57, 57);
 
         ButtonRotation rotationGauche = new ButtonRotationGauche(this, this.jeu.getSupplementaire());
         this.tour.add(rotationGauche);
-        rotationGauche.setBounds(172, 115, 35, 35);
+        rotationGauche.setBounds(172, 145, 35, 35);
         rotationGauche.addActionListener((ActionEvent evt) -> {
             if(this.jeu.getSupplementaire().getOrientation() == Orientation.EST) {
                 this.jeu.getSupplementaire().setOrientation(Orientation.NORD);
             } else {
                 this.jeu.getSupplementaire().setOrientation(tabOrientation[Arrays.asList(tabOrientation).indexOf(this.jeu.getSupplementaire().getOrientation()) - 1]);
             }
-            this.refreshTour();
+            this.refreshTour(false);
         });
 
 
@@ -233,8 +233,12 @@ public class VJeu extends JFrame {
     }
     
     public void initPartie() {
+        
+        int nbJoueurs = 2;
+        if(this.joueurNb3.isSelected()) nbJoueurs = 3;
+        if(this.joueurNb4.isSelected()) nbJoueurs = 4;
 
-        this.jeu.preparer();
+        this.jeu.preparer(nbJoueurs);
         this.joueurSuivant();
         this.labyrinthe.creerButtonInsertion(this.jeu);
         this.plateau = creerPlateau();
@@ -283,10 +287,10 @@ public class VJeu extends JFrame {
 
     public void setEtatBtnFiniTour(boolean b) {
         this.btnFiniTour.setEnabled(b);
-        this.labyrinthe.setButton(!b);
     }
 
     public void setEtat(boolean b) {
+        this.labyrinthe.setButton(!b);
         for(int i = 0; i < vCouloirs.size();i++) {
             vCouloirs.get(i).setEnabled(b);
         }
@@ -298,14 +302,15 @@ public class VJeu extends JFrame {
         this.rempliLabyrinthe(this.plateau);
         this.plateau.revalidate();
         this.plateau.repaint();
-        this.refreshTour();
+        this.refreshTour(etat);
         this.setEtat(etat);
 
     }
 
-    public void refreshTour() {
+    public void refreshTour(boolean b) {
         this.tour.removeAll();
         this.creerPanelTour();
+        this.btnFiniTour.setEnabled(b);
         this.tour.revalidate();        
         this.tour.repaint();
     }
