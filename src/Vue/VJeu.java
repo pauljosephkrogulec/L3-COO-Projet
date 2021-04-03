@@ -1,4 +1,5 @@
 package Vue;
+import java.util.Arrays;
 import java.util.List;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -177,6 +178,34 @@ public class VJeu extends JFrame {
         this.tour.add(label_objectif);
         label_objectif.setBounds(80, 25, 30, 30);
 
+        Orientation tabOrientation[] = {Orientation.EST, Orientation.SUD, Orientation.OUEST, Orientation.NORD};
+
+        ButtonRotation rotationDroite = new ButtonRotationDroite(this, this.jeu.getSupplementaire());
+        this.tour.add(rotationDroite);
+        rotationDroite.setBounds(40, 115, 35, 35);
+        rotationDroite.addActionListener((ActionEvent evt) -> {
+            this.jeu.getSupplementaire().setOrientation(tabOrientation[(Arrays.asList(tabOrientation).indexOf(this.jeu.getSupplementaire().getOrientation()) + 1) % 4]);
+            this.refreshTour();
+        });
+
+        VCouloir supp = new VCouloir(this.jeu, this.jeu.getSupplementaire(), -1, -1);
+        supp.setEnabled(false);
+        this.tour.add(supp);
+        supp.setBounds(95, 105, 57, 57);
+
+        ButtonRotation rotationGauche = new ButtonRotationGauche(this, this.jeu.getSupplementaire());
+        this.tour.add(rotationGauche);
+        rotationGauche.setBounds(172, 115, 35, 35);
+        rotationGauche.addActionListener((ActionEvent evt) -> {
+            if(this.jeu.getSupplementaire().getOrientation() == Orientation.EST) {
+                this.jeu.getSupplementaire().setOrientation(Orientation.NORD);
+            } else {
+                this.jeu.getSupplementaire().setOrientation(tabOrientation[Arrays.asList(tabOrientation).indexOf(this.jeu.getSupplementaire().getOrientation()) - 1]);
+            }
+            this.refreshTour();
+        });
+
+
         // On crée le bouton Jouer qui lance la partie.
         this.btnFiniTour = new ButtonFinTour(this);
         this.tour.add(this.btnFiniTour);
@@ -211,10 +240,7 @@ public class VJeu extends JFrame {
 
     public void joueurSuivant() {
         this.currentJoueur = this.jeu.prochainJoueur();
-        System.out.println(this.currentJoueur.getPion().getCouleur());
     }
-
-
 
     public void jouePartie() {
 
@@ -269,8 +295,10 @@ public class VJeu extends JFrame {
         this.rempliLabyrinthe(this.plateau);
         this.plateau.revalidate();
         this.plateau.repaint();
+        this.refreshTour();
+    }
 
-        
+    public void refreshTour() {
         this.tour.removeAll();
         this.creerPanelTour();
         this.tour.revalidate();        

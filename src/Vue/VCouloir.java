@@ -22,6 +22,8 @@ public class VCouloir extends JButton implements MouseListener {
         super();
         this.setBackground(new Color(69, 46, 43));
         this.setBorder(BorderFactory.createBevelBorder(0,new Color(69, 46, 43), new Color(69, 46, 43)));
+        this.setContentAreaFilled(false);
+        this.setFocusPainted(false);
         this.setLayout(null);
 
         this.jeu = jeu;

@@ -127,6 +127,9 @@ public class JeuImpl implements Jeu {
         return array;
     }
 
+    public Couloir getSupplementaire() {
+        return this.supplementaire;
+    }
 
     public Joueur getJoueurs(int ind) {
         return this.joueurs.get(ind);

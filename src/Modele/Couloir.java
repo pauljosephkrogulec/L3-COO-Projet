@@ -8,6 +8,7 @@ public interface Couloir{
 
     // Déclarations des méthodes essentielles...
     public Orientation getOrientation();
+    public void setOrientation(Orientation new_orientation);
     public Forme getForme();
     public Objectif getObjectif();
     public List<Pion> getPions();

@@ -56,6 +56,14 @@ public class CouloirImpl implements Couloir {
         return this.orientation;
     }
 
+    /** Méthode qui renvoie l'orientation du couloir.
+     * @return : son orientation.
+     */
+    @Override
+    public void setOrientation(Orientation new_orientation) {
+        this.orientation = new_orientation;
+    }
+
     /** Méthode qui renvoie la forme du couloir.
      * @return : sa forme.
      */
