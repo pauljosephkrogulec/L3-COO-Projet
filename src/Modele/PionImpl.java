@@ -6,16 +6,19 @@ public class PionImpl implements Pion {
     // Déclaration des variables...
     private Plateau plateau;
     private Position positionInitiale, positionCourante;
+    private Couleur couleur;
 
     /** Constructeur de la classe PionImpl.
 	 * @param plateau > le plateau du jeu.
      * @param positionInitiale > la position de départ.
      * @param positionCourante > la position actuelle.
+     * @param couleur > la couleur du pion.
 	 */
-    public PionImpl(Plateau plateau, Position positionInitiale, Position positionCourante) {
+    public PionImpl(Plateau plateau, Position positionInitiale, Position positionCourante, Couleur couleur) {
         this.plateau = plateau;
         this.positionInitiale = positionInitiale;
         this.positionCourante = positionCourante;
+        this.couleur = couleur;
     }
 
     /** Méthode qui renvoie la position initiale.
@@ -34,13 +37,18 @@ public class PionImpl implements Pion {
         return this.positionCourante;
     }
 
+    @Override
+    public Couleur getCouleur() {
+        return this.couleur;
+    }
+
     /** Méthode qui déplace le pion à la position donnée.
      * @param pos > la nouvelle position.
      * @return : l'objectif à la nouvelle position.
      */
     @Override 
     public Objectif deplacer(Position pos) {
-        if(plateau.estAtteignable(positionCourante, pos)){
+        if(plateau.estAtteignable(positionCourante, pos, this)){
             positionCourante = pos;
             return plateau.deplacer(pos, this);
         }
@@ -51,7 +59,7 @@ public class PionImpl implements Pion {
      * @param pos > la nouvelle position.
      */
     public void poserA(Position pos) {
-        if(this.plateau.estAtteignable(this.positionCourante, pos)) {
+        if(this.plateau.estAtteignable(this.positionCourante, pos, this)) {
             this.plateau.deplacer(pos, this);
             this.positionCourante = pos;
         }        

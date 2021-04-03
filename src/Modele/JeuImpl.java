@@ -51,7 +51,7 @@ public class JeuImpl implements Jeu {
         return cs;
     }
 
-    private void preparer() {
+    public void preparer() {
         Random r = new Random();
         this.joueurs = new ArrayList<>();
         this.pions = new HashMap<>();
@@ -90,15 +90,15 @@ public class JeuImpl implements Jeu {
                 x = 6;
                 y = 6;
             }
-            for(int c = 0;c<5;c++){
+            for(int c = 0;c < 5;c++){
                 objs.add(Objectif.values()[cpt++]);
             }
-            Pion p = new PionImpl(this.plateau, new Position(x, y), new Position(x, y));
+            Pion p = new PionImpl(this.plateau, new Position(x, y), new Position(x, y), Couleur.values()[i]);
             this.pions.put(Couleur.values()[i], p);
             j.fixerObjectifs(objs);
             j.recevoirPion(p);
             this.joueurs.add(j);
-            this.plateau.getCouloirs()[x][y].setPions(p);
+            this.plateau.getCouloirs()[x][y].setPion(p);
         }
     }
 
@@ -127,7 +127,9 @@ public class JeuImpl implements Jeu {
         return array;
     }
 
-    private void jouer() {
+
+    public Joueur getJoueurs(int ind) {
+        return this.joueurs.get(ind);
     }
 
     public Joueur prochainJoueur() {

@@ -48,6 +48,7 @@ public class ButtonJouer extends JButton implements ActionListener {
         if(this.active == false) {
             this.setEnabled(false);
             this.jeu.initPartie();
+            this.jeu.creerPanelTour();
             this.jeu.afficheTour();
         }
     }

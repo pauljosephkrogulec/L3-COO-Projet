@@ -11,5 +11,6 @@ public interface Couloir{
     public Forme getForme();
     public Objectif getObjectif();
     public List<Pion> getPions();
-    public void setPions(Pion p);  
+    public void setPion(Pion p);
+    public void delPion(Pion p);
 }

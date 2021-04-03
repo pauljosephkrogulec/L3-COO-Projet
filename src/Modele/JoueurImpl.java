@@ -1,6 +1,5 @@
 package Modele;
 // On importe les librairies.
-import java.util.Scanner;
 import java.util.Stack;
 
 import Vue.VJeu;
@@ -14,7 +13,6 @@ public class JoueurImpl implements Joueur {
     private Stack<Objectif> objectifs;
     private Jeu jeu;
     private Pion pion;
-    private Scanner sc = new Scanner(System.in);
     private VJeu vjeu;
     private boolean finiTour;
 
@@ -60,10 +58,8 @@ public class JoueurImpl implements Joueur {
     /** Méthode permettant au joueur de jouer un tour.
      */
     @Override
-    public void joue() {
-        this.jeu.modifierCouloir(choisirPositionInsertionCouloir(), choisirOrientationCouloir());
-        this.vjeu.refresh();
-        Objectif objectif = pion.deplacer(choisirPositionPion());
+    public void joue(Position pos) {
+        Objectif objectif = pion.deplacer(pos);
         if(objectif == this.objectifs.peek()) {
             objectifs.pop();
         }

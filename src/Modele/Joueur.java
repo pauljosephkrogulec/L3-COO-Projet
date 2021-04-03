@@ -11,7 +11,7 @@ public interface Joueur {
     Pion getPion();
     boolean getFiniTour();
     Stack<Objectif> getObjectifs();
-    void joue();
+    void joue(Position pos);
     void fixerObjectifs(Stack<Objectif> objectifs);
     void recevoirPion(Pion p);
     boolean objectifsFinis();

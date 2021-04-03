@@ -10,4 +10,5 @@ public interface Jeu {
     void modifierCouloir(PositionInsertion pos, Orientation orientation);
     void enregistrer(Joueur joueur, Couleur couleur);
     List<Couloir> couloirs();
+    Joueur getJoueurs(int ind);
 }

@@ -5,36 +5,18 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.awt.event.MouseListener;
-import java.awt.event.MouseEvent;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-
 
 /** Classe qui modélise un couloir en implémentant l'interface Couloir..
  */
-public class CouloirImpl extends JPanel implements Couloir, MouseListener {
-    private static final ImageIcon[] imgTab = {
-        new ImageIcon(CouloirImpl.class.getResource("../img/CASE0.gif")), 
-        new ImageIcon(CouloirImpl.class.getResource("../img/CASE1.gif")), 
-        new ImageIcon(CouloirImpl.class.getResource("../img/CASE2.gif")), 
-        new ImageIcon(CouloirImpl.class.getResource("../img/CASE3.gif")), 
-        new ImageIcon(CouloirImpl.class.getResource("../img/CASE4.gif")), 
-        new ImageIcon(CouloirImpl.class.getResource("../img/CASE5.gif")), 
-        new ImageIcon(CouloirImpl.class.getResource("../img/CASE6.gif")), 
-        new ImageIcon(CouloirImpl.class.getResource("../img/CASE7.gif")), 
-        new ImageIcon(CouloirImpl.class.getResource("../img/CASE8.gif")), 
-        new ImageIcon(CouloirImpl.class.getResource("../img/CASE9.gif"))
-    };
+public class CouloirImpl implements Couloir {
+
     // Déclaration des variables...
     protected Orientation orientation;
     protected Forme forme;
     protected Objectif objectif;
     protected List<Pion> pions;
     protected Position pos;
+    protected int f, o;
 
     /** Constructeur de la classe CouloirImpl.
      * @param orientation > l'orientation du couloir.
@@ -42,12 +24,7 @@ public class CouloirImpl extends JPanel implements Couloir, MouseListener {
      * @param objectif > l'objectif représenté dans le couloir.
      */
     public CouloirImpl(Orientation orientation, Forme forme, Objectif objectif, Position pos) {
-        super(new BorderLayout());
-        this.setBackground(new Color(69, 46, 43));        
-        this.setBorder(BorderFactory.createBevelBorder(0,new Color(69, 46, 43), new Color(69, 46, 43)));
-        this.setLayout(null);
 
-        int f,o;
         if(forme == Forme.DROIT){
             f = 0;
             if(orientation == Orientation.NORD || orientation == Orientation.SUD) o = 1;
@@ -71,34 +48,6 @@ public class CouloirImpl extends JPanel implements Couloir, MouseListener {
         this.objectif = objectif;
         this.pions = new ArrayList<>();
         this.pos = pos;
-        this.addMouseListener(this);
-
-        if(!this.pions.isEmpty()) {
-            JLabel lpion = new JLabel();
-            ImageIcon pion = new ImageIcon(CouloirImpl.class.getResource("../img/BLEU.png"));
-            
-            Image new_pion = pion.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
-            lpion.setIcon(new ImageIcon(new_pion));
-            this.add(lpion);
-            lpion.setBounds(18,18,20,20);
-        }
-
-        if(this.objectif != null) {
-            JLabel lobjectif = new JLabel();
-            ImageIcon clef = new ImageIcon(CouloirImpl.class.getResource("../img/objectifs/"+ this.objectif +".png"));
-            
-            Image new_clef = clef.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
-            lobjectif.setIcon(new ImageIcon(new_clef));
-            this.add(lobjectif);
-            lobjectif.setBounds(18,18,20,20);
-        }
-        
-        JLabel couloir = new JLabel();
-        Image img = imgTab[f+o].getImage().getScaledInstance(48, 48, java.awt.Image.SCALE_SMOOTH);
-        couloir.setIcon(new ImageIcon(img));
-        this.add(couloir);
-        couloir.setBounds(4,4,48,48);
-        
     }
 
     /** Méthode qui renvoie l'orientation du couloir.
@@ -137,30 +86,16 @@ public class CouloirImpl extends JPanel implements Couloir, MouseListener {
      * @param p > le pion d'un joueur.
      */    
     @Override
-    public void setPions(Pion p){
-        pions.add(p);
+    public void setPion(Pion p) {        
+        pions.add(p);        
     }
+    @Override
+    public void delPion(Pion p) {
+        pions.remove(p);
+    }
+
     public Position getPos(){
         return this.pos;
     }
 
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        this.setBorder(BorderFactory.createBevelBorder(0,new Color(236, 192, 111), new Color(236, 192, 111)));
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        this.setBorder(BorderFactory.createBevelBorder(0,new Color(69, 46, 43), new Color(69, 46, 43)));
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {}
-
-    @Override
-    public void mousePressed(MouseEvent e) {}
-
-    @Override
-    public void mouseReleased(MouseEvent e) {}
-    
 }

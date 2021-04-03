@@ -96,7 +96,7 @@ public class Plateau {
         return m;
     }
 
-    public boolean estAtteignable(Position orig, Position dest) {
+    public boolean estAtteignable(Position orig, Position dest, Pion pion) {
         ArrayDeque<Integer> pos = new ArrayDeque<>();
         ArrayDeque<Integer> vPos = new ArrayDeque<>();
         int x;
@@ -108,7 +108,10 @@ public class Plateau {
             for(int y = 0; y<49;y+=1){
                 if(m[x][y]){
                     if (!vPos.contains(y)) pos.add(y);
-                    if (y == (dest.getY() + (dest.getX() * 7))) return true; 
+                    if (y == (dest.getY() + (dest.getX() * 7))) {
+                        this.couloirs[orig.getX()][orig.getY()].delPion(pion);
+                        return true; 
+                    }
                 }
             }
         }
@@ -116,7 +119,7 @@ public class Plateau {
     }
 
     public Objectif deplacer(Position pos, Pion pion) {
-        this.couloirs[pos.getX()][pos.getY()].setPions(pion);
+        this.couloirs[pos.getX()][pos.getY()].setPion(pion);
         return this.couloirs[pos.getX()][pos.getY()].getObjectif();
     }
 

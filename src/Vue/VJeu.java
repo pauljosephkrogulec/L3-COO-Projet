@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -41,13 +42,12 @@ public class VJeu extends JFrame {
         this.setSize(LONGUEUR, HAUTEUR);
         this.setResizable(false); // On fixe la taille de la fenêtre.
         this.setUndecorated(true); // On supprime la topbar (que je vais créer moi-même).
-        
-        this.jeu = (JeuImpl) JeuFactory.creeJeu(this);
-        this.currentJoueur = this.jeu.prochainJoueur();
 
         this.creerMenu();
         this.getContentPane().add(this.menu, "East");
         
+        this.jeu = new JeuImpl(this);
+         
         this.labyrinthe = new VLabyrinthe(this, HAUTEUR);
         this.getContentPane().add(this.labyrinthe, "West");
         
@@ -68,9 +68,6 @@ public class VJeu extends JFrame {
         creerHeader();
         // On ajoute le panel d'accueil qui contient les règles, le score et le bouton jouer.
         creerPanelAccueil();
-        // On crée le panel d'options et on le "cache".
-        creerPanelTour();
-        this.tour.setVisible(false);
     }
 
     private void creerHeader() {
@@ -149,14 +146,14 @@ public class VJeu extends JFrame {
 
     }
 
-    private void creerPanelTour() {
+    public void creerPanelTour() {
 
         this.tour = new JPanel();
         this.tour.setBackground(new Color(77, 51, 48));
         this.tour.setLayout(null);
         
         // On déclare des label.
-        JLabel img_tour, label_joueur;
+        JLabel img_tour, label_joueur, label_objectif;
 
         // On crée un label qui affiche les règles.
         img_tour = new JLabel();
@@ -166,11 +163,19 @@ public class VJeu extends JFrame {
 
         // On crée un label qui affiche les règles.
         label_joueur = new JLabel();
-        ImageIcon pion = new ImageIcon(VJeu.class.getResource("../img/objectifs/"+ this.currentJoueur.getObjectifs().peek() + ".png"));
-        Image img_pion = pion.getImage().getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon pion = new ImageIcon(VJeu.class.getResource("../img/BLEU.png"));
+        Image img_pion = pion.getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH);
         label_joueur.setIcon(new ImageIcon(img_pion));
         this.tour.add(label_joueur);
-        label_joueur.setBounds(80, 25, 30, 30);
+        label_joueur.setBounds(135, -6, 25, 25);
+
+        // On crée un label qui affiche les règles.
+        label_objectif = new JLabel();
+        ImageIcon objectif = new ImageIcon(VJeu.class.getResource("../img/objectifs/"+ this.currentJoueur.getObjectifs().peek() + ".png"));
+        Image img_objectif = objectif.getImage().getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
+        label_objectif.setIcon(new ImageIcon(img_objectif));
+        this.tour.add(label_objectif);
+        label_objectif.setBounds(80, 25, 30, 30);
 
         
         this.menu.add(this.tour);
@@ -192,10 +197,12 @@ public class VJeu extends JFrame {
     }
     
     public void initPartie() {
-    
+
+        this.jeu.preparer();
+
+        this.currentJoueur = this.jeu.prochainJoueur();
         this.labyrinthe.creerLabyrinthe(this.jeu);
         this.plateau = creerPlateau();
-        refresh();
     }
 
     public void PartieFinie() {
@@ -222,7 +229,13 @@ public class VJeu extends JFrame {
 
         listBtn = jeu.couloirs();
         for (int i = 0; i < listBtn.size(); i++) {
-            p.add((JPanel) listBtn.get(i));
+            VCouloir vcouloir = new VCouloir(this.jeu, listBtn.get(i), i / 7, i % 7);
+            vcouloir.addActionListener((ActionEvent evt) -> {
+                this.currentJoueur.joue(new Position(vcouloir.getcordX(), vcouloir.getcordY()));
+                repaint();
+            });
+
+            p.add(vcouloir);
         }
     }
 
