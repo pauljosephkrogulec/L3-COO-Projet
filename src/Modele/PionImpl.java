@@ -49,8 +49,9 @@ public class PionImpl implements Pion {
     @Override 
     public Objectif deplacer(Position pos) {
         if(plateau.estAtteignable(positionCourante, pos)){
+            Position cpy = positionCourante;
             positionCourante = pos;
-            return plateau.deplacer(pos, this);
+            return plateau.deplacer(cpy,pos, this);
         }
         return null;
     }

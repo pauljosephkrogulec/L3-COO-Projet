@@ -115,7 +115,8 @@ public class Plateau {
         return false;
     }
 
-    public Objectif deplacer(Position pos, Pion pion) {
+    public Objectif deplacer(Position orig,Position pos, Pion pion) {
+        this.couloirs[orig.getX()][orig.getY()].delPion(pion);
         this.couloirs[pos.getX()][pos.getY()].setPion(pion);
         return this.couloirs[pos.getX()][pos.getY()].getObjectif();
     }
