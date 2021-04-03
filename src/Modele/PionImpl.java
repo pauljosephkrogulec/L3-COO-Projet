@@ -55,4 +55,10 @@ public class PionImpl implements Pion {
         }
         return null;
     }
+    public void setPosX(int x){
+        this.positionCourante = new Position(x, this.positionCourante.getY());
+    }
+    public void setPosY(int y){
+        this.positionCourante = new Position(this.positionCourante.getX(), y);
+    }
 }

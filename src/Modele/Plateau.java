@@ -1,6 +1,6 @@
 package Modele;
-import java.util.ArrayDeque;
 import java.util.Random;
+import java.util.Stack;
 
 public class Plateau {
     private Couloir[][] couloirs;
@@ -39,80 +39,80 @@ public class Plateau {
         CouloirMobile SUP = (CouloirMobile) this.couloirs[oPosition.getX()][oPosition.getY()];
         int x;
         if (position.getX() == 0)
-            for (x = 6; x > 0; x--)
+            for (x = 6; x > 0; x--){
                 this.couloirs[position.getX() + x][position.getY()] = this.couloirs[position.getX() + (x-1)][position.getY()];
+                for (Pion p : this.couloirs[position.getX() + (x-1)][position.getY()].getPions()) {
+                    PionImpl pi = (PionImpl) p;
+                    pi.setPosX(position.getX() + x);
+                }
+            }
         else if (position.getY() == 0)
-            for (x = 6; x > 0; x--)
+            for (x = 6; x > 0; x--){
                 this.couloirs[position.getX()][position.getY() + x] = this.couloirs[position.getX()][position.getY() + (x-1)];
+                for (Pion p : this.couloirs[position.getX()][position.getY() + (x-1)].getPions()) {
+                    PionImpl pi = (PionImpl) p;
+                    pi.setPosY(position.getY() + x);
+                }
+            }
         else if (position.getX() == 6)
-            for (x = 6; x > 0; x--)
+            for (x = 6; x > 0; x--){
                 this.couloirs[position.getX() - x][position.getY()] = this.couloirs[position.getX() - (x-1)][position.getY()];
+                for (Pion p : this.couloirs[position.getX() - (x-1)][position.getY()].getPions()) {
+                    PionImpl pi = (PionImpl) p;
+                    pi.setPosX(position.getX() - x);
+                }
+            }
         else
-            for (x = 6; x > 0; x--)
+            for (x = 6; x > 0; x--){
                 this.couloirs[position.getX()][position.getY() - x] = this.couloirs[position.getX()][position.getY() - (x-1)];
+                for (Pion p : this.couloirs[position.getX()][position.getY() - (x-1)].getPions()) {
+                    PionImpl pi = (PionImpl) p;
+                    pi.setPosX(position.getY() - x);
+                }
+            }
         this.couloirs[position.getX()][position.getY()] = c;
         return SUP;
     }
 
-    private boolean estAdjacent(int a, int b) {
-        if (a > b)
-            return estAdjacent(b, a);
-        Couloir ca, cb;
-        if (b - a == 1) {
-            ca = this.couloirs[a / 7][a % 7];
-            cb = this.couloirs[b / 7][b % 7];
-            return (((ca.getForme() == Forme.COUDE
-                    && (ca.getOrientation() == Orientation.EST || ca.getOrientation() == Orientation.NORD))
-                    || (ca.getForme() == Forme.DROIT
-                            && (ca.getOrientation() == Orientation.EST || ca.getOrientation() == Orientation.OUEST))
-                    || (ca.getForme() == Forme.TE && (ca.getOrientation() == Orientation.EST
-                            || ca.getOrientation() == Orientation.NORD || ca.getOrientation() == Orientation.SUD)))
-                    && (cb.getForme() == Forme.COUDE
-                            && (cb.getOrientation() == Orientation.OUEST && cb.getOrientation() == Orientation.SUD))
-                    || (cb.getForme() == Forme.DROIT
-                            && (cb.getOrientation() == Orientation.EST || cb.getOrientation() == Orientation.OUEST))
-                    || (cb.getForme() == Forme.TE && (cb.getOrientation() == Orientation.OUEST
-                            || cb.getOrientation() == Orientation.NORD || cb.getOrientation() == Orientation.SUD)));
-        }
-        else if (b - 7 == a) {
-            ca = this.couloirs[a / 7][a % 7];
-            cb = this.couloirs[b / 7][b % 7];
-            return (((ca.getForme() == Forme.COUDE && (ca.getOrientation() == Orientation.EST && ca.getOrientation() == Orientation.SUD))
-                    || (ca.getForme() == Forme.DROIT && (ca.getOrientation() == Orientation.SUD || ca.getOrientation() == Orientation.NORD))
-                    || (ca.getForme() == Forme.TE && (ca.getOrientation() == Orientation.EST || ca.getOrientation() == Orientation.OUEST || ca.getOrientation() == Orientation.SUD)))
-                    && 
-                    (cb.getForme() == Forme.COUDE && (cb.getOrientation() == Orientation.OUEST || cb.getOrientation() == Orientation.NORD))
-                    || (cb.getForme() == Forme.DROIT && (cb.getOrientation() == Orientation.SUD || cb.getOrientation() == Orientation.NORD))
-                    || (cb.getForme() == Forme.TE && (cb.getOrientation() == Orientation.EST || cb.getOrientation() == Orientation.OUEST || cb.getOrientation() == Orientation.NORD)));
-        }
-        return false;
-    }
-
-    public boolean[][] matriceAdjacence() {
-        boolean[][] m = new boolean[49][49];
-        for (int a = 0; a < 49; a++)
-            for (int b = 0; b < 49; b++)
-                m[a][b] = estAdjacent(a, b);
-        return m;
-    }
 
     public boolean estAtteignable(Position orig, Position dest) {
-        ArrayDeque<Integer> pos = new ArrayDeque<>();
-        ArrayDeque<Integer> vPos = new ArrayDeque<>();
-        int x;
-        pos.add(orig.getX());
-        boolean[][] m = this.matriceAdjacence();
-        while(pos.size() != 0){
-            x = pos.pollFirst();
-            vPos.add(x);
-            for(int y = 0; y<49;y+=1){
-                if(m[x][y]){
-                    if (!vPos.contains(y)) pos.add(y);
-                    if (y == (dest.getY() + (dest.getX() * 7))) return true; 
+        Couloir c,c1; 
+        Position p; 
+        Stack<Position> ps = new Stack<Position>(); 
+        Stack<Position> vPos = new Stack<Position>(); 
+        boolean result = false;
+        ps.push(orig); 
+        while (!ps.empty() && !result) { 
+            p = ps.pop(); 
+            result = p.equals(dest); 
+            if (!result){ 
+                if (!vPos.contains(p)){
+                    vPos.push(p); 
+                    c = couloirs[p.getX()][p.getY()];
+                    if((c.getForme() == Forme.COUDE && ( c.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.SUD))  || (c.getForme() == Forme.DROIT && ( c.getOrientation() == Orientation.SUD || c.getOrientation() == Orientation.NORD)) || (c.getForme() == Forme.TE && ( c.getOrientation() == Orientation.SUD || c.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.OUEST))){
+                        c1 = p.getX()+1 < 7 ? couloirs[p.getX()+1][p.getY()] : null;             
+                        if(c1 != null && (c1.getForme() == Forme.COUDE && (c1.getOrientation() == Orientation.OUEST || c1.getOrientation() == Orientation.NORD))  || (c1.getForme() == Forme.DROIT && (c1.getOrientation() == Orientation.SUD || c1.getOrientation() == Orientation.NORD)) || (c1.getForme() == Forme.TE && (c1.getOrientation() == Orientation.NORD || c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.OUEST)))
+                           ps.push(new Position(p.getX()+1, p.getY()));
+                    } 
+                    if((c.getForme() == Forme.COUDE && ( c.getOrientation() == Orientation.OUEST || c.getOrientation() == Orientation.NORD))  || (c.getForme() == Forme.DROIT && ( c.getOrientation() == Orientation.SUD || c.getOrientation() == Orientation.NORD)) || (c.getForme() == Forme.TE && ( c.getOrientation() == Orientation.NORD || c.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.OUEST))){
+                        c1 = p.getX()-1 >= 0 ? couloirs[p.getX()-1][p.getY()] : null;
+                        if(c1 != null && (c1.getForme() == Forme.COUDE && (c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.SUD))  || (c1.getForme() == Forme.DROIT && (c1.getOrientation() == Orientation.SUD || c1.getOrientation() == Orientation.NORD)) || (c1.getForme() == Forme.TE && (c1.getOrientation() == Orientation.SUD || c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.OUEST)))
+                            ps.push(new Position(p.getX()-1, p.getY()));
+                    } 
+                    if((c.getForme() == Forme.COUDE && ( c.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.NORD))  || (c.getForme() == Forme.DROIT && ( c.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.OUEST)) || (c.getForme() == Forme.TE && ( c.getOrientation() == Orientation.NORD || c.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.SUD))){
+                        c1 = p.getY()+1 < 7 ? couloirs[p.getX()][p.getY()+1] : null;
+                        if(c1 != null && (c1.getForme() == Forme.COUDE && (c1.getOrientation() == Orientation.SUD || c1.getOrientation() == Orientation.OUEST))  || (c1.getForme() == Forme.DROIT && (c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.OUEST)) || (c1.getForme() == Forme.TE && (c1.getOrientation() == Orientation.NORD || c1.getOrientation() == Orientation.OUEST || c1.getOrientation() == Orientation.SUD)))
+                            ps.push(new Position(p.getX(), p.getY()+1));
+                    } 
+                    if((c.getForme() == Forme.COUDE && ( c.getOrientation() == Orientation.SUD || c.getOrientation() == Orientation.OUEST))  || (c.getForme() == Forme.DROIT && ( c.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.OUEST)) || (c.getForme() == Forme.TE && ( c.getOrientation() == Orientation.NORD || c.getOrientation() == Orientation.OUEST || c.getOrientation() == Orientation.SUD))){
+                        c1 = p.getY()-1 >= 0 ? couloirs[p.getX()][p.getY()-1] : null;
+                        if(c1 != null && (c1.getForme() == Forme.COUDE && (c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.NORD))  || (c1.getForme() == Forme.DROIT && (c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.OUEST)) || (c1.getForme() == Forme.TE && (c1.getOrientation() == Orientation.NORD || c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.SUD)))
+                            ps.push(new Position(p.getX(), p.getY()-1));
+                    }
                 }
             }
         }
-        return false;
+        return result;
     }
 
     public Objectif deplacer(Position orig,Position pos, Pion pion) {
