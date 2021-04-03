@@ -1,6 +1,5 @@
 package Vue;
 import javax.swing.JButton;
-import Modele.Couloir;
 
 /** Classe qui herite de JButton et modélise le bouton Jouer avec son événement.
  */

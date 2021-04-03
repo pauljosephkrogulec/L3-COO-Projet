@@ -1,7 +1,10 @@
 package Vue;
+
+// On importe les librairies..
 import javax.swing.ImageIcon;
 import java.awt.event.MouseEvent;
 
+// On importe la clase JeuImpl depuis le modèle..
 import Modele.JeuImpl;
 
 public class InsertionRight extends InsertionPlateau {

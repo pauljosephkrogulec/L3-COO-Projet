@@ -1,4 +1,6 @@
 package Vue;
+
+// On importe les librairies..
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -8,7 +10,7 @@ import javax.swing.ImageIcon;
  */
 public class ButtonQuitter extends JButton implements ActionListener {
 
-    /** Constructeur de la class btnQuitter.
+    /** Constructeur de la class ButtonQuitter.
     */
     public ButtonQuitter() {
         super();
@@ -22,7 +24,7 @@ public class ButtonQuitter extends JButton implements ActionListener {
     }
 
     /** Méthode de ActionEvent qui quitte la fenêtre. 
-     * @param e : l'événement.
+     * @param e > l'événement.
      */
     public void actionPerformed(ActionEvent e) {
         System.exit(0);

@@ -1,4 +1,6 @@
 package Vue;
+
+// On importe les librairies..
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Frame;
@@ -26,7 +28,7 @@ public class ButtonReduire extends JButton implements ActionListener {
     }
 
     /** Méthode de ActionEvent qui quitte la fenêtre. 
-     * @param e : l'événement.
+     * @param e > l'événement.
      */
     public void actionPerformed(ActionEvent e) {
         this.jeuVue.setState(Frame.ICONIFIED);

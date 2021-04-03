@@ -89,7 +89,7 @@ public class JeuImpl implements Jeu {
                 x = 6;
                 y = 6;
             }
-            for(int c = 0;c < 5;c++){
+            for(int c = 0;c < 1;c++){
                 objs.add(Objectif.values()[cpt++]);
             }
             Pion p = new PionImpl(this.plateau, new Position(x, y), new Position(x, y), Couleur.values()[i]);
@@ -139,8 +139,7 @@ public class JeuImpl implements Jeu {
     }
 
     public boolean aGagne(Joueur joueur) {
-        return joueur.getPion().getPositionInitiale() == joueur.getPion().getPositionCourante()
-                && joueur.objectifsFinis();
+        return joueur.objectifsFinis();
     }
 
 }

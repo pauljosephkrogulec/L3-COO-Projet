@@ -131,13 +131,15 @@ public class VMenu extends JPanel {
         this.tour.add(label_joueur);
         label_joueur.setBounds(120, -6, 25, 25);
 
-        // On crée un label qui affiche les règles.
-        label_objectif = new JLabel();
-        ImageIcon objectif = new ImageIcon(VJeu.class.getResource("../img/objectifs/"+ this.jeuVue.getJoueurCourant().getObjectifs().peek() + ".png"));
-        Image img_objectif = objectif.getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH);
-        label_objectif.setIcon(new ImageIcon(img_objectif));
-        this.tour.add(label_objectif);
-        label_objectif.setBounds(110, 28, 25, 25);
+        // On crée un label qui affiche l'objectif à chercher.
+        if(!this.jeuVue.getJoueurCourant().getObjectifs().empty()) {
+            label_objectif = new JLabel();
+            ImageIcon objectif = new ImageIcon(VJeu.class.getResource("../img/objectifs/"+ this.jeuVue.getJoueurCourant().getObjectifs().peek() + ".png"));
+            Image img_objectif = objectif.getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH);
+            label_objectif.setIcon(new ImageIcon(img_objectif));
+            this.tour.add(label_objectif);
+            label_objectif.setBounds(110, 28, 25, 25);
+        }
 
         Orientation tabOrientation[] = {Orientation.EST, Orientation.SUD, Orientation.OUEST, Orientation.NORD};
 

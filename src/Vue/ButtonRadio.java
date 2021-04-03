@@ -2,7 +2,7 @@ package Vue;
 import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
 
-/** Classe qui crée un RadioButton héritant des propriétés d'un JRadioButton.
+/** Classe qui crée un RadioButton héritant des propriétés d'un JRadioButton..
  */
 public class ButtonRadio extends JRadioButton{
 

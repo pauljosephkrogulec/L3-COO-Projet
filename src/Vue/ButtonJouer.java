@@ -1,10 +1,12 @@
 package Vue;
+
+// On importe les librairies..
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
-/** Classe qui herite de JButton et modélise le bouton Jouer avec son événement.
+/** Classe qui herite de JButton et modélise le bouton Jouer avec son événement..
  */
 public class ButtonJouer extends JButton implements ActionListener {
 
@@ -13,8 +15,9 @@ public class ButtonJouer extends JButton implements ActionListener {
     private VMenu menu;
     private boolean active;
 
-    /** Constructeur de la class btnQuitter qui prend en paramètre l'interface graphique (JFrame).
-     * @param jeu : JeuMemory
+    /** Constructeur de la class ButtonJouer qui prend en paramètre la vue du jeu et son menu, et paramètre le bouton.
+     * @param jeuVue > la fenêtre du jeu du labyrinthe.
+     * @param menu > le menu de la fenêtre.
     */
     public ButtonJouer(VJeu jeuVue, VMenu menu) {
         super();
@@ -30,10 +33,10 @@ public class ButtonJouer extends JButton implements ActionListener {
     }
 
     /** Méthode qui fait varier l'image du bouton si il est actif ou non.
-     * @param b : Vrai : le bouton est actif, faux sinon (boolean).
+     * @param b > Vrai : le bouton est actif, faux sinon (boolean).
      */
-    public void setEnabled(boolean b) {
-        if(b) {
+    public void setEnabled(boolean etat) {
+        if(etat) {
             this.setIcon(new ImageIcon(ButtonJouer.class.getResource("../img/jouer.png")));
             this.active = false;
         } else {
@@ -44,7 +47,7 @@ public class ButtonJouer extends JButton implements ActionListener {
 
     /** Méthode de ActionEvent qui appelle la méthode initPartie 
      * pour recommencer une nouvelle partie. 
-     * @param e : l'événement.
+     * @param e > l'événement.
      */
     public void actionPerformed(ActionEvent e) {
         if(this.active == false) {

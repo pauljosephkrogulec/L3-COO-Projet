@@ -1,19 +1,21 @@
 package Vue;
+
+// On importe les librairies..
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
-/** Classe qui herite de JButton et modélise le bouton Jouer avec son événement.
+/** Classe qui herite de JButton et modélise le bouton de fin du tour d'un joueur avec son événement..
  */
 public class ButtonFinTour extends JButton implements ActionListener {
 
-    // On déclare la variable du JeuMemory.
+    // On déclare quelques variables..
     private VJeu jeuVue;
     private boolean active;
 
-    /** Constructeur de la class btnQuitter qui prend en paramètre l'interface graphique (JFrame).
-     * @param jeu : JeuMemory
+    /** Constructeur de la class ButtonFinTour qui prend en paramètre l'interface graphique (JFrame).
+     * @param jeuVue : la vue du jeu du labyrinthe.
     */
     public ButtonFinTour(VJeu jeuVue) {
         super();
@@ -30,8 +32,8 @@ public class ButtonFinTour extends JButton implements ActionListener {
     /** Méthode qui fait varier l'image du bouton si il est actif ou non.
      * @param b : Vrai : le bouton est actif, faux sinon (boolean).
      */
-    public void setEnabled(boolean b) {
-        if(b) {
+    public void setEnabled(boolean etat) {
+        if(etat) {
             this.setIcon(new ImageIcon(ButtonJouer.class.getResource("../img/terminerTour.png")));
             this.active = false;
         } else {

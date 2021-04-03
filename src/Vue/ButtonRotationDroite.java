@@ -1,6 +1,5 @@
 package Vue;
 import javax.swing.ImageIcon;
-import Modele.Couloir;
 
 public class ButtonRotationDroite extends ButtonRotation {
 

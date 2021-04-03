@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/** Classe qui modélise un couloir en implémentant l'interface Couloir..
+/** Classe qui modélise un couloir..
  */
 public class CouloirImpl implements Couloir {
 

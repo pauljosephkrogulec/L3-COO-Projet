@@ -1,4 +1,6 @@
 package Vue;
+
+// On importe les librairies..
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,6 +29,7 @@ abstract class InsertionPlateau extends JButton implements ActionListener, Mouse
         this.addActionListener(this);
         this.addMouseListener(this);
     }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         this.jeuModele.modifierCouloir(PositionInsertion.values()[this.values], Orientation.values()[this.orientation]);

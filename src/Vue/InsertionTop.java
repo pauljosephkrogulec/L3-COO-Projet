@@ -1,6 +1,10 @@
 package Vue;
+
+// On importe les librairies..
 import javax.swing.ImageIcon;
 import java.awt.event.MouseEvent;
+
+// On importe la classe JeuImpl depuis le modèle..
 import Modele.JeuImpl;
 
 public class InsertionTop extends InsertionPlateau {
@@ -20,6 +24,7 @@ public class InsertionTop extends InsertionPlateau {
         this.setIcon(new ImageIcon(InsertionTop.class.getResource("../img/CURSOR4.gif")));
     }
 
+    // Autres méthodes de MouseListener non-utilisées.
     @Override
     public void mouseClicked(MouseEvent e) {}
 
