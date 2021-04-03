@@ -49,6 +49,7 @@ public class ButtonJouer extends JButton implements ActionListener {
             this.setEnabled(false);
             this.jeu.initPartie();
             this.jeu.creerPanelTour();
+            this.jeu.setEtatBtnFiniTour(false);
             this.jeu.afficheTour();
         }
     }

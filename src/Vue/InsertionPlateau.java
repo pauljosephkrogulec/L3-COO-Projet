@@ -29,6 +29,7 @@ abstract class InsertionPlateau extends JButton implements ActionListener, Mouse
     @Override
     public void actionPerformed(ActionEvent e) {
         this.jeu.modifierCouloir(PositionInsertion.values()[this.values], Orientation.values()[this.orientation]);
-        this.vjeu.refresh();
+        this.vjeu.setEtatBtnFiniTour(true);
+        this.vjeu.refresh(true);
     }
 }
