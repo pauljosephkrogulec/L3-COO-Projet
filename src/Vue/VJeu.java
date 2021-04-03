@@ -1,4 +1,5 @@
 package Vue;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.awt.Color;
@@ -34,6 +35,7 @@ public class VJeu extends JFrame {
 
     private VLabyrinthe labyrinthe;
     private static List<Couloir> listBtn;
+    private ArrayList<VCouloir> vCouloirs;
 
     private Joueur currentJoueur;
 
@@ -234,27 +236,13 @@ public class VJeu extends JFrame {
 
         this.jeu.preparer();
         this.joueurSuivant();
-        this.labyrinthe.creerLabyrinthe(this.jeu);
+        this.labyrinthe.creerButtonInsertion(this.jeu);
         this.plateau = creerPlateau();
+        this.setEtat(false);
     }
 
     public void joueurSuivant() {
         this.currentJoueur = this.jeu.prochainJoueur();
-    }
-
-    public void jouePartie() {
-
-        boolean terminer = false;
-
-        while(!terminer) {
-            if(this.jeu.aGagne(this.currentJoueur)) {
-                terminer = true;
-            }
-            this.currentJoueur = this.jeu.prochainJoueur();
-            this.labyrinthe.creerLabyrinthe(this.jeu);
-            this.plateau = creerPlateau();
-            refresh();
-        }
     }
 
     public void PartieFinie() {
@@ -280,6 +268,7 @@ public class VJeu extends JFrame {
     private void rempliLabyrinthe(JPanel p) {
 
         listBtn = jeu.couloirs();
+        vCouloirs = new ArrayList<VCouloir>();
         for (int i = 0; i < listBtn.size(); i++) {
             VCouloir vcouloir = new VCouloir(this.jeu, listBtn.get(i), i / 7, i % 7);
             vcouloir.addActionListener((ActionEvent evt) -> {
@@ -287,15 +276,31 @@ public class VJeu extends JFrame {
             });
 
             p.add(vcouloir);
+            vCouloirs.add(vcouloir);
+        }
+        this.setEtat(false);
+    }
+
+    public void setEtatBtnFiniTour(boolean b) {
+        this.btnFiniTour.setEnabled(b);
+        this.labyrinthe.setButton(!b);
+    }
+
+    public void setEtat(boolean b) {
+        for(int i = 0; i < vCouloirs.size();i++) {
+            vCouloirs.get(i).setEnabled(b);
         }
     }
 
-    public void refresh() {
+
+    public void refresh(boolean etat) {
         this.plateau.removeAll();
         this.rempliLabyrinthe(this.plateau);
         this.plateau.revalidate();
         this.plateau.repaint();
         this.refreshTour();
+        this.setEtat(etat);
+
     }
 
     public void refreshTour() {

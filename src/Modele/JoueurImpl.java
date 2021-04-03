@@ -60,7 +60,7 @@ public class JoueurImpl implements Joueur {
     @Override
     public void joue(Position pos) {
         Objectif objectif = pion.deplacer(pos);
-        vjeu.refresh();
+        vjeu.refresh(true);
         if(objectif == this.objectifs.peek()) {
             objectifs.pop();
         }

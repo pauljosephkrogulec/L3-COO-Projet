@@ -47,7 +47,8 @@ public class ButtonFinTour extends JButton implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(this.active == false) {
             this.jeu.joueurSuivant();
-            this.jeu.refresh();
+            this.jeu.setEtatBtnFiniTour(false);
+            this.jeu.refresh(false);
         }
     }
 }
