@@ -48,20 +48,10 @@ public class PionImpl implements Pion {
      */
     @Override 
     public Objectif deplacer(Position pos) {
-        if(plateau.estAtteignable(positionCourante, pos, this)){
+        if(plateau.estAtteignable(positionCourante, pos)){
             positionCourante = pos;
             return plateau.deplacer(pos, this);
         }
         return null;
-    }
-
-    /** Méthode qui pose le pion à la position donnée.
-     * @param pos > la nouvelle position.
-     */
-    public void poserA(Position pos) {
-        if(this.plateau.estAtteignable(this.positionCourante, pos, this)) {
-            this.plateau.deplacer(pos, this);
-            this.positionCourante = pos;
-        }        
     }
 }

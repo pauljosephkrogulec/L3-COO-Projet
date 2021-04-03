@@ -63,7 +63,6 @@ public class JoueurImpl implements Joueur {
         if(objectif == this.objectifs.peek()) {
             objectifs.pop();
         }
-        this.finiTour = true;
     }
 
     /** Méthode qui affecte des objectifs au joueur.
@@ -88,26 +87,5 @@ public class JoueurImpl implements Joueur {
     @Override
     public boolean objectifsFinis() {
         return this.objectifs.empty();
-    }
-
-    /** Méthode qui permet au joueur de choisir une position pour insérer un couloir.
-     * @return : la position où le couloir est inséré.
-     */    
-    private PositionInsertion choisirPositionInsertionCouloir() {
-        return PositionInsertion.values()[0];
-    }
-
-    /** Méthode qui permet au joueur de choisir une position de son pion.
-     * @return : la position choisie du pion.
-     */ 
-    private Position choisirPositionPion() {
-        return new Position(0, 1);
-    }
-
-    /** Méthode qui permet au joueur de choisir l'orientation de son couloir.
-     * @return : l'orientation du couloir.
-     */ 
-    private Orientation choisirOrientationCouloir() {
-        return Orientation.values()[0];
     }
 }

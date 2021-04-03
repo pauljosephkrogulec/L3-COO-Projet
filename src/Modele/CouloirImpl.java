@@ -1,6 +1,4 @@
 package Modele;
-import java.awt.Color;
-import java.awt.Image;
 // On importe les librairies.
 import java.util.ArrayList;
 import java.util.List;

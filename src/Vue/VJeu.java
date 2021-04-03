@@ -26,7 +26,7 @@ public class VJeu extends JFrame {
     private static int HAUTEUR = 500;
 
     private JPanel menu, header, accueil, tour, plateau;
-    private JButton btnJouer, btnQuitter, btnReduire;
+    private JButton btnJouer, btnQuitter, btnReduire, btnFiniTour;
     private ButtonRadio joueurNb2, joueurNb3, joueurNb4;
     
     private JeuImpl jeu;
@@ -163,7 +163,7 @@ public class VJeu extends JFrame {
 
         // On crée un label qui affiche les règles.
         label_joueur = new JLabel();
-        ImageIcon pion = new ImageIcon(VJeu.class.getResource("../img/BLEU.png"));
+        ImageIcon pion = new ImageIcon(VJeu.class.getResource("../img/" + this.currentJoueur.getPion().getCouleur() + ".png"));
         Image img_pion = pion.getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH);
         label_joueur.setIcon(new ImageIcon(img_pion));
         this.tour.add(label_joueur);
@@ -176,6 +176,11 @@ public class VJeu extends JFrame {
         label_objectif.setIcon(new ImageIcon(img_objectif));
         this.tour.add(label_objectif);
         label_objectif.setBounds(80, 25, 30, 30);
+
+        // On crée le bouton Jouer qui lance la partie.
+        this.btnFiniTour = new ButtonFinTour(this);
+        this.tour.add(this.btnFiniTour);
+        this.btnFiniTour.setBounds(0, 250, 250, 42);
 
         
         this.menu.add(this.tour);
@@ -199,10 +204,31 @@ public class VJeu extends JFrame {
     public void initPartie() {
 
         this.jeu.preparer();
-
-        this.currentJoueur = this.jeu.prochainJoueur();
+        this.joueurSuivant();
         this.labyrinthe.creerLabyrinthe(this.jeu);
         this.plateau = creerPlateau();
+    }
+
+    public void joueurSuivant() {
+        this.currentJoueur = this.jeu.prochainJoueur();
+        System.out.println(this.currentJoueur.getPion().getCouleur());
+    }
+
+
+
+    public void jouePartie() {
+
+        boolean terminer = false;
+
+        while(!terminer) {
+            if(this.jeu.aGagne(this.currentJoueur)) {
+                terminer = true;
+            }
+            this.currentJoueur = this.jeu.prochainJoueur();
+            this.labyrinthe.creerLabyrinthe(this.jeu);
+            this.plateau = creerPlateau();
+            refresh();
+        }
     }
 
     public void PartieFinie() {
@@ -232,7 +258,6 @@ public class VJeu extends JFrame {
             VCouloir vcouloir = new VCouloir(this.jeu, listBtn.get(i), i / 7, i % 7);
             vcouloir.addActionListener((ActionEvent evt) -> {
                 this.currentJoueur.joue(new Position(vcouloir.getcordX(), vcouloir.getcordY()));
-                repaint();
             });
 
             p.add(vcouloir);
@@ -241,10 +266,14 @@ public class VJeu extends JFrame {
 
     public void refresh() {
         this.plateau.removeAll();
+        this.rempliLabyrinthe(this.plateau);
         this.plateau.revalidate();
         this.plateau.repaint();
-        this.rempliLabyrinthe(this.plateau);
-        this.plateau.revalidate();   
-        this.plateau.repaint();
+
+        
+        this.tour.removeAll();
+        this.creerPanelTour();
+        this.tour.revalidate();        
+        this.tour.repaint();
     }
 }
