@@ -4,18 +4,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import Modele.PositionInsertion;
-import Modele.*;
+import Modele.JeuImpl;
+import Modele.Orientation;
 
 abstract class InsertionPlateau extends JButton implements ActionListener, MouseListener {
 
-    protected VJeu vjeu;
-    protected Jeu jeu;
+    protected VJeu jeuVue;
+    protected JeuImpl jeuModele;
     protected int values, orientation;
 
-    public InsertionPlateau(VJeu vjeu, Jeu jeu, int values, int orientation){
+    public InsertionPlateau(VJeu jeuVue, JeuImpl jeuModele, int values, int orientation){
         super();
-        this.vjeu = vjeu;
-        this.jeu = jeu;
+        this.jeuVue = jeuVue;
+        this.jeuModele = jeuModele;
         this.values = values;
         this.orientation = orientation;
         this.setFocusable(false);
@@ -28,8 +29,8 @@ abstract class InsertionPlateau extends JButton implements ActionListener, Mouse
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.jeu.modifierCouloir(PositionInsertion.values()[this.values], Orientation.values()[this.orientation]);
-        this.vjeu.setEtatBtnFiniTour(true);
-        this.vjeu.refresh(true);
+        this.jeuModele.modifierCouloir(PositionInsertion.values()[this.values], Orientation.values()[this.orientation]);
+        this.jeuVue.setEtatBtnFiniTour(true);
+        this.jeuVue.refresh(true);
     }
 }

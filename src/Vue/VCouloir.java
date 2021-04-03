@@ -1,24 +1,24 @@
 package Vue;
+
+// On importe les librairies..
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.util.HashMap;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import Modele.*;
+// On importe quelques classes du modèle..
+import Modele.Couloir;
+import Modele.Pion;
 
 public class VCouloir extends JButton implements MouseListener {
 
-    private Jeu jeu;
     private Couloir couloir;
     private int cordX, cordY;
-    private HashMap<String, ImageIcon> couloirs;
 
-
-    public VCouloir(Jeu jeu, Couloir couloir, int x, int y) {
+    public VCouloir(Couloir couloir, int x, int y) {
         super();
         this.setBackground(new Color(69, 46, 43));
         this.setBorder(BorderFactory.createBevelBorder(0,new Color(69, 46, 43), new Color(69, 46, 43)));
@@ -26,14 +26,12 @@ public class VCouloir extends JButton implements MouseListener {
         this.setFocusPainted(false);
         this.setLayout(null);
 
-        this.jeu = jeu;
         this.couloir = couloir;
         this.cordX = x;
         this.cordY = y;     
-        couloirs = new HashMap<>();
         this.addMouseListener(this);
     }
-
+    
     public int getcordX() {
         return this.cordX;
     }
@@ -41,7 +39,7 @@ public class VCouloir extends JButton implements MouseListener {
     public int getcordY() {
         return this.cordY;
     }
-
+    
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

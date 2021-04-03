@@ -9,15 +9,15 @@ import javax.swing.ImageIcon;
 public class ButtonFinTour extends JButton implements ActionListener {
 
     // On déclare la variable du JeuMemory.
-    private VJeu jeu;
+    private VJeu jeuVue;
     private boolean active;
 
     /** Constructeur de la class btnQuitter qui prend en paramètre l'interface graphique (JFrame).
      * @param jeu : JeuMemory
     */
-    public ButtonFinTour(VJeu jeu) {
+    public ButtonFinTour(VJeu jeuVue) {
         super();
-        this.jeu = jeu;
+        this.jeuVue = jeuVue;
         this.setFocusable(false);
         this.setIcon(new ImageIcon(ButtonJouer.class.getResource("../img/terminerTour.png")));
         this.setContentAreaFilled(false);
@@ -46,9 +46,9 @@ public class ButtonFinTour extends JButton implements ActionListener {
      */
     public void actionPerformed(ActionEvent e) {
         if(this.active == false) {
-            this.jeu.joueurSuivant();
-            this.jeu.setEtatBtnFiniTour(false);
-            this.jeu.refresh(false);
+            this.jeuVue.joueurSuivant();
+            this.jeuVue.setEtatBtnFiniTour(false);
+            this.jeuVue.refresh(false);
         }
     }
 }

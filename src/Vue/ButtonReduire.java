@@ -10,12 +10,12 @@ import javax.swing.ImageIcon;
 public class ButtonReduire extends JButton implements ActionListener {
 
     // On déclare le jeu.
-    private VJeu jeu;
+    private VJeu jeuVue;
     /** Constructeur de la class btnQuitter.
     */
-    public ButtonReduire(VJeu jeu) {
+    public ButtonReduire(VJeu jeuVue) {
         super();
-        this.jeu = jeu;
+        this.jeuVue = jeuVue;
         this.setFocusable(false);
         this.setOpaque(true);
         this.setIcon(new ImageIcon(ButtonReduire.class.getResource("../img/reduce.png")));
@@ -29,6 +29,6 @@ public class ButtonReduire extends JButton implements ActionListener {
      * @param e : l'événement.
      */
     public void actionPerformed(ActionEvent e) {
-        this.jeu.setState(Frame.ICONIFIED);
+        this.jeuVue.setState(Frame.ICONIFIED);
     }
 }
