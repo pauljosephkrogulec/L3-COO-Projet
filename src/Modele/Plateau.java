@@ -91,26 +91,28 @@ public class Plateau {
                     c = couloirs[p.getX()][p.getY()];
                     if((c.getForme() == Forme.COUDE && ( c.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.SUD))  || (c.getForme() == Forme.DROIT && ( c.getOrientation() == Orientation.SUD || c.getOrientation() == Orientation.NORD)) || (c.getForme() == Forme.TE && ( c.getOrientation() == Orientation.SUD || c.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.OUEST))){
                         c1 = p.getX()+1 < 7 ? couloirs[p.getX()+1][p.getY()] : null;             
-                        if(c1 != null && (c1.getForme() == Forme.COUDE && (c1.getOrientation() == Orientation.OUEST || c1.getOrientation() == Orientation.NORD))  || (c1.getForme() == Forme.DROIT && (c1.getOrientation() == Orientation.SUD || c1.getOrientation() == Orientation.NORD)) || (c1.getForme() == Forme.TE && (c1.getOrientation() == Orientation.NORD || c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.OUEST)))
+                        if(c1 != null && ((c1.getForme() == Forme.COUDE && (c1.getOrientation() == Orientation.OUEST || c1.getOrientation() == Orientation.NORD))  || (c1.getForme() == Forme.DROIT && (c1.getOrientation() == Orientation.SUD || c1.getOrientation() == Orientation.NORD)) || (c1.getForme() == Forme.TE && (c1.getOrientation() == Orientation.NORD || c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.OUEST))))
                            ps.push(new Position(p.getX()+1, p.getY()));
                     } 
                     if((c.getForme() == Forme.COUDE && ( c.getOrientation() == Orientation.OUEST || c.getOrientation() == Orientation.NORD))  || (c.getForme() == Forme.DROIT && ( c.getOrientation() == Orientation.SUD || c.getOrientation() == Orientation.NORD)) || (c.getForme() == Forme.TE && ( c.getOrientation() == Orientation.NORD || c.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.OUEST))){
                         c1 = p.getX()-1 >= 0 ? couloirs[p.getX()-1][p.getY()] : null;
-                        if(c1 != null && (c1.getForme() == Forme.COUDE && (c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.SUD))  || (c1.getForme() == Forme.DROIT && (c1.getOrientation() == Orientation.SUD || c1.getOrientation() == Orientation.NORD)) || (c1.getForme() == Forme.TE && (c1.getOrientation() == Orientation.SUD || c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.OUEST)))
+                        if(c1 != null && ((c1.getForme() == Forme.COUDE && (c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.SUD))  || (c1.getForme() == Forme.DROIT && (c1.getOrientation() == Orientation.SUD || c1.getOrientation() == Orientation.NORD)) || (c1.getForme() == Forme.TE && (c1.getOrientation() == Orientation.SUD || c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.OUEST))))
                             ps.push(new Position(p.getX()-1, p.getY()));
                     } 
                     if((c.getForme() == Forme.COUDE && ( c.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.NORD))  || (c.getForme() == Forme.DROIT && ( c.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.OUEST)) || (c.getForme() == Forme.TE && ( c.getOrientation() == Orientation.NORD || c.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.SUD))){
                         c1 = p.getY()+1 < 7 ? couloirs[p.getX()][p.getY()+1] : null;
-                        if(c1 != null && (c1.getForme() == Forme.COUDE && (c1.getOrientation() == Orientation.SUD || c1.getOrientation() == Orientation.OUEST))  || (c1.getForme() == Forme.DROIT && (c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.OUEST)) || (c1.getForme() == Forme.TE && (c1.getOrientation() == Orientation.NORD || c1.getOrientation() == Orientation.OUEST || c1.getOrientation() == Orientation.SUD)))
+                        if(c1 != null && ((c1.getForme() == Forme.COUDE && (c1.getOrientation() == Orientation.SUD || c1.getOrientation() == Orientation.OUEST))  || (c1.getForme() == Forme.DROIT && (c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.OUEST)) || (c1.getForme() == Forme.TE && (c1.getOrientation() == Orientation.NORD || c1.getOrientation() == Orientation.OUEST || c1.getOrientation() == Orientation.SUD))))
                             ps.push(new Position(p.getX(), p.getY()+1));
                     } 
                     if((c.getForme() == Forme.COUDE && ( c.getOrientation() == Orientation.SUD || c.getOrientation() == Orientation.OUEST))  || (c.getForme() == Forme.DROIT && ( c.getOrientation() == Orientation.EST || c.getOrientation() == Orientation.OUEST)) || (c.getForme() == Forme.TE && ( c.getOrientation() == Orientation.NORD || c.getOrientation() == Orientation.OUEST || c.getOrientation() == Orientation.SUD))){
                         c1 = p.getY()-1 >= 0 ? couloirs[p.getX()][p.getY()-1] : null;
-                        if(c1 != null && (c1.getForme() == Forme.COUDE && (c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.NORD))  || (c1.getForme() == Forme.DROIT && (c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.OUEST)) || (c1.getForme() == Forme.TE && (c1.getOrientation() == Orientation.NORD || c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.SUD)))
+                        if(c1 != null && ((c1.getForme() == Forme.COUDE && (c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.NORD))  || (c1.getForme() == Forme.DROIT && (c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.OUEST)) || (c1.getForme() == Forme.TE && (c1.getOrientation() == Orientation.NORD || c1.getOrientation() == Orientation.EST || c1.getOrientation() == Orientation.SUD))))
                             ps.push(new Position(p.getX(), p.getY()-1));
                     }
                 }
             }
+            c = null;
+            c1 = null;
         }
         return result;
     }

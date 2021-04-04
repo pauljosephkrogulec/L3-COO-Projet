@@ -60,7 +60,6 @@ public class JeuImpl implements Jeu {
         Stack<Objectif> objs;
         int i, obj = 0,cpt = 0;
         
-        this.objectifs = Objectif.values();
         for (i = 0; i < 12; i++)
             this.couloirsMobiles[i] = new CouloirMobile(Orientation.values()[r.nextInt(4)], Forme.DROIT, objectifs[obj++], false,new Position(i/7,i%7));
         for (; i < 20; i++) {
@@ -78,6 +77,7 @@ public class JeuImpl implements Jeu {
 
         this.plateau = new Plateau(this.couloirsMobiles);
         for (i = 0; i < nbJoueurs; i++) {
+            Objectif[] objectif = randomizeArrayObjectifs(Objectif.values());
             objs = new Stack<>();
             Joueur j = new JoueurImpl(14, this,vLabyrinthe);
             int x = 0, y = 0;
@@ -89,8 +89,8 @@ public class JeuImpl implements Jeu {
                 x = 6;
                 y = 6;
             }
-            for(int c = 0;c < 1;c++){
-                objs.add(Objectif.values()[cpt++]);
+            for(int c = 0;c < 5;c++){
+                objs.add(objectif[cpt++]);
             }
             Pion p = new PionImpl(this.plateau, new Position(x, y), new Position(x, y), Couleur.values()[i]);
             this.pions.put(Couleur.values()[i], p);
