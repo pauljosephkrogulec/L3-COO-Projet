@@ -76,7 +76,7 @@ public class JeuImpl implements Jeu {
         Random r = new Random();
         this.joueurs = new ArrayList<>();
         this.pions = new HashMap<>();
-        this.objectifs = JeuImpl.randomizeArrayObjectifs(Objectif.values());
+        this.objectifs = JeuImpl.malangeTabbleauObjectif(Objectif.values());
         this.supplementaire = new CouloirMobile(Orientation.SUD, Forme.DROIT, null, false,null);
         this.couloirsMobiles = new CouloirMobile[34];
         Stack<Objectif> objs;
@@ -89,7 +89,7 @@ public class JeuImpl implements Jeu {
                     objectifs[obj++], false,new Position(i/7,i%7));
         }
         for (; i < 34; i++) {
-            if (i < 24)
+            if (i < 24)                
                 this.couloirsMobiles[i] = new CouloirMobile(Orientation.values()[r.nextInt(4)], Forme.COUDE,
                         objectifs[obj++], false,new Position(i/7,i%7));
             else
@@ -99,7 +99,6 @@ public class JeuImpl implements Jeu {
 
         this.plateau = new Plateau(this.couloirsMobiles);
         for (i = 0; i < nbJoueurs; i++) {
-            Objectif[] objectif = randomizeArrayObjectifs(Objectif.values());
             objs = new Stack<>();
             Joueur j = new JoueurImpl(14, jeuVue);
             int x = 0, y = 0;
@@ -112,7 +111,7 @@ public class JeuImpl implements Jeu {
                 y = 6;
             }
             for(int c = 0;c < 5;c++){
-                objs.add(objectif[cpt++]);
+                objs.add(this.objectifs[cpt++]);
             }
             Pion p = new PionImpl(this.plateau, new Position(x, y), new Position(x, y), Couleur.values()[i]);
             this.pions.put(Couleur.values()[i], p);
@@ -123,28 +122,11 @@ public class JeuImpl implements Jeu {
         }
     }
 
-    /** Méthode qui prend en paramètres les couloirs et les renvoies mélangés.
-     * @param array > le tableau contenant les couloirs.
-     * @return : le nouveau tableau de couloir.
-     */
-    public static CouloirMobile[] RandomizeArray(CouloirMobile[] array) {
-        Random rand = new Random();
-
-        for (int i = 0; i < array.length; i++) {
-            int randomPosition = rand.nextInt(array.length);
-            CouloirMobile temp = array[i];
-            array[i] = array[randomPosition];
-            array[randomPosition] = temp;
-        }
-
-        return array;
-    }
-
     /** Méthode qui prend en paramètres les objectifs et les renvoies mélangés.
      * @param array > le tableau contenant les objectifs.
      * @return : le nouveau tableau d'objectifs.
      */
-    public static Objectif[] randomizeArrayObjectifs(Objectif[] array) {
+    private static Objectif[] malangeTabbleauObjectif(Objectif[] array) {
         Random rand = new Random();
 
         for (int i = 0; i < array.length; i++) {
