@@ -1,7 +1,9 @@
 package Modele;
+
 // On importe les librairies.
 import java.util.Stack;
 
+// On importe la vue du jeu.
 import Vue.VJeu;
 
 /** Classe qui modélise un joueur en implémentant l'interface Joueur..
@@ -11,22 +13,18 @@ public class JoueurImpl implements Joueur {
     // Déclaration des variables...
     private int age;
     private Stack<Objectif> objectifs;
-    private Jeu jeu;
     private Pion pion;
-    private VJeu vjeu;
-    private boolean finiTour;
+    private VJeu jeuVue;
 
     /** Constructeur de la classe JoueurImpl.
      * @param age > l'âge du joueur.
      * @param jeu > le jeu.
      */
-    public JoueurImpl(int age, Jeu jeu, VJeu vjeu) {
+    public JoueurImpl(int age, VJeu jeuVue) {
         this.age = age;
         this.objectifs = new Stack<>();
-        this.jeu = jeu;
         this.pion = null;
-        this.vjeu = vjeu;
-        this.finiTour = false;
+        this.jeuVue = jeuVue;
     }
 
     /** Méthode qui renvoie l'âge du joueur.
@@ -45,22 +43,22 @@ public class JoueurImpl implements Joueur {
         return this.pion;
     }
 
-    @Override
-    public boolean getFiniTour() {
-        return this.finiTour;
-    }
-    
+    /** Méthode qui renvoie la pile d'objectifs du joueur.
+     * @return : la pile contenant ses objectifs.
+     */    
     @Override
     public Stack<Objectif> getObjectifs() {
         return this.objectifs;
     }
 
-    /** Méthode permettant au joueur de jouer un tour.
+    /** Méthode qui prend en paramètre une position et déplace le pion du joueur.
+     * On vérifie également que l'objectif sur le couloir est celui rechercher.
+     * @param pos > la position à atteindre.
      */
     @Override
-    public void joue(Position pos) {
+    public void deplacePion(Position pos) {
         Objectif objectif = pion.deplacer(pos);
-        vjeu.refresh(true);
+        jeuVue.refresh(true);
         if(objectif == this.objectifs.peek()) {
             objectifs.pop();
         }

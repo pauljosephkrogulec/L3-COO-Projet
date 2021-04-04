@@ -1,4 +1,5 @@
 package Modele;
+
 /** Classe qui modélise un couloir fixe en héritant des propriétés de CouloirImpl..
  */
 public class CouloirFixe extends CouloirImpl {

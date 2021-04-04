@@ -1,15 +1,16 @@
 package Vue;
+
+// On importe la librairie JButton..
 import javax.swing.JButton;
 
-/** Classe qui herite de JButton et modélise le bouton Jouer avec son événement.
+/** Classe abstraite qui herite de JButton et modélise le bouton de rotation du couloir à insérer.
  */
 abstract public class ButtonRotation extends JButton {
 
-    /** Constructeur de la class btnQuitter qui prend en paramètre l'interface graphique (JFrame).
-     * @param jeu : JeuMemory
+    /** Constructeur de la class ButtonRotation qui modélise le bouton de rotation du couloir à insérer.
     */
     public ButtonRotation() {
-        super();
+        // On paramètre les préférences du bouton.
         this.setFocusable(false);
         this.setContentAreaFilled(false);
         this.setBorderPainted(false);

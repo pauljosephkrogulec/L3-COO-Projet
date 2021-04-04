@@ -1,10 +1,20 @@
 package Modele;
+
+// On importe les librairies..
 import java.util.Random;
 import java.util.Stack;
 
+/** Classe qui modélise un plateau du jeu..
+ */
 public class Plateau {
+
+    // On définie la variable contenant la matrice du couloir.
     private Couloir[][] couloirs;
 
+    /** Constructeur de la classe Plateau qui prend en paramètre un tableau de couloir mobile,
+     * et crée la matrice du plateau.
+     * @param CouloirMobile > tableau contenant les couloirs à placer.
+     */
     public Plateau(Couloir[] CouloirMobile) {
         CouloirMobile = RandomizeArray((CouloirMobile));
         this.couloirs = new Couloir[7][7];
@@ -29,10 +39,19 @@ public class Plateau {
         }
     }
 
-    public Couloir[][] getCouloirs(){
+    /** Méthode qui renvoie la matrice des couloirs.
+     * @return : les couloirs.
+     */
+    public Couloir[][] getCouloirs() {
         return this.couloirs;
     }
     
+    /** Méthode qui prenc en paramètre une position d'insertion et un couloir,
+     * et va insérer ce couloir à la position correspondante.
+     * @param pos > la position où insérer le couloir.
+     * @param c > le couloir à insérer.
+     * @return : le nouveau supplémentaire.
+     */
     public CouloirMobile modifierCouloirs(PositionInsertion pos, CouloirMobile c) {
         Position position = pos.getPos();
         Position oPosition = pos.oppose().getPos();
@@ -80,6 +99,11 @@ public class Plateau {
     }
 
 
+    /** Méthode qui prend en paramètre deux positions et vérifie si la position voulu est atteignable depuis celle d'origine.
+     * @param orig > la position d'origine.
+     * @param dest > la position à atteindre.
+     * @return : Vrai si elle est atteigable, faux sinon.
+     */
     public boolean estAtteignable(Position orig, Position dest) {
         Couloir c,c1; 
         Position p; 
@@ -122,12 +146,23 @@ public class Plateau {
         return result;
     }
 
+    /** Méthode qui prend en paramètre deux positions et un pion,
+     * et va déplacer le pion de la position d'origine, à la position à atteindre.
+     * @param orig > la position d'origine.
+     * @param pos > la position finale.
+     * @param pion > le pion à déplacer.
+     * @return : l'objectif présent sur le couloir.
+     */
     public Objectif deplacer(Position orig,Position pos, Pion pion) {
         this.couloirs[orig.getX()][orig.getY()].delPion(pion);
         this.couloirs[pos.getX()][pos.getY()].setPion(pion);
         return this.couloirs[pos.getX()][pos.getY()].getObjectif();
     }
 
+    /** Méthode qui va placer de manière aléatoire les couloirs.
+     * @param couloirMobile > le tableau contenant les couloirs à mélanger.
+     * @return : le nouveau tableau avec les couloirs mélangés.
+     */
     public static Couloir[] RandomizeArray(Couloir[] couloirMobile) {
         for(int x = 0;x < 10;x++){
             Random rgen = new Random();

@@ -1,4 +1,5 @@
 package Modele;
+
 /** Interface modélisant le pion.
  */
 public interface Pion {

@@ -1,4 +1,5 @@
 package Modele;
+
 /** Classe qui modélise un pion en implémentant l'interface Pion..
  */
 public class PionImpl implements Pion {
@@ -37,6 +38,9 @@ public class PionImpl implements Pion {
         return this.positionCourante;
     }
 
+    /** Méthode qui renvoie la couleur du pion.
+     * @return : sa couleur.
+     */
     @Override
     public Couleur getCouleur() {
         return this.couleur;
@@ -55,9 +59,17 @@ public class PionImpl implements Pion {
         }
         return null;
     }
+
+    /** Méthode qui prend en paramètre une position x et l'associe à la position courante.
+     * @param x > la nouvelle coordonée X.
+     */
     public void setPosX(int x){
         this.positionCourante = new Position(x, this.positionCourante.getY());
     }
+
+    /** Méthode qui prend en paramètre une position y et l'associe à la position courante.
+     * @param y > la nouvelle coordonée Y.
+     */
     public void setPosY(int y){
         this.positionCourante = new Position(this.positionCourante.getX(), y);
     }

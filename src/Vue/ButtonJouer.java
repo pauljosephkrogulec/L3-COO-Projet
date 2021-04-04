@@ -20,15 +20,16 @@ public class ButtonJouer extends JButton implements ActionListener {
      * @param menu > le menu de la fenêtre.
     */
     public ButtonJouer(VJeu jeuVue, VMenu menu) {
-        super();
-        this.jeuVue = jeuVue;
-        this.menu = menu;
+        // On paramètre les préférences du bouton.
         this.setFocusable(false);
         this.setIcon(new ImageIcon(ButtonJouer.class.getResource("../img/jouer.png")));
         this.setContentAreaFilled(false);
         this.setBorderPainted(false);
         this.setFocusPainted(false);
         this.addActionListener(this);
+
+        this.jeuVue = jeuVue;
+        this.menu = menu;
         this.active = false;
     }
 

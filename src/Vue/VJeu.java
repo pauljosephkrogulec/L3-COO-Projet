@@ -123,7 +123,7 @@ public class VJeu extends JFrame {
         for (int i = 0; i < couloirsModele.size(); i++) {
             VCouloir vcouloir = new VCouloir(couloirsModele.get(i), i / 7, i % 7);
             vcouloir.addActionListener((ActionEvent evt) -> {
-                this.joueurCourant.joue(new Position(vcouloir.getcordX(), vcouloir.getcordY()));
+                this.joueurCourant.deplacePion(new Position(vcouloir.getcordX(), vcouloir.getcordY()));
                 if(this.jeu.aGagne(this.joueurCourant)) {
                     this.PartieFinie();
                 }

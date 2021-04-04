@@ -1,4 +1,5 @@
 package Modele;
+
 /** Classe qui modélise une position..
  */
 public class Position {

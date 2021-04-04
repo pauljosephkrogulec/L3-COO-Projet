@@ -13,7 +13,7 @@ public class ButtonQuitter extends JButton implements ActionListener {
     /** Constructeur de la class ButtonQuitter.
     */
     public ButtonQuitter() {
-        super();
+        // On paramètre les préférences du bouton.
         this.setFocusable(false);
         this.setOpaque(true);
         this.setIcon(new ImageIcon(ButtonQuitter.class.getResource("../img/close.png")));

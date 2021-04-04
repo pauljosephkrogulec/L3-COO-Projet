@@ -27,8 +27,6 @@ public class VCouloir extends JButton implements MouseListener {
      * @param y > sa coordonée Y au sein du plateau.
      */
     public VCouloir(Couloir couloir, int x, int y) {
-        super();
-
         // On paramètre le bouton.
         this.setBackground(new Color(69, 46, 43));
         this.setBorder(BorderFactory.createBevelBorder(0,new Color(69, 46, 43), new Color(69, 46, 43)));
@@ -79,7 +77,7 @@ public class VCouloir extends JButton implements MouseListener {
         }
     }
 
-    /** Méthode qui prend en paramètre un événement de sourie et actualise les bordures du boutons, lorsque la sourie entre dans le couloir.
+    /** Méthode de MouseListener qui prend en paramètre un événement de sourie et actualise les bordures du boutons, lorsque la sourie passe sur le couloir.
      * @param e > l'événement de la sourie.
      */
     @Override
@@ -87,7 +85,7 @@ public class VCouloir extends JButton implements MouseListener {
         this.setBorder(BorderFactory.createBevelBorder(0,new Color(236, 192, 111), new Color(236, 192, 111)));
     }
 
-    /** Méthode qui prend en paramètre un événement de sourie et actualise les bordures du boutons, lorsque la sourie sort du couloir.
+    /** Méthode de MouseListener qui prend en paramètre un événement de sourie et actualise les bordures du boutons, lorsque la sourie sort du couloir.
      * @param e > l'événement de la sourie.
      */
     @Override
@@ -104,5 +102,4 @@ public class VCouloir extends JButton implements MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {}
-    
 }

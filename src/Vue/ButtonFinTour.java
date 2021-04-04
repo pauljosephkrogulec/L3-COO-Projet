@@ -15,17 +15,18 @@ public class ButtonFinTour extends JButton implements ActionListener {
     private boolean active;
 
     /** Constructeur de la class ButtonFinTour qui prend en paramètre l'interface graphique (JFrame).
-     * @param jeuVue : la vue du jeu du labyrinthe.
+     * @param jeuVue : la fenêtre du jeu du labyrinthe.
     */
     public ButtonFinTour(VJeu jeuVue) {
-        super();
-        this.jeuVue = jeuVue;
+        // On paramètre les préférences du bouton.
         this.setFocusable(false);
         this.setIcon(new ImageIcon(ButtonJouer.class.getResource("../img/terminerTour.png")));
         this.setContentAreaFilled(false);
         this.setBorderPainted(false);
         this.setFocusPainted(false);
         this.addActionListener(this);
+
+        this.jeuVue = jeuVue;
         this.active = false;
     }
 

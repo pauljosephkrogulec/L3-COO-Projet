@@ -1,4 +1,6 @@
 package Vue;
+
+// On importe les librairies..
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import java.awt.Dimension;
@@ -10,30 +12,41 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+// On importe quelques classes du modèle..
 import Modele.Orientation;
 import Modele.JeuImpl;
 
+/** Classe qui hérite des propriétés d'un JPanel et modélise le menu du jeu..
+ */
 public class VMenu extends JPanel {
 
+    // On déclare quelques variables...
     private VJeu jeuVue;
     private JeuImpl jeuModele;
     private JPanel header, accueil, tour;
     private JButton btnQuitter, btnReduire, btnJouer, btnTour;
     private ButtonRadio joueurNb2, joueurNb3, joueurNb4;
 
+    /** Constructeur de la classe VMenu qui modélise le menu du jeu.
+     * @param jeuVue > la fenêtre du jeu.
+     * @param jeuModele > le modèle du jeu.
+     */
     public VMenu(VJeu jeuVue, JeuImpl jeuModele) {
-        super();
-        this.jeuVue = jeuVue;
-        this.jeuModele = jeuModele;
         // On paramètre le Menu.
         this.setPreferredSize(new Dimension(300, 500));
         this.setBackground(new Color(77, 51, 48));
         this.setLayout(null);
 
+        this.jeuVue = jeuVue;
+        this.jeuModele = jeuModele;
+
         creerHeader();
         creerAccueil();
     }
 
+    /** Méthode qui créer le header du jeu contenant les boutons de la fenêtre et le logo.
+     */
     private void creerHeader() {
         // On crée/paramètre le header.
         this.header = new JPanel();
@@ -61,6 +74,9 @@ public class VMenu extends JPanel {
         this.add(this.header);
     }
 
+    /** Méthode qui va créer le panel d'accueil du jeu avec les règles et le choix du nombre de joueurs dans la partie.
+     * On y ajoute également le bouton "Jouer" pour commencer la partie.
+     */
     public void creerAccueil() {
         this.accueil = new JPanel();
         this.accueil.setBackground(new Color(77, 51, 48));
@@ -108,6 +124,10 @@ public class VMenu extends JPanel {
         this.accueil.setBounds(25, 150, 250, 350);
     }
 
+    /** Méthode qui va créer le panel s'occupant du tour d'un joueur avec les informations
+     * de savoir qui doit jouer, l'objectif à chercher pour le joueur ou encore la rotation du couloir supplémentaire.
+     * On y ajoute également un bouton "Terminer mon tour" qui s'occupe de terminer le tour du joueur si jamais il ne veut pas se déplacer.
+     */
     public void creerPanelTour() {
 
         this.tour = new JPanel();
@@ -168,17 +188,14 @@ public class VMenu extends JPanel {
             this.refreshTour(false);
         });
 
-
         // On crée le bouton Jouer qui lance la partie.
         this.btnTour = new ButtonFinTour(this.jeuVue);
         this.tour.add(this.btnTour);
         this.btnTour.setBounds(0, 250, 250, 42);
 
-        
         this.add(this.tour);
         this.tour.setBounds(25, 150, 250, 350);
     }
-    
 
     /** Méthode qui cache le panel des options et affiche celui de l'accueil.
      */
@@ -194,6 +211,9 @@ public class VMenu extends JPanel {
         this.tour.setVisible(true);
     }
 
+    /** Méthode qui renvoie le nombre de joueur séléctionner pour configurer la partie.
+     * @return : le nombre de joueurs.
+     */
     public int getNbJoueurs() {
         if(this.joueurNb2.isSelected()) {
             return 2;
@@ -204,18 +224,27 @@ public class VMenu extends JPanel {
         }
     }
 
+    /** Méthode qui prend en paramètre un état et actualise l'état du bouton "Jouer".
+     * @param etat > Vrai, le bouton est activé, faux il ne l'est pas.
+     */
     public void setEnableButtonJouer(boolean etat) {
         this.btnJouer.setEnabled(etat);
     }
 
+    /** Méthode qui prend en paramètre un état et actualise l'état du bouton "Terminer mon tour".
+     * @param etat > Vrai, le bouton est activé, faux il ne l'est pas.
+     */
     public void setEnableButtonTour(boolean etat) {
         this.btnTour.setEnabled(etat);
     }
 
-    public void refreshTour(boolean b) {
+    /** Méthode qui s'occupe d'actualiser le menu.
+     * @param etat > Etat pour mettre à jour le bouton du tour.
+     */
+    public void refreshTour(boolean etat) {
         this.tour.removeAll();
         this.creerPanelTour();
-        this.btnTour.setEnabled(b);
+        this.btnTour.setEnabled(etat);
         this.tour.revalidate();        
         this.tour.repaint();
     }    

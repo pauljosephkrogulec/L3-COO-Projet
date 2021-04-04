@@ -1,4 +1,5 @@
 package Modele;
+
 /** Classe qui modélise un couloir mobile en héritant des propriétés de CouloirImpl..
  */
 public class CouloirMobile extends CouloirImpl {

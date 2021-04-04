@@ -1,5 +1,6 @@
 package Modele;
-// On importe les librairies.
+
+// On importe les librairies..
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,8 +8,11 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Stack;
 
+// On importe la classe depuis la vue du jeu.
 import Vue.VJeu;
 
+/** Classe qui implémente l'interface du jeu pour modéliser le modèle du labyrinthe.
+ */
 public class JeuImpl implements Jeu {
 
     // Déclaration des variables...
@@ -20,13 +24,21 @@ public class JeuImpl implements Jeu {
     private CouloirMobile[] couloirsMobiles;
     private Plateau plateau;
     private int i;
-    private VJeu vLabyrinthe;
+    private VJeu jeuVue;
 
-    public JeuImpl(VJeu vLabyrinthe) {
-        this.vLabyrinthe = vLabyrinthe;
+    /** Constructeur de la classe JeuImpl qui prend en paramètre un vue du jeu et modélise le modèle.
+     * @param jeuVue > la fenêtre du jeu.
+     */
+    public JeuImpl(VJeu jeuVue) {
+        this.jeuVue = jeuVue;
         this.i = 0;
     }
 
+    /** Méthode qui prend en paramètre une position d'insertion et une orientation,
+     * et va insérer le couloir à cette position selon l'orientation.
+     * @param pos > la position où insérer le couloir.
+     * @param orientation > l'orientation du supplémentaire.
+     */
     @Override
     public void modifierCouloir(PositionInsertion pos, Orientation orientation) {
         assert pos != positionOrigine;
@@ -34,11 +46,18 @@ public class JeuImpl implements Jeu {
         positionOrigine = pos.oppose();
     }
 
+    /** Méthode qui prend en paramètre un joueur et une couleur, et l'enregistre pour la partie.
+     * @param joueur > le joueur à ajouter.
+     * @param couleur > sa couleur.
+     */
     @Override
     public void enregistrer(Joueur joueur, Couleur couleur) {
         joueur.recevoirPion(pions.get(couleur));
     }
 
+    /** Méthode qui ajoute et renvoie la liste des couloirs du jeu.
+     * @return : les couloirs.
+     */
     @Override
     public List<Couloir> couloirs() {
         List<Couloir> cs = new ArrayList<>();
@@ -50,6 +69,9 @@ public class JeuImpl implements Jeu {
         return cs;
     }
 
+    /** Méthode qui prenc en paramètre un nombre de joueur, et prépare l'ensemble du jeu.
+     * @param nbJoueurs > le nombre de joueur présent dans la partie.
+     */
     public void preparer(int nbJoueurs) {
         Random r = new Random();
         this.joueurs = new ArrayList<>();
@@ -79,7 +101,7 @@ public class JeuImpl implements Jeu {
         for (i = 0; i < nbJoueurs; i++) {
             Objectif[] objectif = randomizeArrayObjectifs(Objectif.values());
             objs = new Stack<>();
-            Joueur j = new JoueurImpl(14, this,vLabyrinthe);
+            Joueur j = new JoueurImpl(14, jeuVue);
             int x = 0, y = 0;
             if (i == 1)
                 y = 6;
@@ -101,11 +123,15 @@ public class JeuImpl implements Jeu {
         }
     }
 
+    /** Méthode qui prend en paramètres les couloirs et les renvoies mélangés.
+     * @param array > le tableau contenant les couloirs.
+     * @return : le nouveau tableau de couloir.
+     */
     public static CouloirMobile[] RandomizeArray(CouloirMobile[] array) {
-        Random rgen = new Random(); // Random number generator
+        Random rand = new Random();
 
         for (int i = 0; i < array.length; i++) {
-            int randomPosition = rgen.nextInt(array.length);
+            int randomPosition = rand.nextInt(array.length);
             CouloirMobile temp = array[i];
             array[i] = array[randomPosition];
             array[randomPosition] = temp;
@@ -113,11 +139,16 @@ public class JeuImpl implements Jeu {
 
         return array;
     }
+
+    /** Méthode qui prend en paramètres les objectifs et les renvoies mélangés.
+     * @param array > le tableau contenant les objectifs.
+     * @return : le nouveau tableau d'objectifs.
+     */
     public static Objectif[] randomizeArrayObjectifs(Objectif[] array) {
-        Random rgen = new Random(); // Random number generator
+        Random rand = new Random();
 
         for (int i = 0; i < array.length; i++) {
-            int randomPosition = rgen.nextInt(array.length);
+            int randomPosition = rand.nextInt(array.length);
             Objectif temp = array[i];
             array[i] = array[randomPosition];
             array[randomPosition] = temp;
@@ -126,18 +157,24 @@ public class JeuImpl implements Jeu {
         return array;
     }
 
+    /** Méthode qui renvoie le couloir supplémentaire.
+     * @return : le supplémentaire.
+     */
     public Couloir getSupplementaire() {
         return this.supplementaire;
     }
 
-    public Joueur getJoueurs(int ind) {
-        return this.joueurs.get(ind);
-    }
-
+    /** Méthode qui renvoie le prochain joueur qui devra jouer.
+     * @return : le joueur suivant.
+     */
     public Joueur prochainJoueur() {
         return joueurs.get((this.i)++ % joueurs.toArray().length);
     }
 
+    /** Méthode qui prend en paramètre un joueur et vérifie si il a gagner la partie.
+     * @param joueur > le joueur.
+     * @return : Vrai si il a gagné, faux sinon.
+     */
     public boolean aGagne(Joueur joueur) {
         return joueur.objectifsFinis();
     }

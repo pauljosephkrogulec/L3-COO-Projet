@@ -1,116 +1,145 @@
 package Vue;
+
+// On importe les librairies..
+import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.util.ArrayList;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import Modele.*;
+// On importe la classe JeuImpl depuis le modèle..
+import Modele.JeuImpl;
 
+/** Classe qui hérite des propriétés d'un JPanel et modélise le plateau du jeu..
+ */
 public class VPlateau extends JPanel {
 
-    private VJeu vjeu;
+    // On déclare quelques variables...
+    private VJeu jeuVue;
     private ArrayList<JButton> listBoutons;
 
-    public VPlateau(VJeu vjeu, int H) {
-        super();        
+    /** Constructeur de la classe VPlateau qui configure de panel du plateau.
+     * @param jeuVue > la fenêtre du jeu du labyrinthe.
+     * @param HAUTEUR > la hauteur de la fenêtre.
+     */
+    public VPlateau(VJeu jeuVue, int HAUTEUR) {
         this.setBackground(new Color(69, 46, 43));
-        this.setPreferredSize(new Dimension(500, H));
+        this.setPreferredSize(new Dimension(500, HAUTEUR));
         this.setLayout(new BorderLayout());
 
-        this.vjeu = vjeu;
-
+        this.jeuVue = jeuVue;
         this.listBoutons = new ArrayList<JButton>();
     }
 
-    public void creerButtonInsertion(JeuImpl jeu) {
-        JPanel top = new JPanel();
+    /** Méthode qui prend en paramètre le modèle du jeu et va créer et ajouter les boutons d'insertions
+     * d'un couloir au sein du plateau.
+     * @param jeu > le modèle du Jeu.
+     */
+    public void creerButtonInsertion(JeuImpl jeuModele) {
+
+        // On déclare les composants graphiques nécéssaires..
+        JPanel top, left, right, bottom;
+        InsertionPlateau btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btn11;
+
+        // On initialise le panel qui contiendra les boutons en haut du plateau.
+        top = new JPanel();
         top.setBackground(new Color(69, 46, 43));
         top.setPreferredSize(new Dimension(500, 50));
         top.setLayout(null);
 
-        JButton btn0 = new InsertionTop(this.vjeu, jeu, 0, 0);
+        // On y ajoute les 3 boutons d'insertions qui lui correspond.
+        btn0 = new InsertionTop(this.jeuVue, jeuModele, 0, 0);
         btn0.setBounds(115, 5, 42, 42);
         top.add(btn0);
         listBoutons.add(btn0);
 
-        JButton btn1 = new InsertionTop(this.vjeu, jeu, 1, 0);
+        btn1 = new InsertionTop(this.jeuVue, jeuModele, 1, 0);
         btn1.setBounds(227, 5, 42, 42);
         top.add(btn1);
         listBoutons.add(btn1);
 
-        JButton btn2 = new InsertionTop(this.vjeu, jeu, 2, 0);
+        btn2 = new InsertionTop(this.jeuVue, jeuModele, 2, 0);
         btn2.setBounds(341, 5, 42, 42);
         top.add(btn2);
         listBoutons.add(btn2);
 
+        // On place le panel en haut.
         this.add(top, BorderLayout.NORTH);
         
-        JPanel left = new JPanel();
+        // On initialise le panel qui contiendra les boutons à gauche du plateau.
+        left = new JPanel();
         left.setBackground(new Color(69, 46, 43));
         left.setPreferredSize(new Dimension(50, 500));
         left.setLayout(null);
 
-        JButton btn3 = new InsertionLeft(this.vjeu, jeu, 3, 0);
+        // On y ajoute les 3 boutons d'insertions qui lui correspond.
+        btn3 = new InsertionLeft(this.jeuVue, jeuModele, 3, 0);
         btn3.setBounds(5, 70, 42, 42);
         left.add(btn3);
         listBoutons.add(btn3);
 
-        JButton btn4 = new InsertionLeft(this.vjeu, jeu, 4, 0);
+        btn4 = new InsertionLeft(this.jeuVue, jeuModele, 4, 0);
         btn4.setBounds(5, 183, 42, 42);
         left.add(btn4);
         listBoutons.add(btn4);
 
-        JButton btn5 = new InsertionLeft(this.vjeu, jeu, 5, 0);
+        btn5 = new InsertionLeft(this.jeuVue, jeuModele, 5, 0);
         btn5.setBounds(5, 295, 42, 42);
         left.add(btn5);
         listBoutons.add(btn5);
         
+        // On place le panel à gauche.
         this.add(left, BorderLayout.WEST);
         
-        JPanel right = new JPanel();
+        // On initialise le panel qui contiendra les boutons à droite du plateau.
+        right = new JPanel();
         right.setBackground(new Color(69, 46, 43));
         right.setPreferredSize(new Dimension(50, 500));
         right.setLayout(null);
 
-        JButton btn6 = new InsertionRight(this.vjeu, jeu, 8, 0);
+        // On y ajoute les 3 boutons d'insertions qui lui correspond.
+        btn6 = new InsertionRight(this.jeuVue, jeuModele, 8, 0);
         btn6.setBounds(5, 70, 42, 42);
         right.add(btn6);
         listBoutons.add(btn6);
 
-        JButton btn7 = new InsertionRight(this.vjeu, jeu, 7, 0);
+        btn7 = new InsertionRight(this.jeuVue, jeuModele, 7, 0);
         btn7.setBounds(5, 183, 42, 42);
         right.add(btn7);
         listBoutons.add(btn7);
 
-        JButton btn8 = new InsertionRight(this.vjeu, jeu, 6, 0);
+        btn8 = new InsertionRight(this.jeuVue, jeuModele, 6, 0);
         btn8.setBounds(5, 295, 42, 42);
         right.add(btn8);
         listBoutons.add(btn8);
 
+        // On place le panel à droite.
         this.add(right, BorderLayout.EAST);
         
-        JPanel bottom = new JPanel();
+        // On initialise le panel qui contiendra les boutons en bas du plateau.
+        bottom = new JPanel();
         bottom.setBackground(new Color(69, 46, 43));
         bottom.setPreferredSize(new Dimension(500, 50));
         bottom.setLayout(null);
 
-        JButton btn9 = new InsertionBottom(this.vjeu, jeu, 11, 0);
+        // On y ajoute les 3 boutons d'insertions qui lui correspond.
+        btn9 = new InsertionBottom(this.jeuVue, jeuModele, 11, 0);
         btn9.setBounds(115, 5, 42, 42);
         bottom.add(btn9);
         listBoutons.add(btn9);
 
-        JButton btn10 = new InsertionBottom(this.vjeu, jeu, 10, 0);
+        btn10 = new InsertionBottom(this.jeuVue, jeuModele, 10, 0);
         btn10.setBounds(227, 5, 42, 42);
         bottom.add(btn10);
         listBoutons.add(btn10);
 
-        JButton btn11 = new InsertionBottom(this.vjeu, jeu, 9, 0);
+        btn11 = new InsertionBottom(this.jeuVue, jeuModele, 9, 0);
         btn11.setBounds(341, 5, 42, 42);
         bottom.add(btn11);
         listBoutons.add(btn11);
 
+        // On place le panel en bas.
         this.add(bottom, BorderLayout.SOUTH);
     }
 
@@ -121,6 +150,5 @@ public class VPlateau extends JPanel {
         for(int i = 0; i < listBoutons.size(); i++) {
             listBoutons.get(i).setVisible(etat);
         }
-
     }
 }
