@@ -38,6 +38,11 @@ public class Plateau {
         Position oPosition = pos.oppose().getPos();
         CouloirMobile SUP = (CouloirMobile) this.couloirs[oPosition.getX()][oPosition.getY()];
         int x;
+        for (Pion p : SUP.getPions()) {
+            PionImpl pi = (PionImpl) p;
+            pi.setPosX(position.getX());
+            pi.setPosY(position.getY());
+        }
         if (position.getX() == 0)
             for (x = 6; x > 0; x--){
                 this.couloirs[position.getX() + x][position.getY()] = this.couloirs[position.getX() + (x-1)][position.getY()];
@@ -67,7 +72,7 @@ public class Plateau {
                 this.couloirs[position.getX()][position.getY() - x] = this.couloirs[position.getX()][position.getY() - (x-1)];
                 for (Pion p : this.couloirs[position.getX()][position.getY() - (x-1)].getPions()) {
                     PionImpl pi = (PionImpl) p;
-                    pi.setPosX(position.getY() - x);
+                    pi.setPosX(position.getX() - x);
                 }
             }
         this.couloirs[position.getX()][position.getY()] = c;
