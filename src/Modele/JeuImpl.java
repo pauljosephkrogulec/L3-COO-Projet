@@ -27,7 +27,7 @@ public class JeuImpl implements Jeu {
     private VJeu jeuVue;
 
     /** Constructeur de la classe JeuImpl qui prend en paramètre un vue du jeu et modélise le modèle.
-     * @param jeuVue > la fenêtre du jeu.
+     * @param jeuVue : la fenêtre du jeu.
      */
     public JeuImpl(VJeu jeuVue) {
         this.jeuVue = jeuVue;
@@ -36,8 +36,8 @@ public class JeuImpl implements Jeu {
 
     /** Méthode qui prend en paramètre une position d'insertion et une orientation,
      * et va insérer le couloir à cette position selon l'orientation.
-     * @param pos > la position où insérer le couloir.
-     * @param orientation > l'orientation du supplémentaire.
+     * @param pos : la position où insérer le couloir.
+     * @param orientation : l'orientation du supplémentaire.
      */
     @Override
     public void modifierCouloir(PositionInsertion pos, Orientation orientation) {
@@ -47,8 +47,8 @@ public class JeuImpl implements Jeu {
     }
 
     /** Méthode qui prend en paramètre un joueur et une couleur, et l'enregistre pour la partie.
-     * @param joueur > le joueur à ajouter.
-     * @param couleur > sa couleur.
+     * @param joueur : le joueur à ajouter.
+     * @param couleur : sa couleur.
      */
     @Override
     public void enregistrer(Joueur joueur, Couleur couleur) {
@@ -70,13 +70,14 @@ public class JeuImpl implements Jeu {
     }
 
     /** Méthode qui prenc en paramètre un nombre de joueur, et prépare l'ensemble du jeu.
-     * @param nbJoueurs > le nombre de joueur présent dans la partie.
+     * @param nbJoueurs : le nombre de joueur présent dans la partie.
+     * @param nbObjectifs : le nombre d'objectifs pour chaque joueurs.
      */
-    public void preparer(int nbJoueurs) {
+    public void preparer(int nbJoueurs, int nbObjectifs) {
         Random r = new Random();
         this.joueurs = new ArrayList<>();
         this.pions = new HashMap<>();
-        this.objectifs = JeuImpl.malangeTabbleauObjectif(Objectif.values());
+        this.objectifs = JeuImpl.melangerObjectifs(Objectif.values());
         this.supplementaire = new CouloirMobile(Orientation.SUD, Forme.DROIT, null, false,null);
         this.couloirsMobiles = new CouloirMobile[34];
         Stack<Objectif> objs;
@@ -110,7 +111,7 @@ public class JeuImpl implements Jeu {
                 x = 6;
                 y = 6;
             }
-            for(int c = 0;c < 5;c++){
+            for(int c = 0;c < nbObjectifs;c++){
                 objs.add(this.objectifs[cpt++]);
             }
             Pion p = new PionImpl(this.plateau, new Position(x, y), new Position(x, y), Couleur.values()[i]);
@@ -123,10 +124,10 @@ public class JeuImpl implements Jeu {
     }
 
     /** Méthode qui prend en paramètres les objectifs et les renvoies mélangés.
-     * @param array > le tableau contenant les objectifs.
+     * @param array : le tableau contenant les objectifs.
      * @return : le nouveau tableau d'objectifs.
      */
-    private static Objectif[] malangeTabbleauObjectif(Objectif[] array) {
+    private static Objectif[] melangerObjectifs(Objectif[] array) {
         Random rand = new Random();
 
         for (int i = 0; i < array.length; i++) {
@@ -154,11 +155,10 @@ public class JeuImpl implements Jeu {
     }
 
     /** Méthode qui prend en paramètre un joueur et vérifie si il a gagner la partie.
-     * @param joueur > le joueur.
+     * @param joueur : le joueur.
      * @return : Vrai si il a gagné, faux sinon.
      */
     public boolean aGagne(Joueur joueur) {
         return joueur.objectifsFinis();
     }
-
 }

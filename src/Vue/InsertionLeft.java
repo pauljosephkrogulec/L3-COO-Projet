@@ -12,18 +12,19 @@ import Modele.JeuImpl;
 public class InsertionLeft extends InsertionPlateau {
     
     /** Constructeur de la classe InsertionLeft qui s'occupe de récupérer les valeurs et actualise l'image du bouton.
-     * @param jeuVue > la fenêtre du jeu.
-     * @param jeuModele > le modèle du jeu.
-     * @param values > la valeur correspondant au couloir d'insertion.
-     * @param orientation > l'orientation du supplémentaire.
+     * @param jeuVue : la fenêtre du jeu.
+     * @param jeuModele : le modèle du jeu.
+     * @param menu menu : le composant graphique du menu.
+     * @param values : la valeur correspondant au couloir d'insertion.
+     * @param orientation : l'orientation du supplémentaire.
      */
-    public InsertionLeft(VJeu jeuVue, JeuImpl jeuModele, int values, int orientation) {
-        super(jeuVue, jeuModele, values, orientation);
+    public InsertionLeft(VJeu jeuVue, JeuImpl jeuModele, VMenu menu, int values, int orientation) {
+        super(jeuVue, jeuModele, menu, values, orientation);
         this.setIcon(new ImageIcon(InsertionLeft.class.getResource("../img/CURSOR1.gif")));
     }
 
     /** Méthode de MouseListener qui prend en paramètre un événement de sourie et actualise l'image du bouton, lorsque la sourie passe sur celui-ci.
-     * @param e > l'événement de la sourie.
+     * @param e : l'événement de la sourie.
      */
     @Override
     public void mouseEntered(MouseEvent e) {
@@ -31,7 +32,7 @@ public class InsertionLeft extends InsertionPlateau {
     }
 
     /** Méthode de MouseListener qui prend en paramètre un événement de sourie et actualise l'image du bouton, lorsque la sourie sort de celui-ci.
-     * @param e > l'événement de la sourie.
+     * @param e : l'événement de la sourie.
      */
     @Override
     public void mouseExited(MouseEvent e) {

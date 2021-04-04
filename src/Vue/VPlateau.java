@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 // On importe la classe JeuImpl depuis le modèle..
@@ -20,8 +22,8 @@ public class VPlateau extends JPanel {
     private ArrayList<JButton> listBoutons;
 
     /** Constructeur de la classe VPlateau qui configure de panel du plateau.
-     * @param jeuVue > la fenêtre du jeu du labyrinthe.
-     * @param HAUTEUR > la hauteur de la fenêtre.
+     * @param jeuVue : la fenêtre du jeu du labyrinthe.
+     * @param HAUTEUR : la hauteur de la fenêtre.
      */
     public VPlateau(VJeu jeuVue, int HAUTEUR) {
         this.setBackground(new Color(69, 46, 43));
@@ -34,9 +36,10 @@ public class VPlateau extends JPanel {
 
     /** Méthode qui prend en paramètre le modèle du jeu et va créer et ajouter les boutons d'insertions
      * d'un couloir au sein du plateau.
-     * @param jeu > le modèle du Jeu.
+     * @param jeuModele : le modèle du Jeu.
+     * @param menu : le menu du jeu.
      */
-    public void creerButtonInsertion(JeuImpl jeuModele) {
+    public void creerButtonInsertion(JeuImpl jeuModele, VMenu menu) {
 
         // On déclare les composants graphiques nécéssaires..
         JPanel top, left, right, bottom;
@@ -49,17 +52,17 @@ public class VPlateau extends JPanel {
         top.setLayout(null);
 
         // On y ajoute les 3 boutons d'insertions qui lui correspond.
-        btn0 = new InsertionTop(this.jeuVue, jeuModele, 0, 0);
+        btn0 = new InsertionTop(this.jeuVue, jeuModele, menu, 0, 0);
         btn0.setBounds(115, 5, 42, 42);
         top.add(btn0);
         listBoutons.add(btn0);
 
-        btn1 = new InsertionTop(this.jeuVue, jeuModele, 1, 0);
+        btn1 = new InsertionTop(this.jeuVue, jeuModele, menu, 1, 0);
         btn1.setBounds(227, 5, 42, 42);
         top.add(btn1);
         listBoutons.add(btn1);
 
-        btn2 = new InsertionTop(this.jeuVue, jeuModele, 2, 0);
+        btn2 = new InsertionTop(this.jeuVue, jeuModele, menu, 2, 0);
         btn2.setBounds(341, 5, 42, 42);
         top.add(btn2);
         listBoutons.add(btn2);
@@ -74,17 +77,17 @@ public class VPlateau extends JPanel {
         left.setLayout(null);
 
         // On y ajoute les 3 boutons d'insertions qui lui correspond.
-        btn3 = new InsertionLeft(this.jeuVue, jeuModele, 3, 0);
+        btn3 = new InsertionLeft(this.jeuVue, jeuModele, menu, 3, 0);
         btn3.setBounds(5, 70, 42, 42);
         left.add(btn3);
         listBoutons.add(btn3);
 
-        btn4 = new InsertionLeft(this.jeuVue, jeuModele, 4, 0);
+        btn4 = new InsertionLeft(this.jeuVue, jeuModele, menu, 4, 0);
         btn4.setBounds(5, 183, 42, 42);
         left.add(btn4);
         listBoutons.add(btn4);
 
-        btn5 = new InsertionLeft(this.jeuVue, jeuModele, 5, 0);
+        btn5 = new InsertionLeft(this.jeuVue, jeuModele, menu, 5, 0);
         btn5.setBounds(5, 295, 42, 42);
         left.add(btn5);
         listBoutons.add(btn5);
@@ -99,17 +102,17 @@ public class VPlateau extends JPanel {
         right.setLayout(null);
 
         // On y ajoute les 3 boutons d'insertions qui lui correspond.
-        btn6 = new InsertionRight(this.jeuVue, jeuModele, 8, 0);
+        btn6 = new InsertionRight(this.jeuVue, jeuModele, menu, 8, 0);
         btn6.setBounds(5, 70, 42, 42);
         right.add(btn6);
         listBoutons.add(btn6);
 
-        btn7 = new InsertionRight(this.jeuVue, jeuModele, 7, 0);
+        btn7 = new InsertionRight(this.jeuVue, jeuModele, menu, 7, 0);
         btn7.setBounds(5, 183, 42, 42);
         right.add(btn7);
         listBoutons.add(btn7);
 
-        btn8 = new InsertionRight(this.jeuVue, jeuModele, 6, 0);
+        btn8 = new InsertionRight(this.jeuVue, jeuModele, menu, 6, 0);
         btn8.setBounds(5, 295, 42, 42);
         right.add(btn8);
         listBoutons.add(btn8);
@@ -124,17 +127,17 @@ public class VPlateau extends JPanel {
         bottom.setLayout(null);
 
         // On y ajoute les 3 boutons d'insertions qui lui correspond.
-        btn9 = new InsertionBottom(this.jeuVue, jeuModele, 11, 0);
+        btn9 = new InsertionBottom(this.jeuVue, jeuModele, menu, 11, 0);
         btn9.setBounds(115, 5, 42, 42);
         bottom.add(btn9);
         listBoutons.add(btn9);
 
-        btn10 = new InsertionBottom(this.jeuVue, jeuModele, 10, 0);
+        btn10 = new InsertionBottom(this.jeuVue, jeuModele, menu, 10, 0);
         btn10.setBounds(227, 5, 42, 42);
         bottom.add(btn10);
         listBoutons.add(btn10);
 
-        btn11 = new InsertionBottom(this.jeuVue, jeuModele, 9, 0);
+        btn11 = new InsertionBottom(this.jeuVue, jeuModele, menu, 9, 0);
         btn11.setBounds(341, 5, 42, 42);
         bottom.add(btn11);
         listBoutons.add(btn11);
@@ -144,11 +147,34 @@ public class VPlateau extends JPanel {
     }
 
     /** Méthode qui prend en paramètre un boolean et actualise l'ensemble des boutons d'insertion du plateau.
-     * @param etat > Vrai, les boutons sont visibles. Faux, ils ne le sont pas.
+     * @param etat : Vrai, les boutons sont visibles. Faux, ils ne le sont pas.
      */
     public void setEtatButton(boolean etat) {
         for(int i = 0; i < listBoutons.size(); i++) {
             listBoutons.get(i).setVisible(etat);
         }
+    }
+
+    /** Méthode qui affiche le message de fin de la partie et le gagnant.
+     */
+    public void afficheMessageGagnant() {
+
+        JPanel messageFin = new JPanel();
+        messageFin.setBackground(new Color(69, 46, 43));
+        messageFin.setLayout(null);
+
+        // On crée un label qui affiche le pion gagnant.
+        JLabel pionGagnant = new JLabel();
+        pionGagnant.setIcon(new ImageIcon(VJeu.class.getResource("../img/" + this.jeuVue.getJoueurCourant().getPion().getCouleur() + ".png")));
+        messageFin.add(pionGagnant);
+        pionGagnant.setBounds(192, 205, 30, 30);
+
+        // On crée un label qui affiche le pion gagnant.
+        JLabel msgGagnant = new JLabel();
+        msgGagnant.setIcon(new ImageIcon(VJeu.class.getResource("../img/message_fin.png")));
+        messageFin.add(msgGagnant);
+        msgGagnant.setBounds(40, 190, 420, 100);
+
+        this.add(messageFin);
     }
 }

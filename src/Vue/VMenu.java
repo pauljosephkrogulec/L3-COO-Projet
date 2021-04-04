@@ -29,8 +29,8 @@ public class VMenu extends JPanel {
     private ButtonRadio joueurNb2, joueurNb3, joueurNb4;
 
     /** Constructeur de la classe VMenu qui modélise le menu du jeu.
-     * @param jeuVue > la fenêtre du jeu.
-     * @param jeuModele > le modèle du jeu.
+     * @param jeuVue : la fenêtre du jeu.
+     * @param jeuModele : le modèle du jeu.
      */
     public VMenu(VJeu jeuVue, JeuImpl jeuModele) {
         // On paramètre le Menu.
@@ -191,7 +191,7 @@ public class VMenu extends JPanel {
         this.btnRotationGauche = rotationGauche;
 
         // On crée le bouton Jouer qui lance la partie.
-        this.btnTour = new ButtonFinTour(this.jeuVue);
+        this.btnTour = new ButtonFinTour(this.jeuVue, this);
         this.tour.add(this.btnTour);
         this.btnTour.setBounds(0, 250, 250, 42);
 
@@ -227,28 +227,50 @@ public class VMenu extends JPanel {
     }
 
     /** Méthode qui prend en paramètre un état et actualise l'état du bouton "Jouer".
-     * @param etat > Vrai, le bouton est activé, faux il ne l'est pas.
+     * @param etat : Vrai, le bouton est activé, faux il ne l'est pas.
      */
     public void setEnableButtonJouer(boolean etat) {
         this.btnJouer.setEnabled(etat);
     }
 
     /** Méthode qui prend en paramètre un état et actualise l'état du bouton "Terminer mon tour".
-     * @param etat > Vrai, le bouton est activé, faux il ne l'est pas.
+     * @param etat : Vrai, le bouton est activé, faux il ne l'est pas.
      */
     public void setEnableButtonTour(boolean etat) {
         this.btnTour.setEnabled(etat);
     }
 
-    /** Méthode qui s'occupe d'actualiser le menu.
-     * @param etat > Etat pour mettre à jour le bouton du tour.
+    /** Méthode qui s'occupe d'actualiser le menu avec les informations de l'accueil.
+     */
+    public void refreshMenuAccueil() {
+        this.removeAll();
+        this.creerHeader();
+        this.creerAccueil();
+        this.setEnableButtonJouer(true);
+        this.revalidate();        
+        this.repaint();
+    }
+
+    /** Méthode qui s'occupe d'actualiser le menu avec le panel des tours d'un joueur.
+     */
+    public void refreshMenuTour() {
+        this.removeAll();
+        this.creerHeader();
+        this.creerPanelTour();
+        this.setEnableButtonTour(false);
+        this.revalidate();        
+        this.repaint();
+    }  
+
+    /** Méthode qui s'occupe d'actualiser les composants du panel de tour.
+     * @param etat : Etat pour mettre à jour le bouton du tour.
      */
     public void refreshTour(boolean etat) {
         this.tour.removeAll();
         this.creerPanelTour();
         this.btnTour.setEnabled(etat);
-        this.btnRotationDroite.setEnabled(!etat);
-        this.btnRotationGauche.setEnabled(!etat);
+        this.btnRotationDroite.setVisible(!etat);
+        this.btnRotationGauche.setVisible(!etat);
         this.tour.revalidate();        
         this.tour.repaint();
     }    

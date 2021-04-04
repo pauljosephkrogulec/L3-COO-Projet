@@ -10,10 +10,10 @@ public class PionImpl implements Pion {
     private Couleur couleur;
 
     /** Constructeur de la classe PionImpl.
-	 * @param plateau > le plateau du jeu.
-     * @param positionInitiale > la position de départ.
-     * @param positionCourante > la position actuelle.
-     * @param couleur > la couleur du pion.
+	 * @param plateau : le plateau du jeu.
+     * @param positionInitiale : la position de départ.
+     * @param positionCourante : la position actuelle.
+     * @param couleur : la couleur du pion.
 	 */
     public PionImpl(Plateau plateau, Position positionInitiale, Position positionCourante, Couleur couleur) {
         this.plateau = plateau;
@@ -47,7 +47,7 @@ public class PionImpl implements Pion {
     }
 
     /** Méthode qui déplace le pion à la position donnée.
-     * @param pos > la nouvelle position.
+     * @param pos : la nouvelle position.
      * @return : l'objectif à la nouvelle position.
      */
     @Override 
@@ -61,14 +61,14 @@ public class PionImpl implements Pion {
     }
 
     /** Méthode qui prend en paramètre une position x et l'associe à la position courante.
-     * @param x > la nouvelle coordonée X.
+     * @param x : la nouvelle coordonée X.
      */
     public void setPosX(int x){
         this.positionCourante = new Position(x, this.positionCourante.getY());
     }
 
     /** Méthode qui prend en paramètre une position y et l'associe à la position courante.
-     * @param y > la nouvelle coordonée Y.
+     * @param y : la nouvelle coordonée Y.
      */
     public void setPosY(int y){
         this.positionCourante = new Position(this.positionCourante.getX(), y);

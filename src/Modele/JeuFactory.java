@@ -8,7 +8,7 @@ import Vue.VJeu;
 public class JeuFactory {
 
     /** Méthode static qui prend en paramètre la vue du jeu et créer le modèle du jeu.
-     * @param jeuVue > la fenêtre du jeu.
+     * @param jeuVue : la fenêtre du jeu.
      * @return : le modèle du jeu.
      */
     public static Jeu creeJeu(VJeu jeuVue) {

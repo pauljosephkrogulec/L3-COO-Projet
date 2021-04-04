@@ -17,8 +17,8 @@ public class JoueurImpl implements Joueur {
     private VJeu jeuVue;
 
     /** Constructeur de la classe JoueurImpl.
-     * @param age > l'âge du joueur.
-     * @param jeu > le jeu.
+     * @param age : l'âge du joueur.
+     * @param jeuVue : le jeu.
      */
     public JoueurImpl(int age, VJeu jeuVue) {
         this.age = age;
@@ -53,7 +53,7 @@ public class JoueurImpl implements Joueur {
 
     /** Méthode qui prend en paramètre une position et déplace le pion du joueur.
      * On vérifie également que l'objectif sur le couloir est celui rechercher.
-     * @param pos > la position à atteindre.
+     * @param pos : la position à atteindre.
      */
     @Override
     public void deplacePion(Position pos) {
@@ -65,7 +65,7 @@ public class JoueurImpl implements Joueur {
     }
 
     /** Méthode qui affecte des objectifs au joueur.
-     * @param objectifs > une pile d'objectifs à remplir.
+     * @param objectifs : une pile d'objectifs à remplir.
      */
     @Override
     public void fixerObjectifs(Stack<Objectif> objectifs) {
@@ -73,7 +73,7 @@ public class JoueurImpl implements Joueur {
     }
 
     /** Méthode qui affecte un pion à un joueur.
-     * @param p > le pion.
+     * @param p : le pion.
      */
     @Override
     public void recevoirPion(Pion p) {

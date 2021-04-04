@@ -22,9 +22,9 @@ public class VCouloir extends JButton implements MouseListener {
     private int cordX, cordY;
 
     /** Constructeur de la classe VCouloir qui modélise un couloir selon les paramètres de son modèle.
-     * @param couloir > le couloir au sein du Modele.
-     * @param x > sa coordonée X au sein du plateau.
-     * @param y > sa coordonée Y au sein du plateau.
+     * @param couloir : le couloir au sein du Modele.
+     * @param x : sa coordonée X au sein du plateau.
+     * @param y : sa coordonée Y au sein du plateau.
      */
     public VCouloir(Couloir couloir, int x, int y) {
         // On paramètre le bouton.
@@ -57,7 +57,7 @@ public class VCouloir extends JButton implements MouseListener {
 
     /** Méthode qui prend en paramètre les composants graphiques et déssine les composants du couloir.
      * (un couloir est composé d'une image de sa forme, l'objectif qui le compose, et les joueurs présents sur celui-ci).
-     * @param g > le composant graphique.
+     * @param g : le composant graphique.
      */
     @Override
     public void paintComponent(Graphics g) {
@@ -78,7 +78,7 @@ public class VCouloir extends JButton implements MouseListener {
     }
 
     /** Méthode de MouseListener qui prend en paramètre un événement de sourie et actualise les bordures du boutons, lorsque la sourie passe sur le couloir.
-     * @param e > l'événement de la sourie.
+     * @param e : l'événement de la sourie.
      */
     @Override
     public void mouseEntered(MouseEvent e) {
@@ -86,7 +86,7 @@ public class VCouloir extends JButton implements MouseListener {
     }
 
     /** Méthode de MouseListener qui prend en paramètre un événement de sourie et actualise les bordures du boutons, lorsque la sourie sort du couloir.
-     * @param e > l'événement de la sourie.
+     * @param e : l'événement de la sourie.
      */
     @Override
     public void mouseExited(MouseEvent e) {

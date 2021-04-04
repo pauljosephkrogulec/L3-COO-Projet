@@ -4,7 +4,6 @@ package Modele;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /** Classe qui modélise un couloir..
  */
 public class CouloirImpl implements Couloir {
@@ -18,9 +17,10 @@ public class CouloirImpl implements Couloir {
     protected int f, o;
 
     /** Constructeur de la classe CouloirImpl.
-     * @param orientation > l'orientation du couloir.
-     * @param forme > sa forme.
-     * @param objectif > l'objectif représenté dans le couloir.
+     * @param orientation : l'orientation du couloir.
+     * @param forme : sa forme.
+     * @param objectif : l'objectif représenté dans le couloir.
+     * @param pos : la position du couloir.
      */
     public CouloirImpl(Orientation orientation, Forme forme, Objectif objectif, Position pos) {
 
@@ -58,7 +58,6 @@ public class CouloirImpl implements Couloir {
     }
 
     /** Méthode qui renvoie l'orientation du couloir.
-     * @return : son orientation.
      */
     @Override
     public void setOrientation(Orientation new_orientation) {
@@ -90,19 +89,25 @@ public class CouloirImpl implements Couloir {
     }
 
     /** Méthode qui ajout un pion dans le couloir.
-     * @param p > le pion d'un joueur.
+     * @param p : le pion d'un joueur.
      */    
     @Override
     public void setPion(Pion p) {        
         pions.add(p);        
     }
+
+    /** Méthode qui prend en paramètre un pion et le supprime du couloir.
+     * @param p : le pion à supprimer.
+     */
     @Override
     public void delPion(Pion p) {
         pions.remove(p);
     }
 
-    public Position getPos(){
+    /** Méthode qui renvoie la position d'un couloir.
+     * @return : sa position.
+     */
+    public Position getPos() {
         return this.pos;
     }
-
 }

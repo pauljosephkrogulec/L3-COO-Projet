@@ -15,7 +15,7 @@ public class ButtonReduire extends JButton implements ActionListener {
     private VJeu jeuVue;
 
     /** Constructeur de la class ButtonReduire qui prend en paramètre la fenêtre et met à jour les préférences de celui-ci.
-     * @param jeuVue > la fenêtre du jeu.
+     * @param jeuVue : la fenêtre du jeu.
     */
     public ButtonReduire(VJeu jeuVue) {
         // On paramètre les préférences du bouton.
@@ -31,7 +31,7 @@ public class ButtonReduire extends JButton implements ActionListener {
     }
 
     /** Méthode de ActionEvent qui réduit la fenêtre. 
-     * @param e > l'événement.
+     * @param e : l'événement.
      */
     public void actionPerformed(ActionEvent e) {
         this.jeuVue.setState(Frame.ICONIFIED);

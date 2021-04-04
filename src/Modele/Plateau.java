@@ -13,7 +13,7 @@ public class Plateau {
 
     /** Constructeur de la classe Plateau qui prend en paramètre un tableau de couloir mobile,
      * et crée la matrice du plateau.
-     * @param CouloirMobile > tableau contenant les couloirs à placer.
+     * @param CouloirMobile : tableau contenant les couloirs à placer.
      */
     public Plateau(Couloir[] CouloirMobile) {
         CouloirMobile = RandomizeArray((CouloirMobile));
@@ -48,8 +48,8 @@ public class Plateau {
     
     /** Méthode qui prenc en paramètre une position d'insertion et un couloir,
      * et va insérer ce couloir à la position correspondante.
-     * @param pos > la position où insérer le couloir.
-     * @param c > le couloir à insérer.
+     * @param pos : la position où insérer le couloir.
+     * @param c : le couloir à insérer.
      * @return : le nouveau supplémentaire.
      */
     public CouloirMobile modifierCouloirs(PositionInsertion pos, CouloirMobile c) {
@@ -100,8 +100,8 @@ public class Plateau {
 
 
     /** Méthode qui prend en paramètre deux positions et vérifie si la position voulu est atteignable depuis celle d'origine.
-     * @param orig > la position d'origine.
-     * @param dest > la position à atteindre.
+     * @param orig : la position d'origine.
+     * @param dest : la position à atteindre.
      * @return : Vrai si elle est atteigable, faux sinon.
      */
     public boolean estAtteignable(Position orig, Position dest) {
@@ -148,9 +148,9 @@ public class Plateau {
 
     /** Méthode qui prend en paramètre deux positions et un pion,
      * et va déplacer le pion de la position d'origine, à la position à atteindre.
-     * @param orig > la position d'origine.
-     * @param pos > la position finale.
-     * @param pion > le pion à déplacer.
+     * @param orig : la position d'origine.
+     * @param pos : la position finale.
+     * @param pion : le pion à déplacer.
      * @return : l'objectif présent sur le couloir.
      */
     public Objectif deplacer(Position orig,Position pos, Pion pion) {
@@ -160,7 +160,7 @@ public class Plateau {
     }
 
     /** Méthode qui va placer de manière aléatoire les couloirs.
-     * @param couloirMobile > le tableau contenant les couloirs à mélanger.
+     * @param couloirMobile : le tableau contenant les couloirs à mélanger.
      * @return : le nouveau tableau avec les couloirs mélangés.
      */
     public static Couloir[] RandomizeArray(Couloir[] couloirMobile) {
@@ -177,4 +177,3 @@ public class Plateau {
         return couloirMobile;
     }
 }
-

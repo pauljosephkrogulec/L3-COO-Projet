@@ -24,7 +24,7 @@ public class ButtonQuitter extends JButton implements ActionListener {
     }
 
     /** Méthode de ActionEvent qui quitte la fenêtre. 
-     * @param e > l'événement.
+     * @param e : l'événement.
      */
     public void actionPerformed(ActionEvent e) {
         System.exit(0);

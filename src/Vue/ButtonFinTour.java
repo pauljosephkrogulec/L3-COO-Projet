@@ -12,12 +12,14 @@ public class ButtonFinTour extends JButton implements ActionListener {
 
     // On déclare quelques variables..
     private VJeu jeuVue;
+    private VMenu menu;
     private boolean active;
 
     /** Constructeur de la class ButtonFinTour qui prend en paramètre l'interface graphique (JFrame).
      * @param jeuVue : la fenêtre du jeu du labyrinthe.
+     * @param menu : le menu du jeu.
     */
-    public ButtonFinTour(VJeu jeuVue) {
+    public ButtonFinTour(VJeu jeuVue, VMenu menu) {
         // On paramètre les préférences du bouton.
         this.setFocusable(false);
         this.setIcon(new ImageIcon(ButtonJouer.class.getResource("../img/terminerTour.png")));
@@ -27,11 +29,12 @@ public class ButtonFinTour extends JButton implements ActionListener {
         this.addActionListener(this);
 
         this.jeuVue = jeuVue;
+        this.menu = menu;
         this.active = false;
     }
 
     /** Méthode qui fait varier l'image du bouton si il est actif ou non.
-     * @param b : Vrai : le bouton est actif, faux sinon (boolean).
+     * @param etat : Vrai, le bouton est actif, faux sinon (boolean).
      */
     public void setEnabled(boolean etat) {
         if(etat) {
@@ -50,7 +53,7 @@ public class ButtonFinTour extends JButton implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(this.active == false) {
             this.jeuVue.joueurSuivant();
-            this.jeuVue.setEtatBtnFiniTour(false);
+            this.menu.setEnableButtonTour(false);
             this.jeuVue.refresh(false);
         }
     }

@@ -62,14 +62,16 @@ public class VJeu extends JFrame {
         this.setVisible(true);
     }
 
-    /** Méthode qui initialise une partie.
+    /** Méthode qui initialise une partie et lance le jeu.
      */
     public void initPartie() {        
-        this.jeu.preparer(this.menu.getNbJoueurs());
+        this.jeu.preparer(this.menu.getNbJoueurs(), 5);
         this.joueurSuivant();
-        this.plateau.creerButtonInsertion(this.jeu);
+        this.plateau.creerButtonInsertion(this.jeu, this.menu);
         this.creerPlateau();
-        this.setEtatVue(false);
+        
+        this.menu.refreshMenuTour();
+        this.menu.afficheTour();
     }
 
     /** Méthode qui associe à la variable global du joueur courant, le prochain joueur.
@@ -89,8 +91,11 @@ public class VJeu extends JFrame {
      */
     public void PartieFinie() {
         this.plateau.removeAll();
+        this.plateau.afficheMessageGagnant();
+        this.plateau.revalidate();
+        this.plateau.repaint();
+        this.menu.refreshMenuAccueil();
         this.menu.afficheAccueil();
-        this.menu.setEnableButtonJouer(true);
     }
 
     /** Méthode qui créer le plateau du jeu.
@@ -135,15 +140,8 @@ public class VJeu extends JFrame {
         this.setEtatVue(false);
     }
 
-    /** Méthode qui prend en paramètre un etat et modifie l'état du bouton "Terminer mon tour".
-     * @param etat > Vrai, le bouton est activé. Faux, il est désactivé.
-     */
-    public void setEtatBtnFiniTour(boolean etat) {
-        this.menu.setEnableButtonTour(etat);
-    }
-
     /** Méthode qui prend en paramètre un etat et actualise l'état des couloirs et des boutons d'insertions d'un couloir.
-     * @param etat > Vrai, les boutons d'insertions sont désactivé, et les couloirs actifs. Inversement si c'est faux.
+     * @param etat : Vrai, les boutons d'insertions sont désactivé, et les couloirs actifs. Inversement si c'est faux.
      */
     public void setEtatVue(boolean etat) {
         this.plateau.setEtatButton(!etat);
@@ -153,7 +151,7 @@ public class VJeu extends JFrame {
     }
 
     /** Méthode qui prend en paramètre un état et actualise la fenêtre.
-     * @param etat > Boolean pour actualiser les etats des différentes composants (boutons, plateau, etc...)
+     * @param etat : Boolean pour actualiser les etats des différentes composants (boutons, plateau, etc...)
      */
     public void refresh(boolean etat) {
         this.couloirs.removeAll();

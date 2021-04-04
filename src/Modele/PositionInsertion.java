@@ -12,9 +12,9 @@ public enum PositionInsertion {
     private Position p;
 
     /** Constructeur des positions d'insertions.
-     * @param place > la place selon le plateau.
-     * @param x > la coordonées x.
-     * @param y > la coordonée y.
+     * @param place : la place selon le plateau.
+     * @param x : la coordonées x.
+     * @param y : la coordonée y.
      */
     private PositionInsertion(int place,int x,int y) {
         this.place = place;

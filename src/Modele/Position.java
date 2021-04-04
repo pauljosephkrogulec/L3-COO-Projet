@@ -8,8 +8,8 @@ public class Position {
     private int x,y;
 
     /** Constructeur de la classe Position.
-     * @param x > la coordonnée x.
-     * @param y > la coordonnée y.
+     * @param x : la coordonnée x.
+     * @param y : la coordonnée y.
      */
     public Position(int x,int  y){
         this.x = x;

@@ -1,4 +1,5 @@
-import Vue.*;
+import Vue.VJeu;
+
 /** Classe Labyrinthe qui s'occupe de lancer le jeu.
  */
 public class Labyrinthe {

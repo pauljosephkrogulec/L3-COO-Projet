@@ -19,16 +19,18 @@ abstract class InsertionPlateau extends JButton implements ActionListener, Mouse
     // On déclare quelques variables...
     protected VJeu jeuVue;
     protected JeuImpl jeuModele;
+    protected VMenu menu;
     protected int values, orientation;
 
     /** Constructeur de la classe InsertionPlateau qui prend en paramètre la vue et le modèle du jeu,
      * la valeur du couloir et l'orientation du supplémentaire, et s'occupe de l'insérer au plateau du jeu.
-     * @param jeuVue > la fenêtre du jeu.
-     * @param jeuModele > le modèle du jeu.
-     * @param values > la valeur correspondant au couloir d'insertion.
-     * @param orientation > l'orientation du supplémentaire.
+     * @param jeuVue : la fenêtre du jeu.
+     * @param jeuModele : le modèle du jeu.
+     * @param menu menu : le composant graphique du menu.
+     * @param values : la valeur correspondant au couloir d'insertion.
+     * @param orientation : l'orientation du supplémentaire.
      */
-    public InsertionPlateau(VJeu jeuVue, JeuImpl jeuModele, int values, int orientation){
+    public InsertionPlateau(VJeu jeuVue, JeuImpl jeuModele, VMenu menu, int values, int orientation){
         // On paramètre les préférences des boutons.
         this.setFocusable(false);
         this.setOpaque(true);
@@ -41,17 +43,18 @@ abstract class InsertionPlateau extends JButton implements ActionListener, Mouse
         // On stocke les paramètres.
         this.jeuVue = jeuVue;
         this.jeuModele = jeuModele;
+        this.menu = menu;
         this.values = values;
         this.orientation = orientation;
     }
     
     /** Méthode de ActionListener qui prend en paramètre un événement et modifie le couloir et actualise la fenêtre.
-     * @param e > l'événement.
+     * @param e : l'événement.
      */
     @Override
     public void actionPerformed(ActionEvent e) {
         this.jeuModele.modifierCouloir(PositionInsertion.values()[this.values], Orientation.values()[this.orientation]);
-        this.jeuVue.setEtatBtnFiniTour(true);
+        this.menu.setEnableButtonTour(true);
         this.jeuVue.refresh(true);
     }
 }

@@ -16,8 +16,8 @@ public class ButtonJouer extends JButton implements ActionListener {
     private boolean active;
 
     /** Constructeur de la class ButtonJouer qui prend en paramètre la vue du jeu et son menu, et paramètre le bouton.
-     * @param jeuVue > la fenêtre du jeu du labyrinthe.
-     * @param menu > le menu de la fenêtre.
+     * @param jeuVue : la fenêtre du jeu du labyrinthe.
+     * @param menu : le menu de la fenêtre.
     */
     public ButtonJouer(VJeu jeuVue, VMenu menu) {
         // On paramètre les préférences du bouton.
@@ -34,7 +34,7 @@ public class ButtonJouer extends JButton implements ActionListener {
     }
 
     /** Méthode qui fait varier l'image du bouton si il est actif ou non.
-     * @param b > Vrai : le bouton est actif, faux sinon (boolean).
+     * @param etat : Vrai, le bouton est actif, faux sinon (boolean).
      */
     public void setEnabled(boolean etat) {
         if(etat) {
@@ -48,15 +48,12 @@ public class ButtonJouer extends JButton implements ActionListener {
 
     /** Méthode de ActionEvent qui appelle la méthode initPartie 
      * pour recommencer une nouvelle partie. 
-     * @param e > l'événement.
+     * @param e : l'événement.
      */
     public void actionPerformed(ActionEvent e) {
         if(this.active == false) {
             this.setEnabled(false);
             this.jeuVue.initPartie();
-            this.menu.creerPanelTour();
-            this.jeuVue.setEtatBtnFiniTour(false);
-            this.menu.afficheTour();
         }
     }
 }
