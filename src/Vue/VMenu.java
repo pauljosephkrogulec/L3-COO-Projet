@@ -25,7 +25,7 @@ public class VMenu extends JPanel {
     private VJeu jeuVue;
     private JeuImpl jeuModele;
     private JPanel header, accueil, tour;
-    private JButton btnQuitter, btnReduire, btnJouer, btnTour;
+    private JButton btnQuitter, btnReduire, btnJouer, btnTour, btnRotationGauche, btnRotationDroite;
     private ButtonRadio joueurNb2, joueurNb3, joueurNb4;
 
     /** Constructeur de la classe VMenu qui modélise le menu du jeu.
@@ -170,6 +170,7 @@ public class VMenu extends JPanel {
             this.jeuModele.getSupplementaire().setOrientation(tabOrientation[(Arrays.asList(tabOrientation).indexOf(this.jeuModele.getSupplementaire().getOrientation()) + 1) % 4]);
             this.refreshTour(false);
         });
+        this.btnRotationDroite = rotationDroite;
 
         VCouloir supp = new VCouloir(this.jeuModele.getSupplementaire(), -1, -1);
         supp.setEnabled(false);
@@ -187,6 +188,7 @@ public class VMenu extends JPanel {
             }
             this.refreshTour(false);
         });
+        this.btnRotationGauche = rotationGauche;
 
         // On crée le bouton Jouer qui lance la partie.
         this.btnTour = new ButtonFinTour(this.jeuVue);
@@ -245,6 +247,8 @@ public class VMenu extends JPanel {
         this.tour.removeAll();
         this.creerPanelTour();
         this.btnTour.setEnabled(etat);
+        this.btnRotationDroite.setEnabled(!etat);
+        this.btnRotationGauche.setEnabled(!etat);
         this.tour.revalidate();        
         this.tour.repaint();
     }    
