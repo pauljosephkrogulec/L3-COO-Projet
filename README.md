@@ -7,6 +7,9 @@ Vous trouvez dans cette archive :
 - Un dossier src : qui contient l'ensemble des fichiers .java découpés en deux dossiers, le dossier Vue qui contient la partie graphique du jeu et Modele qui contient la partie applicative.
 - Un fichier .jar à la racine pour lancer le jeu.
 
+Lien du GitLab : https://gitlab.univ-artois.fr/quentin_carpentier2/l3-coo-projet
+Lien du GitHub : https://github.com/pauljosephkrogulec/L3-COO-Projet
+
 ## Compiler le programme
 
 Pour compiler le jeu, il vous suffit d'exécuter depuis le terminal la commande :
@@ -19,8 +22,6 @@ Pour lancer le programme depuis le terminal, vous pouvez entrer la ligne suivant
 
 Sinon, vous pouvez double cliquer sur JeuLabyrinthe.jar ou encore le lancer manuellement depuis le terminal avec la commande :
 > java -jar JeuLabyrinthe.jar
-
-*(! le .jar ne reconnait pas le chemin d'accès au image malgrès l'utilisation de getRessources et d'un chemin valide..)*
 
 ***Réalisé par Quentin Carpentier & Paul-Joseph Krogulec,***
 **Bon jeu !**
