@@ -110,4 +110,10 @@ public class CouloirImpl implements Couloir {
     public Position getPos() {
         return this.pos;
     }
+    /**
+     * Méthode qui vide la liste des pions.
+     */
+    public void videPion(){
+        this.pions = new ArrayList<>();
+    }
 }

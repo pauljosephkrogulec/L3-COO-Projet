@@ -94,6 +94,13 @@ public class Plateau {
                     pi.setPosX(position.getX() - x);
                 }
             }
+        for(Pion p : SUP.getPions()){
+            c.setPion(p);
+            PionImpl pi = (PionImpl) p;
+            pi.setPosX(position.getX());
+            pi.setPosY(position.getY());
+        }
+        SUP.videPion();
         this.couloirs[position.getX()][position.getY()] = c;
         return SUP;
     }
