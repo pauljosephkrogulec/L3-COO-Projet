@@ -1,4 +1,4 @@
-package Modele;
+package modele;
 
 /** Classe qui énumére les orientations possibles d'un couloir..
  */

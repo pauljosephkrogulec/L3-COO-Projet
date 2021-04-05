@@ -1,4 +1,4 @@
-package Modele;
+package modele;
 
 // On importe les librairies..
 import java.util.Random;

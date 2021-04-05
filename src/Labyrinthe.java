@@ -1,4 +1,4 @@
-import Vue.VJeu;
+import vue.VJeu;
 
 /** Classe Labyrinthe qui s'occupe de lancer le jeu.
  */

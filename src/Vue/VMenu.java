@@ -1,4 +1,4 @@
-package Vue;
+package vue;
 
 // On importe les librairies..
 import java.awt.event.ActionEvent;
@@ -13,9 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-// On importe quelques classes du modèle..
-import Modele.Orientation;
-import Modele.JeuImpl;
+import modele.JeuImpl;
+import modele.Orientation;
 
 /** Classe qui hérite des propriétés d'un JPanel et modélise le menu du jeu..
  */
@@ -65,7 +64,7 @@ public class VMenu extends JPanel {
 
         // On crée le logo.
         JLabel logo = new JLabel();
-        logo.setIcon(new ImageIcon(VJeu.class.getResource("../img/logo.png")));
+        logo.setIcon(new ImageIcon(VJeu.class.getResource("/img/logo.png")));
         this.header.add(logo);
         logo.setBounds(20, 60, 260, 70);
 
@@ -87,7 +86,7 @@ public class VMenu extends JPanel {
 
         // On crée un label qui affiche les règles.
         regles = new JLabel();
-        regles.setIcon(new ImageIcon(VJeu.class.getResource("../img/regles.png")));
+        regles.setIcon(new ImageIcon(VJeu.class.getResource("/img/regles.png")));
         this.accueil.add(regles);
         regles.setBounds(0, 0, 250, 191);
 
@@ -139,13 +138,13 @@ public class VMenu extends JPanel {
 
         // On crée un label qui affiche les règles.
         img_tour = new JLabel();
-        img_tour.setIcon(new ImageIcon(VJeu.class.getResource("../img/tour.png")));
+        img_tour.setIcon(new ImageIcon(VJeu.class.getResource("/img/tour.png")));
         this.tour.add(img_tour);
         img_tour.setBounds(0, 0, 250, 191);
 
         // On crée un label qui affiche les règles.
         label_joueur = new JLabel();
-        ImageIcon pion = new ImageIcon(VJeu.class.getResource("../img/" + this.jeuVue.getJoueurCourant().getPion().getCouleur() + ".png"));
+        ImageIcon pion = new ImageIcon(VJeu.class.getResource("/img/" + this.jeuVue.getJoueurCourant().getPion().getCouleur() + ".png"));
         Image img_pion = pion.getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH);
         label_joueur.setIcon(new ImageIcon(img_pion));
         this.tour.add(label_joueur);
@@ -154,7 +153,7 @@ public class VMenu extends JPanel {
         // On crée un label qui affiche l'objectif à chercher.
         if(!this.jeuVue.getJoueurCourant().getObjectifs().empty()) {
             label_objectif = new JLabel();
-            ImageIcon objectif = new ImageIcon(VJeu.class.getResource("../img/objectifs/"+ this.jeuVue.getJoueurCourant().getObjectifs().peek() + ".png"));
+            ImageIcon objectif = new ImageIcon(VJeu.class.getResource("/img/objectifs/"+ this.jeuVue.getJoueurCourant().getObjectifs().peek() + ".png"));
             Image img_objectif = objectif.getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH);
             label_objectif.setIcon(new ImageIcon(img_objectif));
             this.tour.add(label_objectif);

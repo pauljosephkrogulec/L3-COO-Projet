@@ -1,4 +1,4 @@
-package Vue;
+package vue;
 
 // On importe la librairie JButton..
 import javax.swing.JButton;

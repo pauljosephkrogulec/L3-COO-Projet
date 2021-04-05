@@ -1,4 +1,4 @@
-package Vue;
+package vue;
 
 // On importe les librairies..
 import java.util.ArrayList;
@@ -10,8 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-// On importe la classe JeuImpl depuis le modèle..
-import Modele.JeuImpl;
+import modele.JeuImpl;
 
 /** Classe qui hérite des propriétés d'un JPanel et modélise le plateau du jeu..
  */
@@ -165,13 +164,13 @@ public class VPlateau extends JPanel {
 
         // On crée un label qui affiche le pion gagnant.
         JLabel pionGagnant = new JLabel();
-        pionGagnant.setIcon(new ImageIcon(VJeu.class.getResource("../img/" + this.jeuVue.getJoueurCourant().getPion().getCouleur() + ".png")));
+        pionGagnant.setIcon(new ImageIcon(VJeu.class.getResource("/img/" + this.jeuVue.getJoueurCourant().getPion().getCouleur() + ".png")));
         messageFin.add(pionGagnant);
         pionGagnant.setBounds(192, 205, 30, 30);
 
         // On crée un label qui affiche le pion gagnant.
         JLabel msgGagnant = new JLabel();
-        msgGagnant.setIcon(new ImageIcon(VJeu.class.getResource("../img/message_fin.png")));
+        msgGagnant.setIcon(new ImageIcon(VJeu.class.getResource("/img/message_fin.png")));
         messageFin.add(msgGagnant);
         msgGagnant.setBounds(40, 190, 420, 100);
 

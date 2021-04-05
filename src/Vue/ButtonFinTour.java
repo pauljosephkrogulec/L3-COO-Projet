@@ -1,4 +1,4 @@
-package Vue;
+package vue;
 
 // On importe les librairies..
 import java.awt.event.ActionEvent;
@@ -22,7 +22,7 @@ public class ButtonFinTour extends JButton implements ActionListener {
     public ButtonFinTour(VJeu jeuVue, VMenu menu) {
         // On paramètre les préférences du bouton.
         this.setFocusable(false);
-        this.setIcon(new ImageIcon(ButtonJouer.class.getResource("../img/terminerTour.png")));
+        this.setIcon(new ImageIcon(ButtonJouer.class.getResource("/img/terminerTour.png")));
         this.setContentAreaFilled(false);
         this.setBorderPainted(false);
         this.setFocusPainted(false);
@@ -38,10 +38,10 @@ public class ButtonFinTour extends JButton implements ActionListener {
      */
     public void setEnabled(boolean etat) {
         if(etat) {
-            this.setIcon(new ImageIcon(ButtonJouer.class.getResource("../img/terminerTour.png")));
+            this.setIcon(new ImageIcon(ButtonJouer.class.getResource("/img/terminerTour.png")));
             this.active = false;
         } else {
-            this.setIcon(new ImageIcon(ButtonJouer.class.getResource("../img/terminerTourDisabled.png")));
+            this.setIcon(new ImageIcon(ButtonJouer.class.getResource("/img/terminerTourDisabled.png")));
             this.active = true;
         }
     }

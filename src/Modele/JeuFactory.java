@@ -1,7 +1,6 @@
-package Modele;
+package modele;
 
-// On importe la vue du Jeu.
-import Vue.VJeu;
+import vue.VJeu;
 
 /** Constructeur de la classe JeuFactory qui lance le jeu
  */

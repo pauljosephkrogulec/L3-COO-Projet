@@ -1,4 +1,4 @@
-package Modele;
+package modele;
 
 /** Interface modélisant le pion.
  */

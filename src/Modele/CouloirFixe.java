@@ -1,4 +1,4 @@
-package Modele;
+package modele;
 
 /** Classe qui modélise un couloir fixe en héritant des propriétés de CouloirImpl..
  */

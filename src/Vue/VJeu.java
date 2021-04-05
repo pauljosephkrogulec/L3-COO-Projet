@@ -1,4 +1,4 @@
-package Vue;
+package vue;
 
 // On importe les librairies..
 import java.util.ArrayList;
@@ -10,12 +10,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-// On importe quelques classes du modèle..
-import Modele.JeuImpl;
-import Modele.Couloir;
-import Modele.JeuFactory;
-import Modele.Joueur;
-import Modele.Position;
+import modele.Couloir;
+import modele.JeuFactory;
+import modele.JeuImpl;
+import modele.Joueur;
+import modele.Position;
 
 /** Classe qui implémente les actions et modélise l'interface graphique du jeu du Labyrinthe..
  */

@@ -1,4 +1,4 @@
-package Modele;
+package modele;
 
 /** Classe qui modélise une position..
  */

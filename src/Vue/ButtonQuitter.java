@@ -1,4 +1,5 @@
-package Vue;
+package vue
+;
 
 // On importe les librairies..
 import java.awt.event.ActionEvent;
@@ -16,7 +17,7 @@ public class ButtonQuitter extends JButton implements ActionListener {
         // On paramètre les préférences du bouton.
         this.setFocusable(false);
         this.setOpaque(true);
-        this.setIcon(new ImageIcon(ButtonQuitter.class.getResource("../img/close.png")));
+        this.setIcon(new ImageIcon(ButtonQuitter.class.getResource("/img/close.png")));
         this.setContentAreaFilled(false);
         this.setBorderPainted(false);
         this.setFocusPainted(false);

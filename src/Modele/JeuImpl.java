@@ -1,4 +1,4 @@
-package Modele;
+package modele;
 
 // On importe les librairies..
 import java.util.ArrayList;
@@ -8,8 +8,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Stack;
 
-// On importe la classe depuis la vue du jeu.
-import Vue.VJeu;
+import vue.VJeu;
 
 /** Classe qui implémente l'interface du jeu pour modéliser le modèle du labyrinthe.
  */

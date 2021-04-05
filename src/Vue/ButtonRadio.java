@@ -1,4 +1,4 @@
-package Vue;
+package vue;
 
 // On importe les librairies..
 import javax.swing.ImageIcon;
@@ -15,7 +15,7 @@ public class ButtonRadio extends JRadioButton {
         this.setFocusable(false);
         this.setSize(50, 20);
         this.setOpaque(false);
-        this.setIcon(new ImageIcon(ButtonRadio.class.getResource("../img/radioIcon.png")));
-        this.setSelectedIcon(new ImageIcon(ButtonRadio.class.getResource("../img/radioSelect.png")));
+        this.setIcon(new ImageIcon(ButtonRadio.class.getResource("/img/radioIcon.png")));
+        this.setSelectedIcon(new ImageIcon(ButtonRadio.class.getResource("/img/radioSelect.png")));
     }
 }

@@ -1,4 +1,4 @@
-package Vue;
+package vue;
 
 // On importe les librairies..
 import java.awt.event.MouseListener;
@@ -6,12 +6,12 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
+import modele.Couloir;
+import modele.Pion;
+
 import java.awt.Color;
 import java.awt.Graphics;
-
-// On importe quelques classes du modèle..
-import Modele.Couloir;
-import Modele.Pion;
 
 /** Classe qui hérite des propriétés d'un JButton et modélise un couloir avec ses événements..
  */
@@ -64,16 +64,16 @@ public class VCouloir extends JButton implements MouseListener {
         super.paintComponent(g);
 
         // On déssine la forme du couloir (COUDE, TE, DROIT)
-        g.drawImage(new ImageIcon(VCouloir.class.getResource("../img/couloirs/" + couloir.getForme() + "_" + couloir.getOrientation() + ".gif")).getImage(), 3, 3, 50, 50, this);
+        g.drawImage(new ImageIcon(VCouloir.class.getResource("/img/couloirs/" + couloir.getForme() + "_" + couloir.getOrientation() + ".GIF")).getImage(), 3, 3, 50, 50, this);
 
         // Si celui-ci possède un objectif, on le déssine.
         if(couloir.getObjectif() != null) {
-            g.drawImage(new ImageIcon(VCouloir.class.getResource("../img/objectifs/" + couloir.getObjectif() + ".png")).getImage(), 18, 18, 20, 20, this);
+            g.drawImage(new ImageIcon(VCouloir.class.getResource("/img/objectifs/" + couloir.getObjectif() + ".png")).getImage(), 18, 18, 20, 20, this);
         }
 
         // On déssine également l'ensemble des pions qui sont sur lui.
         for(Pion pion : couloir.getPions()) {
-            g.drawImage(new ImageIcon(VCouloir.class.getResource("../img/" + pion.getCouleur() + ".png")).getImage(), 20, 20, 16, 16, this);
+            g.drawImage(new ImageIcon(VCouloir.class.getResource("/img/" + pion.getCouleur() + ".png")).getImage(), 20, 20, 16, 16, this);
         }
     }
 

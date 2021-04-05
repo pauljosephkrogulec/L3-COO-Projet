@@ -1,4 +1,4 @@
-package Vue;
+package vue;
 
 // On importe la librairie ImageIcon..
 import javax.swing.ImageIcon;
@@ -10,6 +10,6 @@ public class ButtonRotationDroite extends ButtonRotation {
     /** Constructeur de la classe ButtonRotationDroite qui met à jour l'image du bouton.
      */
     public ButtonRotationDroite() {
-        this.setIcon(new ImageIcon(InsertionLeft.class.getResource("../img/rotationDroite.gif")));
+        this.setIcon(new ImageIcon(InsertionLeft.class.getResource("/img/rotationDroite.gif")));
     } 
 }

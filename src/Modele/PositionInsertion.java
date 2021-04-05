@@ -1,4 +1,4 @@
-package Modele;
+package modele;
 
 /** Classe qui énumére les positions d'insertion possibles dans le jeu..
  */

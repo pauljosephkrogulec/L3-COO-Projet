@@ -1,4 +1,4 @@
-package Modele;
+package modele;
 
 /** Classe qui énumére les objectifs possibles dans le jeu..
  */

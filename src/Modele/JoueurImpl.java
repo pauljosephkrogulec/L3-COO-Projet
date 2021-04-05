@@ -1,10 +1,9 @@
-package Modele;
+package modele;
 
 // On importe les librairies.
 import java.util.Stack;
 
-// On importe la vue du jeu.
-import Vue.VJeu;
+import vue.VJeu;
 
 /** Classe qui modélise un joueur en implémentant l'interface Joueur..
  */

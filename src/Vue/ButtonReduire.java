@@ -1,4 +1,4 @@
-package Vue;
+package vue;
 
 // On importe les librairies..
 import java.awt.event.ActionEvent;
@@ -21,7 +21,7 @@ public class ButtonReduire extends JButton implements ActionListener {
         // On paramètre les préférences du bouton.
         this.setFocusable(false);
         this.setOpaque(true);
-        this.setIcon(new ImageIcon(ButtonReduire.class.getResource("../img/reduce.png")));
+        this.setIcon(new ImageIcon(ButtonReduire.class.getResource("/img/reduce.png")));
         this.setContentAreaFilled(false);
         this.setBorderPainted(false);
         this.setFocusPainted(false);

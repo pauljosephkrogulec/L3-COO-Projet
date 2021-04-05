@@ -1,11 +1,12 @@
-package Vue;
+
+package vue;
 
 // On importe les librairies..
 import javax.swing.ImageIcon;
-import java.awt.event.MouseEvent;
 
-// On importe la classe JeuImpl depuis le modèle..
-import Modele.JeuImpl;
+import modele.JeuImpl;
+
+import java.awt.event.MouseEvent;
 
 public class InsertionTop extends InsertionPlateau {
     
@@ -18,7 +19,7 @@ public class InsertionTop extends InsertionPlateau {
      */
     public InsertionTop(VJeu jeuVue, JeuImpl jeuModele, VMenu menu, int values, int orientation) {
         super(jeuVue, jeuModele, menu, values, orientation);
-        this.setIcon(new ImageIcon(InsertionTop.class.getResource("../img/CURSOR4.gif")));
+        this.setIcon(new ImageIcon(InsertionTop.class.getResource("/img/CURSOR4.png")));
     }
 
     /** Méthode de MouseListener qui prend en paramètre un événement de sourie et actualise l'image du bouton, lorsque la sourie passe sur celui-ci.
@@ -26,7 +27,7 @@ public class InsertionTop extends InsertionPlateau {
      */
     @Override
     public void mouseEntered(MouseEvent e) {
-        this.setIcon(new ImageIcon(InsertionTop.class.getResource("../img/CURSOR4_hover.gif")));
+        this.setIcon(new ImageIcon(InsertionTop.class.getResource("/img/CURSOR4_hover.png")));
     }
 
     /** Méthode de MouseListener qui prend en paramètre un événement de sourie et actualise l'image du bouton, lorsque la sourie sort de celui-ci.
@@ -34,7 +35,7 @@ public class InsertionTop extends InsertionPlateau {
      */
     @Override
     public void mouseExited(MouseEvent e) {
-        this.setIcon(new ImageIcon(InsertionTop.class.getResource("../img/CURSOR4.gif")));
+        this.setIcon(new ImageIcon(InsertionTop.class.getResource("/img/CURSOR4.png")));
     }
 
     // Autres méthodes de MouseListener non-utilisées.
