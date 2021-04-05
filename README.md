@@ -18,7 +18,7 @@ Pour lancer le programme depuis le terminal, vous pouvez entrer la ligne suivant
 > java -cp bin Labyrinthe
 
 Sinon, vous pouvez double cliquer sur JeuLabyrinthe.jar ou encore le lancer manuellement depuis le terminal avec la commande :
-> java -jar Labyrinthe.jar
+> java -jar JeuLabyrinthe.jar
 
 *(! le .jar ne reconnait pas le chemin d'accès au image malgrès l'utilisation de getRessources et d'un chemin valide..)*
 
