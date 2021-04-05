@@ -10,6 +10,6 @@ public class ButtonRotationGauche extends ButtonRotation {
     /** Constructeur de la classe ButtonRotationGauche qui met à jour l'image du bouton.
      */
     public ButtonRotationGauche() { 
-        this.setIcon(new ImageIcon(InsertionLeft.class.getResource("/img/rotationGauche.gif")));
+        this.setIcon(new ImageIcon(InsertionLeft.class.getResource("/img/rotationGauche.png")));
     }
 }
